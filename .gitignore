@@ -1,6 +1,8 @@
 *.iml
 *.class
 *.jar
+*/target
+
 
 
 
