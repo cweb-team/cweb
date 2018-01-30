@@ -28,11 +28,11 @@
 		<property name="fileEncoding" value="UTF-8"></property>
 	</bean>
 
-	<!--mybatis配置文件-->
+	<!--导入mybatis配置文件-->
 	<import resource="classpath:applicationContext-persistence.xml"/>
 
 	<!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
-	<context:component-scan base-package="com.team.cweb.controller" >
+	<context:component-scan base-package="com.team.cweb.controller" use-default-filters="false">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
 
