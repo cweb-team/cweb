@@ -3,7 +3,6 @@ package com.test.cweb.web;
 import com.test.cweb.ApplicationController;
 import com.test.cweb.model.result.ApiResult;
 import com.test.cweb.service.IUserService;
-import com.test.cweb.service.impl.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,13 +14,24 @@ import javax.annotation.Resource;
 
 /**
  * @author caiminjie
- * @date 18/1/23
+ * @date 18/2/1
  */
 @Controller
-public class TestPageController extends ApplicationController{
+@RequestMapping("/user/login")
+public class UserController extends ApplicationController {
+
+    @Resource
+    IUserService iUserService;
 
     @RequestMapping("/")
     public ModelAndView index() {
-        return buildMAV("index.jsp");
+        return buildMAV("login.jsp", "login");
+    }
+
+    @RequestMapping("/findOne")
+    @ResponseBody
+    public ApiResult findOne(@RequestParam(value="name",required = true) String name){
+        ApiResult apiResult = iUserService.findOne(name);
+        return apiResult;
     }
 }

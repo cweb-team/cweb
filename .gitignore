@@ -1,12 +1,43 @@
-*.iml
+#system
+.DS_Store
+
+#Java
 *.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
 *.jar
-*/target
-.idea
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+#maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+#IntelliJ IDEA
+.idea/
+*.iml
+rebel.xml
+.rebel.xml.bak
 
 
+#eclipse
+*.project
+.settings/
+.classpath
+META-INF/
 
-
-
-
+*deploy.sh
 
