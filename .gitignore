@@ -39,5 +39,10 @@ rebel.xml
 .classpath
 META-INF/
 
+#properties
+database.properties
+log4j.properties
+*.properties
+
 *deploy.sh
 
