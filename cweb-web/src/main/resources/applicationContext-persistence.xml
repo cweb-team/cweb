@@ -15,6 +15,7 @@
 
     <mybatis:scan base-package="com.test.cweb.dao"/>
 
+    <!-- 定义dbcp的DataSource -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
         destroy-method="close">
         <property name="driverClassName" value="${jdbc.driverClassName}"></property>
@@ -31,7 +32,12 @@
     </bean>
   
     <!-- mybatis配置 -->
+
+    <!--创建SqlSessionFactory，定义SqlSession资源-->
+    <!-- 整合后不需要myBatis主配置文件，相关信息以注入的方式加入到此 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!-- 注入dataSource -->
+
         <property name="dataSource" ref="dataSource" />
         <property name="transactionFactory">
             <bean class="org.apache.ibatis.transaction.managed.ManagedTransactionFactory" />
@@ -39,6 +45,8 @@
         <property name="mapperLocations"
               value="classpath:mappers/*Mapper.xml" />
         <property name="typeAliasesPackage" value="com.test.cweb.model" />
+
+        <!-- 注入SQL语句文件 -->
         <property name="configLocation" value="classpath:mybatis-config.xml" />
 
     </bean>
