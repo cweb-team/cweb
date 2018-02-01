@@ -21,7 +21,7 @@
 	<bean id="config" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 		<property name="locations">
 			<list>
-				<value>classpath:config/config.properties</value>
+				<value>classpath:config.properties</value>
 			</list>
 		</property>
 		<!-- 设置编码格式 -->
@@ -32,10 +32,7 @@
 	<import resource="classpath:applicationContext-persistence.xml"/>
 
 
-	<!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
-	<context:component-scan base-package="com.test.cweb.controller" use-default-filters="false">
-		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-	</context:component-scan>
+	<context:component-scan base-package="com.test.cweb.service" ></context:component-scan>
 
 
 	<!--上传文件的包-->
