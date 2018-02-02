@@ -32,6 +32,10 @@ buildNumber.properties
 rebel.xml
 .rebel.xml.bak
 
+#properties
+database.properties
+log4j.properties
+*.properties
 
 #eclipse
 *.project
