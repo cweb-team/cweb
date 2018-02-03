@@ -149,6 +149,7 @@
                 <configuration>
                     <url>http://localhost:8080/manager/text</url>
                     <server>tomcat8</server>
+                    <uriEncoding>UTF-8</uriEncoding>
                     <username>team</username>
                     <password>team123</password>
                     <path>/${final-name}</path>
