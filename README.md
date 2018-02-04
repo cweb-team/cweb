@@ -7,7 +7,8 @@
 1. [@responseBody注解的使用](https://www.cnblogs.com/qiankun-site/p/5774325.html)
 2. [@RequestParam的作用](http://blog.csdn.net/u012726702/article/details/51813235)
 3. [SSM框架下各个层的解释说明](http://blog.csdn.net/lutianfeiml/article/details/51864160)
-
+4. [MyBatis传入参数与parameterType](http://blog.csdn.net/z69183787/article/details/50471607)
+5. [以@Resource为例，透析注解的本质，spring中是如何使用注解的](http://blog.csdn.net/qq_27093465/article/details/52702463)
 ## 数据库相关
 1. [java与mysql时间类型对应](http://blog.csdn.net/xinghuo0007/article/details/51500923)
 

@@ -9,4 +9,5 @@ import com.test.cweb.model.result.ApiResult;
 
 public interface IUserService {
     ApiResult findOne(String name);
+    ApiResult findAll(String name);
 }

@@ -10,4 +10,5 @@ import com.test.cweb.model.User;
 public interface UserDao {
 
     User findOne(HashMap<String,Object> search);
+    User findAll(HashMap<String,Object> search);
 }
