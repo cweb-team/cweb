@@ -34,4 +34,11 @@ public class UserController extends ApplicationController {
         ApiResult apiResult = iUserService.findOne(name);
         return apiResult;
     }
+
+    @RequestMapping("/findAll")
+    @ResponseBody
+    public ApiResult findAll(@RequestParam(value="name",required = true) String name){
+        ApiResult apiResult = iUserService.findAll(name);
+        return apiResult;
+    }
 }

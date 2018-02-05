@@ -21,7 +21,7 @@
             $("#search").on("click", function(){
                 var name = $("#name").val();
                 $.ajax({
-                    url: "findOne",
+                    url: "findAll",
                     type: "get",
                     dataType: "json",
                     data: {

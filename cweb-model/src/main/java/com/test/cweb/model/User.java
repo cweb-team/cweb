@@ -8,15 +8,17 @@ import java.sql.Timestamp;
  */
 public class User {
     private int id;
-    private String name;
-    private String password;
     private String account;
+    private String password;
+    private String nickname;
+    private String realName;
     private String phoneNumber;
-    private String Email;
+    private String email;
     private Timestamp createTime;
     private Timestamp loginTime;
     private Timestamp lastLoginTime;
     private int loginCount;
+    private int lastLoginIP;
     private String ip;
 
     public int getId() {
@@ -25,14 +27,6 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getPassword() {
@@ -60,11 +54,11 @@ public class User {
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
     public Timestamp getCreateTime() {
@@ -105,5 +99,29 @@ public class User {
 
     public void setIp(String ip) {
         this.ip = ip;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
+
+    public int getLastLoginIP() {
+        return lastLoginIP;
+    }
+
+    public void setLastLoginIP(int lastLoginIP) {
+        this.lastLoginIP = lastLoginIP;
     }
 }

@@ -35,4 +35,21 @@ public class UserService implements IUserService {
 
         return apiResult;
     }
+
+    @Override
+    public ApiResult findAll(String name){
+        ApiResult apiResult = new ApiResult();
+
+        HashMap<String,Object> search = new HashMap<>();
+        search.put("name",name);
+        User user = userDao.findAll(search);
+
+        if(user != null) {
+            apiResult.success(user);
+        }else{
+            apiResult.fail("用户不存在！");
+        }
+
+        return apiResult;
+    }
 }
