@@ -109,7 +109,8 @@
                 });
                 if (isPassed === 0) {
                     //此处为前端验证通过后,调用ajax接口.
-
+                    var loginPhoneNum = this.$data.inputMobile, //获取input框的手机号
+                        loginPw = this.$data.inputPw;           //获取input框的密码
 
 
 
