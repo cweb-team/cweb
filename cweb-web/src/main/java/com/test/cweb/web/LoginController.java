@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/logintest")
+@RequestMapping("/login")
 public class LoginController extends ApplicationController{
     @RequestMapping("/")
 
     
     public ModelAndView index() {
-        return buildMAV("test.jsp");
+        return buildMAV("login.jsp");
     }
 }

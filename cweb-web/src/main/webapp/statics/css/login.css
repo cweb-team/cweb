@@ -1,0 +1,76 @@
+html, body, ul {
+  margin: 0;
+  padding: 0; }
+
+body {
+  width: 100%;
+  min-width: 1000px;
+  background: url("../image/login-bg.jpg") no-repeat center center fixed;
+  font-family: -apple-system,BlinkMacSystemFont,Helvetica Neue,PingFang SC,Microsoft YaHei,Source Han Sans SC,Noto Sans CJK SC,WenQuanYi Micro Hei,sans-serif; }
+
+.hide {
+  display: none !important; }
+
+div#vueControl {
+  width: 100%; }
+  div#vueControl div#login-container {
+    width: 400px;
+    margin: 0 auto;
+    padding: 30px 0 20px;
+    background-color: rgba(255, 255, 255, 0.85);
+    margin-top: 120px;
+    border-radius: 4px; }
+    div#vueControl div#login-container h2 {
+      text-align: center; }
+    div#vueControl div#login-container h3 {
+      text-align: center; }
+    div#vueControl div#login-container form#login-input {
+      width: 100%;
+      margin: 0 auto; }
+      div#vueControl div#login-container form#login-input div {
+        width: 80%;
+        height: 40px;
+        margin: 0px auto;
+        margin-bottom: 30px; }
+        div#vueControl div#login-container form#login-input div input {
+          width: 300px;
+          height: 40px;
+          margin: 0px 10px;
+          padding: .5em .6em;
+          display: inline-block;
+          border: none;
+          border-bottom: 1px solid #ccc;
+          outline: none;
+          vertical-align: middle;
+          box-sizing: border-box; }
+        div#vueControl div#login-container form#login-input div #login-submit-button {
+          width: 300px;
+          height: 40px;
+          margin: 0px 10px;
+          color: white;
+          background-color: #0084ff; }
+      div#vueControl div#login-container form#login-input #goto-registerOrForget {
+        text-align: center;
+        margin-bottom: 20px; }
+        div#vueControl div#login-container form#login-input #goto-registerOrForget forget {
+          float: left;
+          position: relative;
+          left: 10px; }
+        div#vueControl div#login-container form#login-input #goto-registerOrForget register {
+          float: right;
+          position: relative;
+          right: 10px; }
+        div#vueControl div#login-container form#login-input #goto-registerOrForget a {
+          color: #175199; }
+      div#vueControl div#login-container form#login-input .inputAlert {
+        left: 320px;
+        bottom: 2.54em;
+        height: 40px;
+        width: 280px;
+        margin: 0; }
+        div#vueControl div#login-container form#login-input .inputAlert div {
+          margin: 0; }
+        div#vueControl div#login-container form#login-input .inputAlert span {
+          line-height: 40px; }
+        div#vueControl div#login-container form#login-input .inputAlert i {
+          display: none; }
