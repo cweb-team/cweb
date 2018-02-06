@@ -15,9 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/login")
 public class LoginController extends ApplicationController{
     @RequestMapping("/")
-
-    
     public ModelAndView index() {
-        return buildMAV("login.jsp");
+        return buildMAV("login.jsp","login");
     }
 }

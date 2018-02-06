@@ -15,7 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>登录/Log in</title>
     <!-- 引入login样式 -->
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/login.css">
     <!-- 引入pure样式 -->
     <link href="https://cdn.bootcss.com/pure/1.0.0/buttons-min.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/pure/1.0.0/forms-min.css" rel="stylesheet">
@@ -72,7 +72,7 @@
 
 </body>
 <!-- 引入正则验证json文件 -->
-<script src="js/json/regAlert.js"></script>
+<script src="<%=request.getContextPath()%>/js/json/regAlert.js"></script>
 <!-- 引入sweetalert2.0组件 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert@2.0.8/dist/sweetalert.min.js"></script>
 <!-- 引入jQuery组件库 -->
