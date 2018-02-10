@@ -1,18 +1,12 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Chirs
-  Date: 2018/2/6
-  Time: 11:01
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="en">
+<%--<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">--%>
+<!doctype html>
+<html xmlns=http://www.w3.org/1999/xhtml>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,user-scalable=1.0,
                  initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,minimal-ui">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
     <title>登录/Log in</title>
     <!-- 引入login样式 -->
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/login.css">
