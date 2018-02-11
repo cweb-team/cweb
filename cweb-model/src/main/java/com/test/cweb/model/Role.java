@@ -1,40 +1,32 @@
 package com.test.cweb.model;
 
-import java.sql.Timestamp;
-import java.util.HashSet;
-import java.util.Set;
+import java.sql.Date;
 
 public class Role {
-    /** 角色Id**/
-    private int id;
+    private Integer pkId;
 
-    /** 角色描述**/
-    private String description;
+    private Integer parentId;
 
-    /** 角色名称**/
     private String roleName;
 
-    private Set<Permission> permissions = new HashSet<Permission>();
+    private Date createTime;
 
-    /**
-     * 创建时间
-     */
-    private Timestamp createTime;
+    private String description;
 
-    public int getId() {
-        return id;
+    public Integer getPkId() {
+        return pkId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setPkId(Integer pkId) {
+        this.pkId = pkId;
     }
 
-    public String getDescription() {
-        return description;
+    public Integer getParentId() {
+        return parentId;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
     }
 
     public String getRoleName() {
@@ -45,19 +37,19 @@ public class Role {
         this.roleName = roleName;
     }
 
-    public Set<Permission> getPermissions() {
-        return permissions;
-    }
-
-    public void setPermissions(Set<Permission> permissions) {
-        this.permissions = permissions;
-    }
-
-    public Timestamp getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Timestamp createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

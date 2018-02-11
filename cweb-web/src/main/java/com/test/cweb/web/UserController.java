@@ -35,7 +35,7 @@ public class UserController extends ApplicationController {
         return apiResult;
     }
 
-    @RequestMapping("/findAll")
+    @RequestMapping("/findByAccount")
     @ResponseBody
     public ApiResult findAll(@RequestParam(value="name",required = true) String name){
         ApiResult apiResult = iUserService.findAll(name);

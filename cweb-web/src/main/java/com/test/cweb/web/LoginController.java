@@ -1,6 +1,7 @@
 package com.test.cweb.web;
 
 import com.test.cweb.ApplicationController;
+import com.test.cweb.model.User;
 import com.test.cweb.model.result.ApiResult;
 import com.test.cweb.service.IUserService;
 import com.test.cweb.service.impl.UserService;
@@ -25,9 +26,9 @@ public class LoginController extends ApplicationController{
         return buildMAV("login.jsp","login");
     }
 
-
-    public ApiResult login(String name,String password){
-        ApiResult apiResult = iUserService.findAll(name);
-        return apiResult;
-    }
+//    @RequestMapping("/parseLogin")
+//    public ApiResult login(String name,String password){
+//        User user = iUserService.findByAccount(name);
+//        return apiResult;
+//    }
 }

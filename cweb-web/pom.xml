@@ -22,25 +22,22 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
-
+        <!--引入cweb其他模块-->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>common-utils</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>cweb-model</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>cweb-dao</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>cweb-service</artifactId>

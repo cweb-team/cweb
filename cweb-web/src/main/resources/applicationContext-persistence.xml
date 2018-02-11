@@ -15,6 +15,7 @@
 
     <mybatis:scan base-package="com.test.cweb.dao"/>
 
+    <!-- dataSource 配置 -->
     <!-- 定义dbcp的DataSource -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
         destroy-method="close">
@@ -26,7 +27,7 @@
         <property name="maxIdle" value="10"></property>
     </bean>
 
-
+    <!-- 对dataSource 数据源进行事务管理 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />
     </bean>
@@ -36,8 +37,8 @@
     <!--创建SqlSessionFactory，定义SqlSession资源-->
     <!-- 整合后不需要myBatis主配置文件，相关信息以注入的方式加入到此 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <!-- 注入dataSource -->
 
+        <!-- 注入dataSource -->
         <property name="dataSource" ref="dataSource" />
         <property name="transactionFactory">
             <bean class="org.apache.ibatis.transaction.managed.ManagedTransactionFactory" />
@@ -48,6 +49,6 @@
 
         <!-- 注入SQL语句文件 -->
         <property name="configLocation" value="classpath:mybatis-config.xml" />
-
     </bean>
+
 </beans>   

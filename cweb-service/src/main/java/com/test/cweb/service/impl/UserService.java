@@ -10,6 +10,7 @@ import org.apache.shiro.realm.Realm;
 import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -60,23 +61,23 @@ public class UserService implements IUserService {
     public User findByAccount(String account){
         HashMap<String,Object> search = new HashMap<>();
         search.put("account",account);
-        User user = userDao.findByAccount(search);
+        User user = userDao.selectByAccount(search);
         return user;
     }
 
     @Override
-    public Set getRoles(String account){
+    public List getRoles(String account){
         User user = this.findByAccount(account);
 
-        Set roles = user.getRoles();
+        List roles = user.getRoles();
         return roles;
     }
 
     @Override
-    public Set getPermissions(String account){
+    public List getPermissions(String account){
         User user= this.findByAccount(account);
 
-        Set permissions = user.getPermissions();
+        List permissions = user.getPermissions();
         return permissions;
     }
 
