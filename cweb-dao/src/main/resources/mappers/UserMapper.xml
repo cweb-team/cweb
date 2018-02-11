@@ -27,4 +27,9 @@
     <select id="findOne" parameterType="hashMap" resultType="User">
         select * from T_USER where REAL_NAME = #{name}
     </select>
+
+    <select id="findByAccount" parameterType="hashMap" resultType="User">
+        select * from T_USER where ACCOUNT = #{account}
+    </select>
+
 </mapper>

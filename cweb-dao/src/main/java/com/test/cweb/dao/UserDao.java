@@ -11,4 +11,5 @@ public interface UserDao {
 
     User findOne(HashMap<String,Object> search);
     User findAll(HashMap<String,Object> search);
+    User findByAccount(HashMap<String,Object> search);
 }

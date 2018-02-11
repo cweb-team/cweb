@@ -11,11 +11,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.Resource;
+
 @Controller
 @RequestMapping("/login")
 public class LoginController extends ApplicationController{
+
+    @Resource
+    IUserService iUserService;
+
     @RequestMapping("/")
     public ModelAndView index() {
         return buildMAV("login.jsp","login");
+    }
+
+
+    public ApiResult login(String name,String password){
+        ApiResult apiResult = iUserService.findAll(name);
+        return apiResult;
     }
 }

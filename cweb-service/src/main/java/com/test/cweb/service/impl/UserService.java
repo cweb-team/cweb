@@ -5,9 +5,12 @@ import com.test.cweb.dao.UserDao;
 import com.test.cweb.model.result.ApiResult;
 import com.test.cweb.service.IUserService;
 import org.springframework.stereotype.Service;
+import org.apache.shiro.realm.Realm;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author caiminjie
@@ -52,4 +55,32 @@ public class UserService implements IUserService {
 
         return apiResult;
     }
+
+    @Override
+    public User findByAccount(String account){
+        HashMap<String,Object> search = new HashMap<>();
+        search.put("account",account);
+        User user = userDao.findByAccount(search);
+        return user;
+    }
+
+    @Override
+    public Set getRoles(String account){
+        User user = this.findByAccount(account);
+
+        Set roles = user.getRoles();
+        return roles;
+    }
+
+    @Override
+    public Set getPermissions(String account){
+        User user= this.findByAccount(account);
+
+        Set permissions = user.getPermissions();
+        return permissions;
+    }
+
+
 }
+
+

@@ -98,7 +98,22 @@
         methods: {
             loginSubmit: function () {
                 //此处未登录点击事件,ajax在此处
-                alert("登陆事件");
+
+                var name = $("#name").val();
+                $.ajax({
+                    url: "findAll",
+                    type: "get",
+                    dataType: "json",
+                    data: {
+                        name: name
+                    },
+                    success: function(resp){
+                        if(resp.status == 200){
+                            console.log(resp.data);
+                        }
+                    }
+                })
+
                 var valInputs = document.querySelectorAll(".input-need-vali"),
                     isPassed = 0;
                 _.forEach(valInputs, function(itm){

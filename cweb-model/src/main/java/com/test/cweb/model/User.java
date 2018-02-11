@@ -1,6 +1,7 @@
 package com.test.cweb.model;
 
 import java.sql.Timestamp;
+import java.util.Set;
 
 /**
  * @author caiminjie
@@ -20,6 +21,9 @@ public class User {
     private int loginCount;
     private int lastLoginIP;
     private String ip;
+
+    private Set<Role> roles;
+    private Set<Permission> permissions;
 
     public int getId() {
         return id;
@@ -123,5 +127,21 @@ public class User {
 
     public void setLastLoginIP(int lastLoginIP) {
         this.lastLoginIP = lastLoginIP;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public Set<Permission> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(Set<Permission> permissions) {
+        this.permissions = permissions;
     }
 }
