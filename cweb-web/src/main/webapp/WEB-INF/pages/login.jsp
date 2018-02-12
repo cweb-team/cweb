@@ -99,13 +99,15 @@
             loginSubmit: function () {
                 //此处未登录点击事件,ajax在此处
 
-                var name = $("#name").val();
+                var account = $("#phoneNum").val();
+                var password = $("#password").val();
                 $.ajax({
                     url: "tryLogin",
-                    type: "get",
+                    type: "post",
                     dataType: "json",
                     data: {
-                        name: name
+                        account: account,
+                        password:password,
                     },
                     success: function(resp){
                         if(resp.status == 200){

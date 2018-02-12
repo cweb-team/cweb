@@ -103,7 +103,7 @@
         <!-- 全局会话超时时间（单位毫秒），默认30分钟 -->
         <property name="globalSessionTimeout" value="1800000" />
         <property name="deleteInvalidSessions" value="true" />
-        <property name="sessionValidationSchedulerEnabled" value="true" />
+        <property name="sessionValidationSchedulerEnabled" value="false" />
         <property name="sessionValidationScheduler" ref="sessionValidationScheduler" />
         <property name="sessionDAO" ref="sessionDAO" />
         <property name="sessionIdCookieEnabled" value="true" />

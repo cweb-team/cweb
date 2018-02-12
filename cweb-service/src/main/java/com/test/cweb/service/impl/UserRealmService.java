@@ -17,6 +17,12 @@ public class UserRealmService extends AuthorizingRealm {
     @Resource
     IUserService iUserService;
 
+    /**
+     * 验证当前登录的用户，获取认证信息
+     * @param token
+     * @return
+     * @throws AuthenticationException
+     */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 
@@ -42,7 +48,9 @@ public class UserRealmService extends AuthorizingRealm {
 
     }
 
+    //
     /**
+     * 为当前登陆成功的用户授予权限和角色，已经登陆成功了
      * 授权查询回调函数, 进行鉴权但缓存中无用户的授权信息时调用,负责在应用程序中决定用户的访问控制的方法(non-Javadoc)
      * @see AuthorizingRealm#doGetAuthorizationInfo(PrincipalCollection)
      */
