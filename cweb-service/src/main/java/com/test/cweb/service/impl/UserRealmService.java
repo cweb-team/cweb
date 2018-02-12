@@ -10,8 +10,9 @@ import org.apache.shiro.realm.Realm;
 import org.apache.shiro.subject.PrincipalCollection;
 
 import javax.annotation.Resource;
+import java.util.Set;
 
-public class RealmService extends AuthorizingRealm {
+public class UserRealmService extends AuthorizingRealm {
 
     @Resource
     IUserService iUserService;
@@ -50,9 +51,10 @@ public class RealmService extends AuthorizingRealm {
 
         String account = (String)pc.getPrimaryPrincipal();
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-//        authorizationInfo.setRoles(iUserService.getRoles(account));
-//        authorizationInfo.setStringPermissions(iUserService.getPermissions(account));
-        System.out.println("Shiro 授权");
+
+        authorizationInfo.setRoles(iUserService.getRoles(account));
+        authorizationInfo.setStringPermissions(iUserService.getPermissions(account));
+//        System.out.println("Shiro 授权");
         return authorizationInfo;
     }
 

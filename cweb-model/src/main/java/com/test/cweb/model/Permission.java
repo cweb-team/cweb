@@ -1,24 +1,28 @@
 package com.test.cweb.model;
 
 public class Permission {
-    private int id;
-    private String description;
+    private Integer pkId;
+
+    private Integer parentId;
+
     private String permissionName;
 
-    public int getId() {
-        return id;
+    private String description;
+
+    public Integer getPkId() {
+        return pkId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setPkId(Integer pkId) {
+        this.pkId = pkId;
     }
 
-    public String getDescription() {
-        return description;
+    public Integer getParentId() {
+        return parentId;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
     }
 
     public String getPermissionName() {
@@ -26,6 +30,14 @@ public class Permission {
     }
 
     public void setPermissionName(String permissionName) {
-        this.permissionName = permissionName;
+        this.permissionName = permissionName == null ? null : permissionName.trim();
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
     }
 }

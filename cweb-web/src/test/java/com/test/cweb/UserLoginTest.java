@@ -1,10 +1,13 @@
 package com.test.cweb;
 
-import com.test.cweb.base.UnitTestBase;
+
 import com.test.cweb.model.User;
+import com.test.cweb.model.result.ApiResult;
 import com.test.cweb.service.IUserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.config.IniSecurityManagerFactory;
 import org.apache.shiro.mgt.SecurityManager;
@@ -19,7 +22,7 @@ import javax.annotation.Resource;
 
 @RunWith(org.springframework.test.context.junit4.SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations="classpath:applicationContext.xml")
-public class UserLoginTest extends UnitTestBase{
+public class UserLoginTest {
 
     @Resource
     IUserService iUserService;
@@ -30,6 +33,28 @@ public class UserLoginTest extends UnitTestBase{
         User user = iUserService.findByAccount(account);
         System.out.print(user);
     }
+
+    @Test
+    public void LoginTest(){
+        ApiResult apiResult = new ApiResult();
+        String account= "abc123";
+        String password = "abc123";
+        UsernamePasswordToken token = new UsernamePasswordToken(account, password);
+//        token.setRememberMe(userValidate.getRememberme());
+        try {
+            SecurityUtils.getSubject().login(token);
+            apiResult.success("login success");
+            System.out.println(apiResult);
+        } catch (UnknownAccountException uae) {
+            apiResult.fail("error username");
+            System.out.println(apiResult);
+        } catch (IncorrectCredentialsException ice) {
+            apiResult.fail("error password");
+            System.out.println(apiResult);
+        }
+    }
+
+
     @Test
     public void testHelloworld() {
         //1、获取SecurityManager工厂，此处使用Ini配置文件初始化SecurityManager

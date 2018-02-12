@@ -101,7 +101,7 @@
 
                 var name = $("#name").val();
                 $.ajax({
-                    url: "findAll",
+                    url: "tryLogin",
                     type: "get",
                     dataType: "json",
                     data: {

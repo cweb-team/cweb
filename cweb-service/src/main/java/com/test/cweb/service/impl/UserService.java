@@ -1,5 +1,7 @@
 package com.test.cweb.service.impl;
 
+import com.test.cweb.model.Permission;
+import com.test.cweb.model.Role;
 import com.test.cweb.model.User;
 import com.test.cweb.dao.UserDao;
 import com.test.cweb.model.result.ApiResult;
@@ -66,19 +68,28 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public List getRoles(String account){
+    public Set getRoles(String account){
         User user = this.findByAccount(account);
 
-        List roles = user.getRoles();
-        return roles;
+        List<Role> roles = user.getRoles();
+        Set<String> roles_str = new HashSet<>();
+        for(Role role :roles){
+            roles_str.add(role.getPkId().toString());
+        }
+        return roles_str;
     }
 
     @Override
-    public List getPermissions(String account){
+    public Set getPermissions(String account){
         User user= this.findByAccount(account);
 
-        List permissions = user.getPermissions();
-        return permissions;
+        List<Permission> permissions = user.getPermissions();
+        Set<String> perms_str = new HashSet<>();
+        for(Permission permission :permissions){
+            perms_str.add(permission.getPkId().toString());
+        }
+
+        return perms_str;
     }
 
 

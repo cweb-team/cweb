@@ -36,6 +36,12 @@
             <result column="ROLE_NAME" jdbcType="VARCHAR" property="roleName" />
             <result column="DESCRIPTION" jdbcType="VARCHAR" property="description" />
         </collection>
+        <collection property="permissions" ofType="com.test.cweb.model.Permission">
+            <id column="PERMISSION_ID" property="pkId" jdbcType="INTEGER" />
+            <result column="PARENT_ID" property="parentId" jdbcType="INTEGER" />
+            <result column="PERMISSION_NAME" property="permissionName" jdbcType="VARCHAR" />
+            <result column="PERMISSION_DESC" property="description" jdbcType="VARCHAR" />
+        </collection>
     </resultMap>
     <sql id="Base_Column_List" >
         PK_ID, ACCOUNT, PASSWORD, REAL_NAME, PHONE_NUM, EMAIL, CREATE_TIME, LAST_LOGIN_TIME,
@@ -54,7 +60,11 @@
     <select id="selectByAccount" resultMap="MultiResultMap" parameterType="java.lang.String" >
         select
         <include refid="Multi_Column_List" />
-        from T_USER LEFT JOIN T_USER_ROLE ON T_USER.PK_ID = T_USER_ROLE.USER_ID LEFT JOIN T_ROLE ON T_USER_ROLE.ROLE_ID = T_ROLE.PK_ID
+        from T_USER
+          LEFT JOIN T_USER_ROLE ON T_USER.PK_ID = T_USER_ROLE.USER_ID
+          LEFT JOIN T_ROLE ON T_USER_ROLE.ROLE_ID = T_ROLE.PK_ID
+          LEFT JOIN T_ROLE_PERMISSION ON T_ROLE.PK_ID = T_ROLE_PERMISSION.ROLE_ID
+          LEFT JOIN T_PERMISSION ON T_ROLE_PERMISSION.PERMISSION_ID = T_PERMISSION.PK_ID
         where ACCOUNT = #{account,jdbcType=INTEGER}
     </select>
 
