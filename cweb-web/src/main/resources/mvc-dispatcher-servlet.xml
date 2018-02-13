@@ -56,7 +56,9 @@
     <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" >
         <property name="proxyTargetClass" value="true" />
     </bean>
-
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager" />
+    </bean>
 
     <!-- 异常处理，权限注解会抛出异常，根据异常返回相应页面 -->
     <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">

@@ -28,6 +28,12 @@
     <param-value>classpath:log4j.properties</param-value>
   </context-param>
 
+  <!-- 定义Spring监听器，加载Spring -->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
+
   <!-- 字符过滤器 -->
   <filter>
     <filter-name>encodingFilter</filter-name>
@@ -61,10 +67,7 @@
     <servlet-name>mvc-dispatcher</servlet-name>
   </filter-mapping>
 
-  <!-- 定义Spring监听器，加载Spring -->
-  <listener>
-    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-  </listener>
+
 
   <!-- shiro 安全过滤器 -->
   <filter>

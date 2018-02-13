@@ -41,7 +41,7 @@ public class UserRealmService extends AuthorizingRealm {
 //        }
         /**AuthenticatingRealm 使用 CredentialsMatcher 进行密码匹配**/
         if(null != account && null != password){
-            return new SimpleAuthenticationInfo(account, password, getName());
+            return new SimpleAuthenticationInfo(user.getAccount(), user.getPassword(), getName());
         }else{
             return null;
         }

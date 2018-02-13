@@ -27,6 +27,8 @@ public class UserController extends ApplicationController {
     @Resource
     IUserService iUserService;
 
+
+
     @RequestMapping("/")
     public ModelAndView index() {
         return buildMAV("login.jsp", "login");

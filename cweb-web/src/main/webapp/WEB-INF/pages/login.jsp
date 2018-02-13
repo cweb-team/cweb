@@ -103,7 +103,7 @@
                 var password = $("#password").val();
                 $.ajax({
                     url: "tryLogin",
-                    type: "post",
+                    type: "get",
                     dataType: "json",
                     data: {
                         account: account,
@@ -111,6 +111,11 @@
                     },
                     success: function(resp){
                         if(resp.status == 200){
+                            console.log(resp.data);
+                        }
+                    },
+                    fail: function(resp){
+                        if(resp.status == 404){
                             console.log(resp.data);
                         }
                     }
