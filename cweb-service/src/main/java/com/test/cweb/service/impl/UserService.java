@@ -1,13 +1,19 @@
 package com.test.cweb.service.impl;
 
+import com.test.cweb.model.Permission;
+import com.test.cweb.model.Role;
 import com.test.cweb.model.User;
 import com.test.cweb.dao.UserDao;
 import com.test.cweb.model.result.ApiResult;
 import com.test.cweb.service.IUserService;
 import org.springframework.stereotype.Service;
+import org.apache.shiro.realm.Realm;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @author caiminjie
@@ -52,4 +58,41 @@ public class UserService implements IUserService {
 
         return apiResult;
     }
+
+    @Override
+    public User findByAccount(String account){
+        HashMap<String,Object> search = new HashMap<>();
+        search.put("account",account);
+        User user = userDao.selectByAccount(search);
+        return user;
+    }
+
+    @Override
+    public Set getRoles(String account){
+        User user = this.findByAccount(account);
+
+        List<Role> roles = user.getRoles();
+        Set<String> roles_str = new HashSet<>();
+        for(Role role :roles){
+            roles_str.add(role.getRoleName().toString());
+        }
+        return roles_str;
+    }
+
+    @Override
+    public Set getPermissions(String account){
+        User user= this.findByAccount(account);
+
+        List<Permission> permissions = user.getPermissions();
+        Set<String> perms_str = new HashSet<>();
+        for(Permission permission :permissions){
+            perms_str.add(permission.getPkId().toString());
+        }
+
+        return perms_str;
+    }
+
+
 }
+
+

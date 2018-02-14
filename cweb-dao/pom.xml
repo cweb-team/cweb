@@ -20,6 +20,7 @@
     </properties>
 
     <dependencies>
+        <!--导入cweb其他模块:cweb-model-->
         <dependency>
             <groupId>com.test</groupId>
             <artifactId>cweb-model</artifactId>
@@ -51,6 +52,9 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
         </dependency>
+
+
+
         <!--mybatis-->
         <dependency>
             <groupId>org.mybatis</groupId>

@@ -1,6 +1,10 @@
 package com.test.cweb.service;
 
+import com.test.cweb.model.User;
 import com.test.cweb.model.result.ApiResult;
+
+import java.util.List;
+import java.util.Set;
 
 /**
  * @author caiminjie
@@ -10,4 +14,7 @@ import com.test.cweb.model.result.ApiResult;
 public interface IUserService {
     ApiResult findOne(String name);
     ApiResult findAll(String name);
+    User findByAccount(String account);
+    Set<String> getRoles(String account);
+    Set<String > getPermissions(String account);
 }

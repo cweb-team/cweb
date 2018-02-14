@@ -33,6 +33,7 @@
     </dependencyManagement>
 
     <dependencies>
+        <!--导入cweb其它模块:cweb-model cweb-dao,common-utils-->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>cweb-model</artifactId>
@@ -49,6 +50,7 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
+        <!--spring-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>

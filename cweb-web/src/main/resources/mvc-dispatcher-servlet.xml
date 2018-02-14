@@ -10,13 +10,12 @@
             http://www.springframework.org/schema/mvc
             http://www.springframework.org/schema/mvc/spring-mvc.xsd
         ">
-
+    <!-- 扫描所有的 controller -->
     <context:component-scan base-package="com.test.cweb"/>
 
     <mvc:annotation-driven>
         <mvc:message-converters register-defaults="true">
-            <bean
-                    class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
                 <property name="objectMapper">
                     <bean class="com.test.cweb.utils.JsonObjectMapper">
                         <property name="timeZone" value="GMT+8"/>
@@ -51,14 +50,23 @@
         <property name="prefix" value="/WEB-INF/pages/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+
+
+    <!--启动shiro注解-->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" >
+        <property name="proxyTargetClass" value="true" />
+    </bean>
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager" />
+    </bean>
+
     <!-- 异常处理，权限注解会抛出异常，根据异常返回相应页面 -->
     <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <property name="exceptionMappings">
             <props>
-                <prop key="org.apache.shiro.authz.UnauthorizedException">error/unauth</prop>
-                <prop key="org.apache.shiro.authz.UnauthenticatedException">login</prop>
+                <prop key="org.apache.shiro.authz.UnauthorizedException">redirect:/login</prop>
+                <prop key="org.apache.shiro.authz.UnauthenticatedException">redirect:/login</prop>
             </props>
         </property>
     </bean>
-    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
 </beans>

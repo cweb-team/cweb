@@ -1,40 +1,45 @@
 package com.test.cweb.model;
 
-import java.sql.Timestamp;
+import java.util.Date;
+import java.util.List;
 
-/**
- * @author caiminjie
- * @date 18/2/1
- */
 public class User {
-    private int id;
+    private Integer pkId;
+
     private String account;
+
     private String password;
-    private String nickname;
+
     private String realName;
-    private String phoneNumber;
+
+    private String phoneNum;
+
     private String email;
-    private Timestamp createTime;
-    private Timestamp loginTime;
-    private Timestamp lastLoginTime;
-    private int loginCount;
-    private int lastLoginIP;
-    private String ip;
 
-    public int getId() {
-        return id;
+    private Date createTime;
+
+    private Date lastLoginTime;
+
+    private Integer loginCount;
+
+    private String lastLoginIp;
+
+    private String nickname;
+
+    private String icon;
+
+    private String iconThumb;
+
+    private List<Role> roles;
+
+    private List<Permission> permissions;
+
+    public Integer getPkId() {
+        return pkId;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPkId(Integer pkId) {
+        this.pkId = pkId;
     }
 
     public String getAccount() {
@@ -42,71 +47,15 @@ public class User {
     }
 
     public void setAccount(String account) {
-        this.account = account;
+        this.account = account == null ? null : account.trim();
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Timestamp getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Timestamp createTime) {
-        this.createTime = createTime;
-    }
-
-    public Timestamp getLoginTime() {
-        return loginTime;
-    }
-
-    public void setLoginTime(Timestamp loginTime) {
-        this.loginTime = loginTime;
-    }
-
-    public Timestamp getLastLoginTime() {
-        return lastLoginTime;
-    }
-
-    public void setLastLoginTime(Timestamp lastLoginTime) {
-        this.lastLoginTime = lastLoginTime;
-    }
-
-    public int getLoginCount() {
-        return loginCount;
-    }
-
-    public void setLoginCount(int loginCount) {
-        this.loginCount = loginCount;
-    }
-
-    public String getIp() {
-        return ip;
-    }
-
-    public void setIp(String ip) {
-        this.ip = ip;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
     }
 
     public String getRealName() {
@@ -114,14 +63,94 @@ public class User {
     }
 
     public void setRealName(String realName) {
-        this.realName = realName;
+        this.realName = realName == null ? null : realName.trim();
     }
 
-    public int getLastLoginIP() {
-        return lastLoginIP;
+    public String getPhoneNum() {
+        return phoneNum;
     }
 
-    public void setLastLoginIP(int lastLoginIP) {
-        this.lastLoginIP = lastLoginIP;
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum == null ? null : phoneNum.trim();
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getLastLoginTime() {
+        return lastLoginTime;
+    }
+
+    public void setLastLoginTime(Date lastLoginTime) {
+        this.lastLoginTime = lastLoginTime;
+    }
+
+    public Integer getLoginCount() {
+        return loginCount;
+    }
+
+    public void setLoginCount(Integer loginCount) {
+        this.loginCount = loginCount;
+    }
+
+    public String getLastLoginIp() {
+        return lastLoginIp;
+    }
+
+    public void setLastLoginIp(String lastLoginIp) {
+        this.lastLoginIp = lastLoginIp == null ? null : lastLoginIp.trim();
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname == null ? null : nickname.trim();
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon == null ? null : icon.trim();
+    }
+
+    public String getIconThumb() {
+        return iconThumb;
+    }
+
+    public void setIconThumb(String iconThumb) {
+        this.iconThumb = iconThumb == null ? null : iconThumb.trim();
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    public List<Permission> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(List<Permission> permissions) {
+        this.permissions = permissions;
     }
 }
