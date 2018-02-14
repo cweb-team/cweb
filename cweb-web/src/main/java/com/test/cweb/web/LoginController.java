@@ -38,10 +38,10 @@ public class LoginController extends ApplicationController{
             apiResult.success("login success");
             return apiResult;
         } catch (UnknownAccountException uae) {
-            apiResult.success("error username");
+            apiResult.fail("error username");
             return apiResult;
         } catch (IncorrectCredentialsException ice) {
-            apiResult.success("error password");
+            apiResult.fail("error password");
             return apiResult;
         }
     }

@@ -4,7 +4,7 @@
   <!--"http://mybatis.org/dtd/mybatis-3-config.dtd">-->
 <!--<configuration>-->
 
-	  <!--<properties resource="database.properties"/>-->
+	  <!--<conf resource="database.conf"/>-->
 		<!---->
 	  <!--<typeAliases>-->
 	  	<!--<package name="com.test.cweb.model"/>-->

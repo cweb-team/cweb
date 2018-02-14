@@ -74,7 +74,7 @@ public class UserService implements IUserService {
         List<Role> roles = user.getRoles();
         Set<String> roles_str = new HashSet<>();
         for(Role role :roles){
-            roles_str.add(role.getPkId().toString());
+            roles_str.add(role.getRoleName().toString());
         }
         return roles_str;
     }

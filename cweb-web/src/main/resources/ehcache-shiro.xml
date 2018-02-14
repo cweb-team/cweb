@@ -25,7 +25,7 @@
 If the path is a Java System Property it is replaced by
 its value in the running VM.
 
-The following properties are translated:
+The following conf are translated:
 user.home - User's home directory
 user.dir - User's current working directory
 java.io.tmpdir - Default temp file path -->
@@ -75,7 +75,7 @@ java.io.tmpdir - Default temp file path -->
     />
 
     <!-- We want eternal="true" (with no timeToIdle or timeToLive settings) because Shiro manages session
-expirations explicitly.  If we set it to false and then set corresponding timeToIdle and timeToLive properties,
+expirations explicitly.  If we set it to false and then set corresponding timeToIdle and timeToLive conf,
 ehcache would evict sessions without Shiro's knowledge, which would cause many problems
 (e.g. "My Shiro session timeout is 30 minutes - why isn't a session available after 2 minutes?"
 Answer - ehcache expired it due to the timeToIdle property set to 120 seconds.)

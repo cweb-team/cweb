@@ -45,10 +45,10 @@ public class UserController extends ApplicationController {
             apiResult.success("login success");
             return apiResult;
         } catch (UnknownAccountException uae) {
-            apiResult.success("error username");
+            apiResult.fail("error username");
             return apiResult;
         } catch (IncorrectCredentialsException ice) {
-            apiResult.success("error password");
+            apiResult.fail("error password");
             return apiResult;
         }
     }
@@ -58,5 +58,11 @@ public class UserController extends ApplicationController {
     public ApiResult findAll(@RequestParam(value="name",required = true) String name){
         ApiResult apiResult = iUserService.findAll(name);
         return apiResult;
+    }
+
+    @RequestMapping("/profile")
+    @ResponseBody
+    public ModelAndView profile(){
+        return buildMAV("profile.jsp", "profile");
     }
 }

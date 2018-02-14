@@ -13,20 +13,21 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
 
+  <context-param>
+    <param-name>log4jConfigLocation</param-name>
+    <param-value>classpath:log4j.conf</param-value>
+  </context-param>
+
   <!-- 添加对spring的支持 -->
   <!-- spring的主配置文件 -->
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>
       classpath:applicationContext.xml
-      classpath:spring-shiro.xml
     </param-value>
   </context-param>
 
-  <context-param>
-    <param-name>log4jConfigLocation</param-name>
-    <param-value>classpath:log4j.properties</param-value>
-  </context-param>
+
 
   <!-- 定义Spring监听器，加载Spring -->
   <listener>
