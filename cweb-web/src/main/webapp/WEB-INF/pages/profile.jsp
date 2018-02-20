@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+<jsp:useBean id="user" scope="session" class="com.test.cweb.model.User"/>
 <html>
 <head>
     <title>个人中心</title>
@@ -14,7 +15,7 @@
 <body>
 <shiro:user>
 
-    <p>欢迎[<shiro:principal/>]登录</p>
+    <p>欢迎[<%= user.getRealName()%>]登录</p>
     <p>success login</p>
     <shiro:hasRole name="admin">
         用户[<shiro:principal/>]拥有角色admin<br/>

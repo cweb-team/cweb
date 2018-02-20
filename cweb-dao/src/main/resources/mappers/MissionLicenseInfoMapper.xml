@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.cweb.dao.MissionLicenseInfoDao">
+  <resultMap id="BaseResultMap" type="com.test.cweb.model.MissionLicenseInfo">
+    <id column="PK_ID" jdbcType="INTEGER" property="pkId" />
+    <result column="USER_ID" jdbcType="INTEGER" property="userId" />
+    <result column="MISSION__ID" jdbcType="INTEGER" property="missionId" />
+    <result column="SIGN_IN_STATUS" jdbcType="BIT" property="signInStatus" />
+    <result column="SIGN_IN_TIME" jdbcType="BIT" property="signInTime" />
+    <result column="FIRST_SCREEN_UPLOAD_STATUS" jdbcType="BIT" property="firstScreenUploadStatus" />
+    <result column="FINAL_SCREEN_UPLOAD_STATUS" jdbcType="BIT" property="finalScreenUploadStatus" />
+    <result column="VIDEO_UPLOAD_STATUS" jdbcType="BIT" property="videoUploadStatus" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    PK_ID, USER_ID, MISSION__ID, SIGN_IN_STATUS, SIGN_IN_TIME, FIRST_SCREEN_UPLOAD_STATUS, 
+    FINAL_SCREEN_UPLOAD_STATUS, VIDEO_UPLOAD_STATUS
+  </sql>
+  <select id="selectByExample" parameterType="com.test.cweb.model.MissionLicenseInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from T_MISSION_LICENSE_INFO
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_MISSION_LICENSE_INFO
+    where PK_ID = #{pkId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from T_MISSION_LICENSE_INFO
+    where PK_ID = #{pkId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.test.cweb.model.MissionLicenseInfoExample">
+    delete from T_MISSION_LICENSE_INFO
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.test.cweb.model.MissionLicenseInfo">
+    insert into T_MISSION_LICENSE_INFO (PK_ID, USER_ID, MISSION__ID, 
+      SIGN_IN_STATUS, SIGN_IN_TIME, FIRST_SCREEN_UPLOAD_STATUS, 
+      FINAL_SCREEN_UPLOAD_STATUS, VIDEO_UPLOAD_STATUS)
+    values (#{pkId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{missionId,jdbcType=INTEGER}, 
+      #{signInStatus,jdbcType=BIT}, #{signInTime,jdbcType=BIT}, #{firstScreenUploadStatus,jdbcType=BIT}, 
+      #{finalScreenUploadStatus,jdbcType=BIT}, #{videoUploadStatus,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.test.cweb.model.MissionLicenseInfo">
+    insert into T_MISSION_LICENSE_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pkId != null">
+        PK_ID,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="missionId != null">
+        MISSION__ID,
+      </if>
+      <if test="signInStatus != null">
+        SIGN_IN_STATUS,
+      </if>
+      <if test="signInTime != null">
+        SIGN_IN_TIME,
+      </if>
+      <if test="firstScreenUploadStatus != null">
+        FIRST_SCREEN_UPLOAD_STATUS,
+      </if>
+      <if test="finalScreenUploadStatus != null">
+        FINAL_SCREEN_UPLOAD_STATUS,
+      </if>
+      <if test="videoUploadStatus != null">
+        VIDEO_UPLOAD_STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pkId != null">
+        #{pkId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="missionId != null">
+        #{missionId,jdbcType=INTEGER},
+      </if>
+      <if test="signInStatus != null">
+        #{signInStatus,jdbcType=BIT},
+      </if>
+      <if test="signInTime != null">
+        #{signInTime,jdbcType=BIT},
+      </if>
+      <if test="firstScreenUploadStatus != null">
+        #{firstScreenUploadStatus,jdbcType=BIT},
+      </if>
+      <if test="finalScreenUploadStatus != null">
+        #{finalScreenUploadStatus,jdbcType=BIT},
+      </if>
+      <if test="videoUploadStatus != null">
+        #{videoUploadStatus,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.test.cweb.model.MissionLicenseInfoExample" resultType="java.lang.Integer">
+    select count(*) from T_MISSION_LICENSE_INFO
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update T_MISSION_LICENSE_INFO
+    <set>
+      <if test="record.pkId != null">
+        PK_ID = #{record.pkId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null">
+        USER_ID = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.missionId != null">
+        MISSION__ID = #{record.missionId,jdbcType=INTEGER},
+      </if>
+      <if test="record.signInStatus != null">
+        SIGN_IN_STATUS = #{record.signInStatus,jdbcType=BIT},
+      </if>
+      <if test="record.signInTime != null">
+        SIGN_IN_TIME = #{record.signInTime,jdbcType=BIT},
+      </if>
+      <if test="record.firstScreenUploadStatus != null">
+        FIRST_SCREEN_UPLOAD_STATUS = #{record.firstScreenUploadStatus,jdbcType=BIT},
+      </if>
+      <if test="record.finalScreenUploadStatus != null">
+        FINAL_SCREEN_UPLOAD_STATUS = #{record.finalScreenUploadStatus,jdbcType=BIT},
+      </if>
+      <if test="record.videoUploadStatus != null">
+        VIDEO_UPLOAD_STATUS = #{record.videoUploadStatus,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update T_MISSION_LICENSE_INFO
+    set PK_ID = #{record.pkId,jdbcType=INTEGER},
+      USER_ID = #{record.userId,jdbcType=INTEGER},
+      MISSION__ID = #{record.missionId,jdbcType=INTEGER},
+      SIGN_IN_STATUS = #{record.signInStatus,jdbcType=BIT},
+      SIGN_IN_TIME = #{record.signInTime,jdbcType=BIT},
+      FIRST_SCREEN_UPLOAD_STATUS = #{record.firstScreenUploadStatus,jdbcType=BIT},
+      FINAL_SCREEN_UPLOAD_STATUS = #{record.finalScreenUploadStatus,jdbcType=BIT},
+      VIDEO_UPLOAD_STATUS = #{record.videoUploadStatus,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.test.cweb.model.MissionLicenseInfo">
+    update T_MISSION_LICENSE_INFO
+    <set>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="missionId != null">
+        MISSION__ID = #{missionId,jdbcType=INTEGER},
+      </if>
+      <if test="signInStatus != null">
+        SIGN_IN_STATUS = #{signInStatus,jdbcType=BIT},
+      </if>
+      <if test="signInTime != null">
+        SIGN_IN_TIME = #{signInTime,jdbcType=BIT},
+      </if>
+      <if test="firstScreenUploadStatus != null">
+        FIRST_SCREEN_UPLOAD_STATUS = #{firstScreenUploadStatus,jdbcType=BIT},
+      </if>
+      <if test="finalScreenUploadStatus != null">
+        FINAL_SCREEN_UPLOAD_STATUS = #{finalScreenUploadStatus,jdbcType=BIT},
+      </if>
+      <if test="videoUploadStatus != null">
+        VIDEO_UPLOAD_STATUS = #{videoUploadStatus,jdbcType=BIT},
+      </if>
+    </set>
+    where PK_ID = #{pkId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.test.cweb.model.MissionLicenseInfo">
+    update T_MISSION_LICENSE_INFO
+    set USER_ID = #{userId,jdbcType=INTEGER},
+      MISSION__ID = #{missionId,jdbcType=INTEGER},
+      SIGN_IN_STATUS = #{signInStatus,jdbcType=BIT},
+      SIGN_IN_TIME = #{signInTime,jdbcType=BIT},
+      FIRST_SCREEN_UPLOAD_STATUS = #{firstScreenUploadStatus,jdbcType=BIT},
+      FINAL_SCREEN_UPLOAD_STATUS = #{finalScreenUploadStatus,jdbcType=BIT},
+      VIDEO_UPLOAD_STATUS = #{videoUploadStatus,jdbcType=BIT}
+    where PK_ID = #{pkId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.test.cweb.model.MissionLicenseInfo">
+    <id column="PK_ID" jdbcType="INTEGER" property="pkId" />
+    <result column="USER_ID" jdbcType="INTEGER" property="userId" />
+    <result column="MISSION__ID" jdbcType="INTEGER" property="missionId" />
+    <result column="SIGN_IN_STATUS" jdbcType="BIT" property="signInStatus" />
+    <result column="SIGN_IN_TIME" jdbcType="BIT" property="signInTime" />
+    <result column="FIRST_SCREEN_UPLOAD_STATUS" jdbcType="BIT" property="firstScreenUploadStatus" />
+    <result column="FINAL_SCREEN_UPLOAD_STATUS" jdbcType="BIT" property="finalScreenUploadStatus" />
+    <result column="VIDEO_UPLOAD_STATUS" jdbcType="BIT" property="videoUploadStatus" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    PK_ID, USER_ID, MISSION__ID, SIGN_IN_STATUS, SIGN_IN_TIME, FIRST_SCREEN_UPLOAD_STATUS, 
+    FINAL_SCREEN_UPLOAD_STATUS, VIDEO_UPLOAD_STATUS
+  </sql>
+  <select id="selectByExample" parameterType="com.test.cweb.model.MissionLicenseInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from T_MISSION_LICENSE_INFO
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_MISSION_LICENSE_INFO
+    where PK_ID = #{pkId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from T_MISSION_LICENSE_INFO
+    where PK_ID = #{pkId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.test.cweb.model.MissionLicenseInfoExample">
+    delete from T_MISSION_LICENSE_INFO
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.test.cweb.model.MissionLicenseInfo">
+    insert into T_MISSION_LICENSE_INFO (PK_ID, USER_ID, MISSION__ID, 
+      SIGN_IN_STATUS, SIGN_IN_TIME, FIRST_SCREEN_UPLOAD_STATUS, 
+      FINAL_SCREEN_UPLOAD_STATUS, VIDEO_UPLOAD_STATUS)
+    values (#{pkId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{missionId,jdbcType=INTEGER}, 
+      #{signInStatus,jdbcType=BIT}, #{signInTime,jdbcType=BIT}, #{firstScreenUploadStatus,jdbcType=BIT}, 
+      #{finalScreenUploadStatus,jdbcType=BIT}, #{videoUploadStatus,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.test.cweb.model.MissionLicenseInfo">
+    insert into T_MISSION_LICENSE_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pkId != null">
+        PK_ID,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="missionId != null">
+        MISSION__ID,
+      </if>
+      <if test="signInStatus != null">
+        SIGN_IN_STATUS,
+      </if>
+      <if test="signInTime != null">
+        SIGN_IN_TIME,
+      </if>
+      <if test="firstScreenUploadStatus != null">
+        FIRST_SCREEN_UPLOAD_STATUS,
+      </if>
+      <if test="finalScreenUploadStatus != null">
+        FINAL_SCREEN_UPLOAD_STATUS,
+      </if>
+      <if test="videoUploadStatus != null">
+        VIDEO_UPLOAD_STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pkId != null">
+        #{pkId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="missionId != null">
+        #{missionId,jdbcType=INTEGER},
+      </if>
+      <if test="signInStatus != null">
+        #{signInStatus,jdbcType=BIT},
+      </if>
+      <if test="signInTime != null">
+        #{signInTime,jdbcType=BIT},
+      </if>
+      <if test="firstScreenUploadStatus != null">
+        #{firstScreenUploadStatus,jdbcType=BIT},
+      </if>
+      <if test="finalScreenUploadStatus != null">
+        #{finalScreenUploadStatus,jdbcType=BIT},
+      </if>
+      <if test="videoUploadStatus != null">
+        #{videoUploadStatus,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.test.cweb.model.MissionLicenseInfoExample" resultType="java.lang.Integer">
+    select count(*) from T_MISSION_LICENSE_INFO
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update T_MISSION_LICENSE_INFO
+    <set>
+      <if test="record.pkId != null">
+        PK_ID = #{record.pkId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null">
+        USER_ID = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.missionId != null">
+        MISSION__ID = #{record.missionId,jdbcType=INTEGER},
+      </if>
+      <if test="record.signInStatus != null">
+        SIGN_IN_STATUS = #{record.signInStatus,jdbcType=BIT},
+      </if>
+      <if test="record.signInTime != null">
+        SIGN_IN_TIME = #{record.signInTime,jdbcType=BIT},
+      </if>
+      <if test="record.firstScreenUploadStatus != null">
+        FIRST_SCREEN_UPLOAD_STATUS = #{record.firstScreenUploadStatus,jdbcType=BIT},
+      </if>
+      <if test="record.finalScreenUploadStatus != null">
+        FINAL_SCREEN_UPLOAD_STATUS = #{record.finalScreenUploadStatus,jdbcType=BIT},
+      </if>
+      <if test="record.videoUploadStatus != null">
+        VIDEO_UPLOAD_STATUS = #{record.videoUploadStatus,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update T_MISSION_LICENSE_INFO
+    set PK_ID = #{record.pkId,jdbcType=INTEGER},
+      USER_ID = #{record.userId,jdbcType=INTEGER},
+      MISSION__ID = #{record.missionId,jdbcType=INTEGER},
+      SIGN_IN_STATUS = #{record.signInStatus,jdbcType=BIT},
+      SIGN_IN_TIME = #{record.signInTime,jdbcType=BIT},
+      FIRST_SCREEN_UPLOAD_STATUS = #{record.firstScreenUploadStatus,jdbcType=BIT},
+      FINAL_SCREEN_UPLOAD_STATUS = #{record.finalScreenUploadStatus,jdbcType=BIT},
+      VIDEO_UPLOAD_STATUS = #{record.videoUploadStatus,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.test.cweb.model.MissionLicenseInfo">
+    update T_MISSION_LICENSE_INFO
+    <set>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="missionId != null">
+        MISSION__ID = #{missionId,jdbcType=INTEGER},
+      </if>
+      <if test="signInStatus != null">
+        SIGN_IN_STATUS = #{signInStatus,jdbcType=BIT},
+      </if>
+      <if test="signInTime != null">
+        SIGN_IN_TIME = #{signInTime,jdbcType=BIT},
+      </if>
+      <if test="firstScreenUploadStatus != null">
+        FIRST_SCREEN_UPLOAD_STATUS = #{firstScreenUploadStatus,jdbcType=BIT},
+      </if>
+      <if test="finalScreenUploadStatus != null">
+        FINAL_SCREEN_UPLOAD_STATUS = #{finalScreenUploadStatus,jdbcType=BIT},
+      </if>
+      <if test="videoUploadStatus != null">
+        VIDEO_UPLOAD_STATUS = #{videoUploadStatus,jdbcType=BIT},
+      </if>
+    </set>
+    where PK_ID = #{pkId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.test.cweb.model.MissionLicenseInfo">
+    update T_MISSION_LICENSE_INFO
+    set USER_ID = #{userId,jdbcType=INTEGER},
+      MISSION__ID = #{missionId,jdbcType=INTEGER},
+      SIGN_IN_STATUS = #{signInStatus,jdbcType=BIT},
+      SIGN_IN_TIME = #{signInTime,jdbcType=BIT},
+      FIRST_SCREEN_UPLOAD_STATUS = #{firstScreenUploadStatus,jdbcType=BIT},
+      FINAL_SCREEN_UPLOAD_STATUS = #{finalScreenUploadStatus,jdbcType=BIT},
+      VIDEO_UPLOAD_STATUS = #{videoUploadStatus,jdbcType=BIT}
+    where PK_ID = #{pkId,jdbcType=INTEGER}
+  </update>
+</mapper>
