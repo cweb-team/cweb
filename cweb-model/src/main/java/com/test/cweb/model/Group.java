@@ -1,6 +1,7 @@
 package com.test.cweb.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class Group {
     private Integer pkId;
@@ -12,6 +13,8 @@ public class Group {
     private Date createTime;
 
     private String description;
+
+    private List<Team> teams;
 
     public Integer getPkId() {
         return pkId;
@@ -51,5 +54,13 @@ public class Group {
 
     public void setDescription(String description) {
         this.description = description == null ? null : description.trim();
+    }
+
+    public List<Team> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(List<Team> teams) {
+        this.teams = teams;
     }
 }

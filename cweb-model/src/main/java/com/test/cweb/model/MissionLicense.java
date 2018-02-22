@@ -11,13 +11,13 @@ public class MissionLicense {
 
     private String description;
 
-    private Boolean publishTime;
+    private Date publishTime;
 
-    private Boolean bookNum;
+    private Integer bookNum;
 
-    private Boolean signUpNum;
+    private Integer signUpNum;
 
-    private Boolean updateTime;
+    private Date updateTime;
 
     public Integer getPkId() {
         return pkId;
@@ -51,35 +51,35 @@ public class MissionLicense {
         this.description = description == null ? null : description.trim();
     }
 
-    public Boolean getPublishTime() {
+    public Date getPublishTime() {
         return publishTime;
     }
 
-    public void setPublishTime(Boolean publishTime) {
+    public void setPublishTime(Date publishTime) {
         this.publishTime = publishTime;
     }
 
-    public Boolean getBookNum() {
+    public Integer getBookNum() {
         return bookNum;
     }
 
-    public void setBookNum(Boolean bookNum) {
+    public void setBookNum(Integer bookNum) {
         this.bookNum = bookNum;
     }
 
-    public Boolean getSignUpNum() {
+    public Integer getSignUpNum() {
         return signUpNum;
     }
 
-    public void setSignUpNum(Boolean signUpNum) {
+    public void setSignUpNum(Integer signUpNum) {
         this.signUpNum = signUpNum;
     }
 
-    public Boolean getUpdateTime() {
+    public Date getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Boolean updateTime) {
+    public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
 }

@@ -8,6 +8,21 @@
     <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
     <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
   </resultMap>
+  <resultMap id="MultiResultMap" type="com.test.cweb.model.Group" >
+    <id column="PK_ID" property="pkId" jdbcType="INTEGER" />
+    <result column="LEADER_ID" property="leaderId" jdbcType="INTEGER" />
+    <result column="GROUP_NAME" property="groupName" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <collection property="teams" ofType="com.test.cweb.model.Team">
+      <id column="TEAM_ID" property="pkId" jdbcType="INTEGER" />
+      <result column="TEAM_LEADER_ID" property="leaderId" jdbcType="INTEGER" />
+      <result column="TEAM_NAME" property="teamName" jdbcType="VARCHAR" />
+      <result column="TEAM_CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+      <result column="TEAM_DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    </collection>
+  </resultMap>
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -69,6 +84,10 @@
   <sql id="Base_Column_List" >
     PK_ID, LEADER_ID, GROUP_NAME, CREATE_TIME, DESCRIPTION
   </sql>
+  <sql id="Multi_Column_List" >
+    T_GROUP.PK_ID, T_GROUP.LEADER_ID, GROUP_NAME, T_GROUP.CREATE_TIME, DESCRIPTION,
+    T_TEAM.PK_ID AS TEAM_ID, T_TEAM.LEADER_ID AS TEAM_LEADER_ID, TEAM_NAME,T_TEAM.CREATE_TIEM AS TEAM_CREATE_TIME, T_TEAM.DESCRPITION AS TEAM_DESCRIPTION
+  </sql>
 
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.test.cweb.model.GroupExample" >
     select
@@ -91,6 +110,12 @@
     from T_GROUP
     where PK_ID = #{pkId,jdbcType=INTEGER}
   </select>
+  <select id="selectByLeaderId" resultMap="MultiResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Multi_Column_List" />
+    from T_GROUP LEFT JOIN T_TEAM ON T_GROUP.PK_ID = T_TEAM.GROUP_ID
+    where LEADER_ID = #{pkId,jdbcType=INTEGER}
+  </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from T_GROUP
@@ -104,9 +129,9 @@
   </delete>
 
   <insert id="insert" parameterType="com.test.cweb.model.Group" >
-    insert into T_GROUP (PK_ID, LEADER_ID, GROUP_NAME, 
+    insert into T_GROUP (PK_ID, LEADER_ID, GROUP_NAME,
       CREATE_TIME, DESCRIPTION)
-    values (#{pkId,jdbcType=INTEGER}, #{leaderId,jdbcType=INTEGER}, #{groupName,jdbcType=VARCHAR}, 
+    values (#{pkId,jdbcType=INTEGER}, #{leaderId,jdbcType=INTEGER}, #{groupName,jdbcType=VARCHAR},
       #{createTime,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.test.cweb.model.Group" >

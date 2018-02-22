@@ -365,52 +365,52 @@ public class MissionLicenseExample {
             return (Criteria) this;
         }
 
-        public Criteria andPublishTimeEqualTo(Boolean value) {
+        public Criteria andPublishTimeEqualTo(Date value) {
             addCriterion("PUBLISH_TIME =", value, "publishTime");
             return (Criteria) this;
         }
 
-        public Criteria andPublishTimeNotEqualTo(Boolean value) {
+        public Criteria andPublishTimeNotEqualTo(Date value) {
             addCriterion("PUBLISH_TIME <>", value, "publishTime");
             return (Criteria) this;
         }
 
-        public Criteria andPublishTimeGreaterThan(Boolean value) {
+        public Criteria andPublishTimeGreaterThan(Date value) {
             addCriterion("PUBLISH_TIME >", value, "publishTime");
             return (Criteria) this;
         }
 
-        public Criteria andPublishTimeGreaterThanOrEqualTo(Boolean value) {
+        public Criteria andPublishTimeGreaterThanOrEqualTo(Date value) {
             addCriterion("PUBLISH_TIME >=", value, "publishTime");
             return (Criteria) this;
         }
 
-        public Criteria andPublishTimeLessThan(Boolean value) {
+        public Criteria andPublishTimeLessThan(Date value) {
             addCriterion("PUBLISH_TIME <", value, "publishTime");
             return (Criteria) this;
         }
 
-        public Criteria andPublishTimeLessThanOrEqualTo(Boolean value) {
+        public Criteria andPublishTimeLessThanOrEqualTo(Date value) {
             addCriterion("PUBLISH_TIME <=", value, "publishTime");
             return (Criteria) this;
         }
 
-        public Criteria andPublishTimeIn(List<Boolean> values) {
+        public Criteria andPublishTimeIn(List<Date> values) {
             addCriterion("PUBLISH_TIME in", values, "publishTime");
             return (Criteria) this;
         }
 
-        public Criteria andPublishTimeNotIn(List<Boolean> values) {
+        public Criteria andPublishTimeNotIn(List<Date> values) {
             addCriterion("PUBLISH_TIME not in", values, "publishTime");
             return (Criteria) this;
         }
 
-        public Criteria andPublishTimeBetween(Boolean value1, Boolean value2) {
+        public Criteria andPublishTimeBetween(Date value1, Date value2) {
             addCriterion("PUBLISH_TIME between", value1, value2, "publishTime");
             return (Criteria) this;
         }
 
-        public Criteria andPublishTimeNotBetween(Boolean value1, Boolean value2) {
+        public Criteria andPublishTimeNotBetween(Date value1, Date value2) {
             addCriterion("PUBLISH_TIME not between", value1, value2, "publishTime");
             return (Criteria) this;
         }
@@ -425,52 +425,52 @@ public class MissionLicenseExample {
             return (Criteria) this;
         }
 
-        public Criteria andBookNumEqualTo(Boolean value) {
+        public Criteria andBookNumEqualTo(Integer value) {
             addCriterion("BOOK_NUM =", value, "bookNum");
             return (Criteria) this;
         }
 
-        public Criteria andBookNumNotEqualTo(Boolean value) {
+        public Criteria andBookNumNotEqualTo(Integer value) {
             addCriterion("BOOK_NUM <>", value, "bookNum");
             return (Criteria) this;
         }
 
-        public Criteria andBookNumGreaterThan(Boolean value) {
+        public Criteria andBookNumGreaterThan(Integer value) {
             addCriterion("BOOK_NUM >", value, "bookNum");
             return (Criteria) this;
         }
 
-        public Criteria andBookNumGreaterThanOrEqualTo(Boolean value) {
+        public Criteria andBookNumGreaterThanOrEqualTo(Integer value) {
             addCriterion("BOOK_NUM >=", value, "bookNum");
             return (Criteria) this;
         }
 
-        public Criteria andBookNumLessThan(Boolean value) {
+        public Criteria andBookNumLessThan(Integer value) {
             addCriterion("BOOK_NUM <", value, "bookNum");
             return (Criteria) this;
         }
 
-        public Criteria andBookNumLessThanOrEqualTo(Boolean value) {
+        public Criteria andBookNumLessThanOrEqualTo(Integer value) {
             addCriterion("BOOK_NUM <=", value, "bookNum");
             return (Criteria) this;
         }
 
-        public Criteria andBookNumIn(List<Boolean> values) {
+        public Criteria andBookNumIn(List<Integer> values) {
             addCriterion("BOOK_NUM in", values, "bookNum");
             return (Criteria) this;
         }
 
-        public Criteria andBookNumNotIn(List<Boolean> values) {
+        public Criteria andBookNumNotIn(List<Integer> values) {
             addCriterion("BOOK_NUM not in", values, "bookNum");
             return (Criteria) this;
         }
 
-        public Criteria andBookNumBetween(Boolean value1, Boolean value2) {
+        public Criteria andBookNumBetween(Integer value1, Integer value2) {
             addCriterion("BOOK_NUM between", value1, value2, "bookNum");
             return (Criteria) this;
         }
 
-        public Criteria andBookNumNotBetween(Boolean value1, Boolean value2) {
+        public Criteria andBookNumNotBetween(Integer value1, Integer value2) {
             addCriterion("BOOK_NUM not between", value1, value2, "bookNum");
             return (Criteria) this;
         }
@@ -485,52 +485,52 @@ public class MissionLicenseExample {
             return (Criteria) this;
         }
 
-        public Criteria andSignUpNumEqualTo(Boolean value) {
+        public Criteria andSignUpNumEqualTo(Integer value) {
             addCriterion("SIGN_UP_NUM =", value, "signUpNum");
             return (Criteria) this;
         }
 
-        public Criteria andSignUpNumNotEqualTo(Boolean value) {
+        public Criteria andSignUpNumNotEqualTo(Integer value) {
             addCriterion("SIGN_UP_NUM <>", value, "signUpNum");
             return (Criteria) this;
         }
 
-        public Criteria andSignUpNumGreaterThan(Boolean value) {
+        public Criteria andSignUpNumGreaterThan(Integer value) {
             addCriterion("SIGN_UP_NUM >", value, "signUpNum");
             return (Criteria) this;
         }
 
-        public Criteria andSignUpNumGreaterThanOrEqualTo(Boolean value) {
+        public Criteria andSignUpNumGreaterThanOrEqualTo(Integer value) {
             addCriterion("SIGN_UP_NUM >=", value, "signUpNum");
             return (Criteria) this;
         }
 
-        public Criteria andSignUpNumLessThan(Boolean value) {
+        public Criteria andSignUpNumLessThan(Integer value) {
             addCriterion("SIGN_UP_NUM <", value, "signUpNum");
             return (Criteria) this;
         }
 
-        public Criteria andSignUpNumLessThanOrEqualTo(Boolean value) {
+        public Criteria andSignUpNumLessThanOrEqualTo(Integer value) {
             addCriterion("SIGN_UP_NUM <=", value, "signUpNum");
             return (Criteria) this;
         }
 
-        public Criteria andSignUpNumIn(List<Boolean> values) {
+        public Criteria andSignUpNumIn(List<Integer> values) {
             addCriterion("SIGN_UP_NUM in", values, "signUpNum");
             return (Criteria) this;
         }
 
-        public Criteria andSignUpNumNotIn(List<Boolean> values) {
+        public Criteria andSignUpNumNotIn(List<Integer> values) {
             addCriterion("SIGN_UP_NUM not in", values, "signUpNum");
             return (Criteria) this;
         }
 
-        public Criteria andSignUpNumBetween(Boolean value1, Boolean value2) {
+        public Criteria andSignUpNumBetween(Integer value1, Integer value2) {
             addCriterion("SIGN_UP_NUM between", value1, value2, "signUpNum");
             return (Criteria) this;
         }
 
-        public Criteria andSignUpNumNotBetween(Boolean value1, Boolean value2) {
+        public Criteria andSignUpNumNotBetween(Integer value1, Integer value2) {
             addCriterion("SIGN_UP_NUM not between", value1, value2, "signUpNum");
             return (Criteria) this;
         }
@@ -545,52 +545,52 @@ public class MissionLicenseExample {
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeEqualTo(Boolean value) {
+        public Criteria andUpdateTimeEqualTo(Date value) {
             addCriterion("UPDATE_TIME =", value, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeNotEqualTo(Boolean value) {
+        public Criteria andUpdateTimeNotEqualTo(Date value) {
             addCriterion("UPDATE_TIME <>", value, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeGreaterThan(Boolean value) {
+        public Criteria andUpdateTimeGreaterThan(Date value) {
             addCriterion("UPDATE_TIME >", value, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeGreaterThanOrEqualTo(Boolean value) {
+        public Criteria andUpdateTimeGreaterThanOrEqualTo(Date value) {
             addCriterion("UPDATE_TIME >=", value, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeLessThan(Boolean value) {
+        public Criteria andUpdateTimeLessThan(Date value) {
             addCriterion("UPDATE_TIME <", value, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeLessThanOrEqualTo(Boolean value) {
+        public Criteria andUpdateTimeLessThanOrEqualTo(Date value) {
             addCriterion("UPDATE_TIME <=", value, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeIn(List<Boolean> values) {
+        public Criteria andUpdateTimeIn(List<Date> values) {
             addCriterion("UPDATE_TIME in", values, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeNotIn(List<Boolean> values) {
+        public Criteria andUpdateTimeNotIn(List<Date> values) {
             addCriterion("UPDATE_TIME not in", values, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeBetween(Boolean value1, Boolean value2) {
+        public Criteria andUpdateTimeBetween(Date value1, Date value2) {
             addCriterion("UPDATE_TIME between", value1, value2, "updateTime");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeNotBetween(Boolean value1, Boolean value2) {
+        public Criteria andUpdateTimeNotBetween(Date value1, Date value2) {
             addCriterion("UPDATE_TIME not between", value1, value2, "updateTime");
             return (Criteria) this;
         }

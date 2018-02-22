@@ -1,5 +1,7 @@
 package com.test.cweb.model;
 
+import java.util.Date;
+
 public class MissionLicenseInfo {
     private Integer pkId;
 
@@ -7,15 +9,15 @@ public class MissionLicenseInfo {
 
     private Integer missionId;
 
-    private Boolean signInStatus;
+    private Integer signInStatus;
 
-    private Boolean signInTime;
+    private Date signInTime;
 
-    private Boolean firstScreenUploadStatus;
+    private Integer firstScreenUploadStatus;
 
-    private Boolean finalScreenUploadStatus;
+    private Integer finalScreenUploadStatus;
 
-    private Boolean videoUploadStatus;
+    private Integer videoUploadStatus;
 
     public Integer getPkId() {
         return pkId;
@@ -41,43 +43,43 @@ public class MissionLicenseInfo {
         this.missionId = missionId;
     }
 
-    public Boolean getSignInStatus() {
+    public Integer getSignInStatus() {
         return signInStatus;
     }
 
-    public void setSignInStatus(Boolean signInStatus) {
+    public void setSignInStatus(Integer signInStatus) {
         this.signInStatus = signInStatus;
     }
 
-    public Boolean getSignInTime() {
+    public Date getSignInTime() {
         return signInTime;
     }
 
-    public void setSignInTime(Boolean signInTime) {
+    public void setSignInTime(Date signInTime) {
         this.signInTime = signInTime;
     }
 
-    public Boolean getFirstScreenUploadStatus() {
+    public Integer getFirstScreenUploadStatus() {
         return firstScreenUploadStatus;
     }
 
-    public void setFirstScreenUploadStatus(Boolean firstScreenUploadStatus) {
+    public void setFirstScreenUploadStatus(Integer firstScreenUploadStatus) {
         this.firstScreenUploadStatus = firstScreenUploadStatus;
     }
 
-    public Boolean getFinalScreenUploadStatus() {
+    public Integer getFinalScreenUploadStatus() {
         return finalScreenUploadStatus;
     }
 
-    public void setFinalScreenUploadStatus(Boolean finalScreenUploadStatus) {
+    public void setFinalScreenUploadStatus(Integer finalScreenUploadStatus) {
         this.finalScreenUploadStatus = finalScreenUploadStatus;
     }
 
-    public Boolean getVideoUploadStatus() {
+    public Integer getVideoUploadStatus() {
         return videoUploadStatus;
     }
 
-    public void setVideoUploadStatus(Boolean videoUploadStatus) {
+    public void setVideoUploadStatus(Integer videoUploadStatus) {
         this.videoUploadStatus = videoUploadStatus;
     }
 }

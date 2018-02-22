@@ -1,6 +1,7 @@
 package com.test.cweb.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class MissionLicenseInfoExample {
@@ -294,52 +295,52 @@ public class MissionLicenseInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andSignInStatusEqualTo(Boolean value) {
+        public Criteria andSignInStatusEqualTo(Integer value) {
             addCriterion("SIGN_IN_STATUS =", value, "signInStatus");
             return (Criteria) this;
         }
 
-        public Criteria andSignInStatusNotEqualTo(Boolean value) {
+        public Criteria andSignInStatusNotEqualTo(Integer value) {
             addCriterion("SIGN_IN_STATUS <>", value, "signInStatus");
             return (Criteria) this;
         }
 
-        public Criteria andSignInStatusGreaterThan(Boolean value) {
+        public Criteria andSignInStatusGreaterThan(Integer value) {
             addCriterion("SIGN_IN_STATUS >", value, "signInStatus");
             return (Criteria) this;
         }
 
-        public Criteria andSignInStatusGreaterThanOrEqualTo(Boolean value) {
+        public Criteria andSignInStatusGreaterThanOrEqualTo(Integer value) {
             addCriterion("SIGN_IN_STATUS >=", value, "signInStatus");
             return (Criteria) this;
         }
 
-        public Criteria andSignInStatusLessThan(Boolean value) {
+        public Criteria andSignInStatusLessThan(Integer value) {
             addCriterion("SIGN_IN_STATUS <", value, "signInStatus");
             return (Criteria) this;
         }
 
-        public Criteria andSignInStatusLessThanOrEqualTo(Boolean value) {
+        public Criteria andSignInStatusLessThanOrEqualTo(Integer value) {
             addCriterion("SIGN_IN_STATUS <=", value, "signInStatus");
             return (Criteria) this;
         }
 
-        public Criteria andSignInStatusIn(List<Boolean> values) {
+        public Criteria andSignInStatusIn(List<Integer> values) {
             addCriterion("SIGN_IN_STATUS in", values, "signInStatus");
             return (Criteria) this;
         }
 
-        public Criteria andSignInStatusNotIn(List<Boolean> values) {
+        public Criteria andSignInStatusNotIn(List<Integer> values) {
             addCriterion("SIGN_IN_STATUS not in", values, "signInStatus");
             return (Criteria) this;
         }
 
-        public Criteria andSignInStatusBetween(Boolean value1, Boolean value2) {
+        public Criteria andSignInStatusBetween(Integer value1, Integer value2) {
             addCriterion("SIGN_IN_STATUS between", value1, value2, "signInStatus");
             return (Criteria) this;
         }
 
-        public Criteria andSignInStatusNotBetween(Boolean value1, Boolean value2) {
+        public Criteria andSignInStatusNotBetween(Integer value1, Integer value2) {
             addCriterion("SIGN_IN_STATUS not between", value1, value2, "signInStatus");
             return (Criteria) this;
         }
@@ -354,52 +355,52 @@ public class MissionLicenseInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andSignInTimeEqualTo(Boolean value) {
+        public Criteria andSignInTimeEqualTo(Date value) {
             addCriterion("SIGN_IN_TIME =", value, "signInTime");
             return (Criteria) this;
         }
 
-        public Criteria andSignInTimeNotEqualTo(Boolean value) {
+        public Criteria andSignInTimeNotEqualTo(Date value) {
             addCriterion("SIGN_IN_TIME <>", value, "signInTime");
             return (Criteria) this;
         }
 
-        public Criteria andSignInTimeGreaterThan(Boolean value) {
+        public Criteria andSignInTimeGreaterThan(Date value) {
             addCriterion("SIGN_IN_TIME >", value, "signInTime");
             return (Criteria) this;
         }
 
-        public Criteria andSignInTimeGreaterThanOrEqualTo(Boolean value) {
+        public Criteria andSignInTimeGreaterThanOrEqualTo(Date value) {
             addCriterion("SIGN_IN_TIME >=", value, "signInTime");
             return (Criteria) this;
         }
 
-        public Criteria andSignInTimeLessThan(Boolean value) {
+        public Criteria andSignInTimeLessThan(Date value) {
             addCriterion("SIGN_IN_TIME <", value, "signInTime");
             return (Criteria) this;
         }
 
-        public Criteria andSignInTimeLessThanOrEqualTo(Boolean value) {
+        public Criteria andSignInTimeLessThanOrEqualTo(Date value) {
             addCriterion("SIGN_IN_TIME <=", value, "signInTime");
             return (Criteria) this;
         }
 
-        public Criteria andSignInTimeIn(List<Boolean> values) {
+        public Criteria andSignInTimeIn(List<Date> values) {
             addCriterion("SIGN_IN_TIME in", values, "signInTime");
             return (Criteria) this;
         }
 
-        public Criteria andSignInTimeNotIn(List<Boolean> values) {
+        public Criteria andSignInTimeNotIn(List<Date> values) {
             addCriterion("SIGN_IN_TIME not in", values, "signInTime");
             return (Criteria) this;
         }
 
-        public Criteria andSignInTimeBetween(Boolean value1, Boolean value2) {
+        public Criteria andSignInTimeBetween(Date value1, Date value2) {
             addCriterion("SIGN_IN_TIME between", value1, value2, "signInTime");
             return (Criteria) this;
         }
 
-        public Criteria andSignInTimeNotBetween(Boolean value1, Boolean value2) {
+        public Criteria andSignInTimeNotBetween(Date value1, Date value2) {
             addCriterion("SIGN_IN_TIME not between", value1, value2, "signInTime");
             return (Criteria) this;
         }
@@ -414,52 +415,52 @@ public class MissionLicenseInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andFirstScreenUploadStatusEqualTo(Boolean value) {
+        public Criteria andFirstScreenUploadStatusEqualTo(Integer value) {
             addCriterion("FIRST_SCREEN_UPLOAD_STATUS =", value, "firstScreenUploadStatus");
             return (Criteria) this;
         }
 
-        public Criteria andFirstScreenUploadStatusNotEqualTo(Boolean value) {
+        public Criteria andFirstScreenUploadStatusNotEqualTo(Integer value) {
             addCriterion("FIRST_SCREEN_UPLOAD_STATUS <>", value, "firstScreenUploadStatus");
             return (Criteria) this;
         }
 
-        public Criteria andFirstScreenUploadStatusGreaterThan(Boolean value) {
+        public Criteria andFirstScreenUploadStatusGreaterThan(Integer value) {
             addCriterion("FIRST_SCREEN_UPLOAD_STATUS >", value, "firstScreenUploadStatus");
             return (Criteria) this;
         }
 
-        public Criteria andFirstScreenUploadStatusGreaterThanOrEqualTo(Boolean value) {
+        public Criteria andFirstScreenUploadStatusGreaterThanOrEqualTo(Integer value) {
             addCriterion("FIRST_SCREEN_UPLOAD_STATUS >=", value, "firstScreenUploadStatus");
             return (Criteria) this;
         }
 
-        public Criteria andFirstScreenUploadStatusLessThan(Boolean value) {
+        public Criteria andFirstScreenUploadStatusLessThan(Integer value) {
             addCriterion("FIRST_SCREEN_UPLOAD_STATUS <", value, "firstScreenUploadStatus");
             return (Criteria) this;
         }
 
-        public Criteria andFirstScreenUploadStatusLessThanOrEqualTo(Boolean value) {
+        public Criteria andFirstScreenUploadStatusLessThanOrEqualTo(Integer value) {
             addCriterion("FIRST_SCREEN_UPLOAD_STATUS <=", value, "firstScreenUploadStatus");
             return (Criteria) this;
         }
 
-        public Criteria andFirstScreenUploadStatusIn(List<Boolean> values) {
+        public Criteria andFirstScreenUploadStatusIn(List<Integer> values) {
             addCriterion("FIRST_SCREEN_UPLOAD_STATUS in", values, "firstScreenUploadStatus");
             return (Criteria) this;
         }
 
-        public Criteria andFirstScreenUploadStatusNotIn(List<Boolean> values) {
+        public Criteria andFirstScreenUploadStatusNotIn(List<Integer> values) {
             addCriterion("FIRST_SCREEN_UPLOAD_STATUS not in", values, "firstScreenUploadStatus");
             return (Criteria) this;
         }
 
-        public Criteria andFirstScreenUploadStatusBetween(Boolean value1, Boolean value2) {
+        public Criteria andFirstScreenUploadStatusBetween(Integer value1, Integer value2) {
             addCriterion("FIRST_SCREEN_UPLOAD_STATUS between", value1, value2, "firstScreenUploadStatus");
             return (Criteria) this;
         }
 
-        public Criteria andFirstScreenUploadStatusNotBetween(Boolean value1, Boolean value2) {
+        public Criteria andFirstScreenUploadStatusNotBetween(Integer value1, Integer value2) {
             addCriterion("FIRST_SCREEN_UPLOAD_STATUS not between", value1, value2, "firstScreenUploadStatus");
             return (Criteria) this;
         }
@@ -474,52 +475,52 @@ public class MissionLicenseInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andFinalScreenUploadStatusEqualTo(Boolean value) {
+        public Criteria andFinalScreenUploadStatusEqualTo(Integer value) {
             addCriterion("FINAL_SCREEN_UPLOAD_STATUS =", value, "finalScreenUploadStatus");
             return (Criteria) this;
         }
 
-        public Criteria andFinalScreenUploadStatusNotEqualTo(Boolean value) {
+        public Criteria andFinalScreenUploadStatusNotEqualTo(Integer value) {
             addCriterion("FINAL_SCREEN_UPLOAD_STATUS <>", value, "finalScreenUploadStatus");
             return (Criteria) this;
         }
 
-        public Criteria andFinalScreenUploadStatusGreaterThan(Boolean value) {
+        public Criteria andFinalScreenUploadStatusGreaterThan(Integer value) {
             addCriterion("FINAL_SCREEN_UPLOAD_STATUS >", value, "finalScreenUploadStatus");
             return (Criteria) this;
         }
 
-        public Criteria andFinalScreenUploadStatusGreaterThanOrEqualTo(Boolean value) {
+        public Criteria andFinalScreenUploadStatusGreaterThanOrEqualTo(Integer value) {
             addCriterion("FINAL_SCREEN_UPLOAD_STATUS >=", value, "finalScreenUploadStatus");
             return (Criteria) this;
         }
 
-        public Criteria andFinalScreenUploadStatusLessThan(Boolean value) {
+        public Criteria andFinalScreenUploadStatusLessThan(Integer value) {
             addCriterion("FINAL_SCREEN_UPLOAD_STATUS <", value, "finalScreenUploadStatus");
             return (Criteria) this;
         }
 
-        public Criteria andFinalScreenUploadStatusLessThanOrEqualTo(Boolean value) {
+        public Criteria andFinalScreenUploadStatusLessThanOrEqualTo(Integer value) {
             addCriterion("FINAL_SCREEN_UPLOAD_STATUS <=", value, "finalScreenUploadStatus");
             return (Criteria) this;
         }
 
-        public Criteria andFinalScreenUploadStatusIn(List<Boolean> values) {
+        public Criteria andFinalScreenUploadStatusIn(List<Integer> values) {
             addCriterion("FINAL_SCREEN_UPLOAD_STATUS in", values, "finalScreenUploadStatus");
             return (Criteria) this;
         }
 
-        public Criteria andFinalScreenUploadStatusNotIn(List<Boolean> values) {
+        public Criteria andFinalScreenUploadStatusNotIn(List<Integer> values) {
             addCriterion("FINAL_SCREEN_UPLOAD_STATUS not in", values, "finalScreenUploadStatus");
             return (Criteria) this;
         }
 
-        public Criteria andFinalScreenUploadStatusBetween(Boolean value1, Boolean value2) {
+        public Criteria andFinalScreenUploadStatusBetween(Integer value1, Integer value2) {
             addCriterion("FINAL_SCREEN_UPLOAD_STATUS between", value1, value2, "finalScreenUploadStatus");
             return (Criteria) this;
         }
 
-        public Criteria andFinalScreenUploadStatusNotBetween(Boolean value1, Boolean value2) {
+        public Criteria andFinalScreenUploadStatusNotBetween(Integer value1, Integer value2) {
             addCriterion("FINAL_SCREEN_UPLOAD_STATUS not between", value1, value2, "finalScreenUploadStatus");
             return (Criteria) this;
         }
@@ -534,52 +535,52 @@ public class MissionLicenseInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andVideoUploadStatusEqualTo(Boolean value) {
+        public Criteria andVideoUploadStatusEqualTo(Integer value) {
             addCriterion("VIDEO_UPLOAD_STATUS =", value, "videoUploadStatus");
             return (Criteria) this;
         }
 
-        public Criteria andVideoUploadStatusNotEqualTo(Boolean value) {
+        public Criteria andVideoUploadStatusNotEqualTo(Integer value) {
             addCriterion("VIDEO_UPLOAD_STATUS <>", value, "videoUploadStatus");
             return (Criteria) this;
         }
 
-        public Criteria andVideoUploadStatusGreaterThan(Boolean value) {
+        public Criteria andVideoUploadStatusGreaterThan(Integer value) {
             addCriterion("VIDEO_UPLOAD_STATUS >", value, "videoUploadStatus");
             return (Criteria) this;
         }
 
-        public Criteria andVideoUploadStatusGreaterThanOrEqualTo(Boolean value) {
+        public Criteria andVideoUploadStatusGreaterThanOrEqualTo(Integer value) {
             addCriterion("VIDEO_UPLOAD_STATUS >=", value, "videoUploadStatus");
             return (Criteria) this;
         }
 
-        public Criteria andVideoUploadStatusLessThan(Boolean value) {
+        public Criteria andVideoUploadStatusLessThan(Integer value) {
             addCriterion("VIDEO_UPLOAD_STATUS <", value, "videoUploadStatus");
             return (Criteria) this;
         }
 
-        public Criteria andVideoUploadStatusLessThanOrEqualTo(Boolean value) {
+        public Criteria andVideoUploadStatusLessThanOrEqualTo(Integer value) {
             addCriterion("VIDEO_UPLOAD_STATUS <=", value, "videoUploadStatus");
             return (Criteria) this;
         }
 
-        public Criteria andVideoUploadStatusIn(List<Boolean> values) {
+        public Criteria andVideoUploadStatusIn(List<Integer> values) {
             addCriterion("VIDEO_UPLOAD_STATUS in", values, "videoUploadStatus");
             return (Criteria) this;
         }
 
-        public Criteria andVideoUploadStatusNotIn(List<Boolean> values) {
+        public Criteria andVideoUploadStatusNotIn(List<Integer> values) {
             addCriterion("VIDEO_UPLOAD_STATUS not in", values, "videoUploadStatus");
             return (Criteria) this;
         }
 
-        public Criteria andVideoUploadStatusBetween(Boolean value1, Boolean value2) {
+        public Criteria andVideoUploadStatusBetween(Integer value1, Integer value2) {
             addCriterion("VIDEO_UPLOAD_STATUS between", value1, value2, "videoUploadStatus");
             return (Criteria) this;
         }
 
-        public Criteria andVideoUploadStatusNotBetween(Boolean value1, Boolean value2) {
+        public Criteria andVideoUploadStatusNotBetween(Integer value1, Integer value2) {
             addCriterion("VIDEO_UPLOAD_STATUS not between", value1, value2, "videoUploadStatus");
             return (Criteria) this;
         }
