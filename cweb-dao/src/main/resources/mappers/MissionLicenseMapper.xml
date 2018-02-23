@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.cweb.dao.MissionLicenseDao">
+  <resultMap id="BaseResultMap" type="com.test.cweb.model.MissionLicense">
+    <id column="PK_ID" jdbcType="INTEGER" property="pkId" />
+    <result column="GROUP_ID" jdbcType="INTEGER" property="groupId" />
+    <result column="LICENSE_TAG_TIME" jdbcType="TIMESTAMP" property="licenseTagTime" />
+    <result column="DESCRIPTION" jdbcType="VARCHAR" property="description" />
+    <result column="PUBLISH_TIME" jdbcType="TIMESTAMP" property="publishTime" />
+    <result column="BOOK_NUM" jdbcType="INTEGER" property="bookNum" />
+    <result column="SIGN_UP_NUM" jdbcType="INTEGER" property="signUpNum" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    PK_ID, GROUP_ID, LICENSE_TAG_TIME, DESCRIPTION, PUBLISH_TIME, BOOK_NUM, SIGN_UP_NUM, 
+    UPDATE_TIME
+  </sql>
+
+  <select id="selectByExample" parameterType="com.test.cweb.model.MissionLicenseExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from T_MISSION_LICENSE
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_MISSION_LICENSE
+    where PK_ID = #{pkId,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from T_MISSION_LICENSE
+    where PK_ID = #{pkId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.test.cweb.model.MissionLicenseExample">
+    delete from T_MISSION_LICENSE
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+
+  <insert id="insert" parameterType="com.test.cweb.model.MissionLicense">
+    insert into T_MISSION_LICENSE (PK_ID, GROUP_ID, LICENSE_TAG_TIME, 
+      DESCRIPTION, PUBLISH_TIME, BOOK_NUM, 
+      SIGN_UP_NUM, UPDATE_TIME)
+    values (#{pkId,jdbcType=INTEGER}, #{groupId,jdbcType=INTEGER}, #{licenseTagTime,jdbcType=TIMESTAMP}, 
+      #{description,jdbcType=VARCHAR}, #{publishTime,jdbcType=TIMESTAMP}, #{bookNum,jdbcType=INTEGER}, 
+      #{signUpNum,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.test.cweb.model.MissionLicense">
+    insert into T_MISSION_LICENSE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pkId != null">
+        PK_ID,
+      </if>
+      <if test="groupId != null">
+        GROUP_ID,
+      </if>
+      <if test="licenseTagTime != null">
+        LICENSE_TAG_TIME,
+      </if>
+      <if test="description != null">
+        DESCRIPTION,
+      </if>
+      <if test="publishTime != null">
+        PUBLISH_TIME,
+      </if>
+      <if test="bookNum != null">
+        BOOK_NUM,
+      </if>
+      <if test="signUpNum != null">
+        SIGN_UP_NUM,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pkId != null">
+        #{pkId,jdbcType=INTEGER},
+      </if>
+      <if test="groupId != null">
+        #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="licenseTagTime != null">
+        #{licenseTagTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="publishTime != null">
+        #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bookNum != null">
+        #{bookNum,jdbcType=INTEGER},
+      </if>
+      <if test="signUpNum != null">
+        #{signUpNum,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="countByExample" parameterType="com.test.cweb.model.MissionLicenseExample" resultType="java.lang.Integer">
+    select count(*) from T_MISSION_LICENSE
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+
+  <update id="updateByExampleSelective" parameterType="map">
+    update T_MISSION_LICENSE
+    <set>
+      <if test="record.pkId != null">
+        PK_ID = #{record.pkId,jdbcType=INTEGER},
+      </if>
+      <if test="record.groupId != null">
+        GROUP_ID = #{record.groupId,jdbcType=INTEGER},
+      </if>
+      <if test="record.licenseTagTime != null">
+        LICENSE_TAG_TIME = #{record.licenseTagTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.description != null">
+        DESCRIPTION = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publishTime != null">
+        PUBLISH_TIME = #{record.publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.bookNum != null">
+        BOOK_NUM = #{record.bookNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.signUpNum != null">
+        SIGN_UP_NUM = #{record.signUpNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null">
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update T_MISSION_LICENSE
+    set PK_ID = #{record.pkId,jdbcType=INTEGER},
+      GROUP_ID = #{record.groupId,jdbcType=INTEGER},
+      LICENSE_TAG_TIME = #{record.licenseTagTime,jdbcType=TIMESTAMP},
+      DESCRIPTION = #{record.description,jdbcType=VARCHAR},
+      PUBLISH_TIME = #{record.publishTime,jdbcType=TIMESTAMP},
+      BOOK_NUM = #{record.bookNum,jdbcType=INTEGER},
+      SIGN_UP_NUM = #{record.signUpNum,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.test.cweb.model.MissionLicense">
+    update T_MISSION_LICENSE
+    <set>
+      <if test="groupId != null">
+        GROUP_ID = #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="licenseTagTime != null">
+        LICENSE_TAG_TIME = #{licenseTagTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="publishTime != null">
+        PUBLISH_TIME = #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bookNum != null">
+        BOOK_NUM = #{bookNum,jdbcType=INTEGER},
+      </if>
+      <if test="signUpNum != null">
+        SIGN_UP_NUM = #{signUpNum,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where PK_ID = #{pkId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.test.cweb.model.MissionLicense">
+    update T_MISSION_LICENSE
+    set GROUP_ID = #{groupId,jdbcType=INTEGER},
+      LICENSE_TAG_TIME = #{licenseTagTime,jdbcType=TIMESTAMP},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      PUBLISH_TIME = #{publishTime,jdbcType=TIMESTAMP},
+      BOOK_NUM = #{bookNum,jdbcType=INTEGER},
+      SIGN_UP_NUM = #{signUpNum,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where PK_ID = #{pkId,jdbcType=INTEGER}
+  </update>
+
+</mapper>

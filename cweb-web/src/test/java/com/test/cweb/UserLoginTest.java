@@ -1,8 +1,10 @@
 package com.test.cweb;
 
 
+import com.test.cweb.model.Group;
 import com.test.cweb.model.User;
 import com.test.cweb.model.result.ApiResult;
+import com.test.cweb.service.IGroupService;
 import com.test.cweb.service.IUserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -19,6 +21,8 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 
 import javax.annotation.Resource;
+import java.sql.Timestamp;
+import java.util.HashMap;
 
 @RunWith(org.springframework.test.context.junit4.SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations="classpath:applicationContext.xml")
@@ -28,6 +32,9 @@ public class UserLoginTest {
     IUserService iUserService;
 
     @Resource
+    IGroupService iGroupService;
+
+    @Resource
     SecurityManager securityManager;
 
     @Test
@@ -35,6 +42,30 @@ public class UserLoginTest {
         String account="abc123";
         User user = iUserService.findByAccount(account);
         System.out.print(user);
+    }
+
+    @Test
+    public void GroupMybatisTest(){
+        Group group = new Group();
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        group.setCreateTime(timestamp);
+        group.setLeaderId(0);
+        group.setDescription("test");
+        group.setGroupName("testGroup");
+        ApiResult apiResult = iGroupService.addOne(group);
+
+        if(apiResult.getStatus() != 200){
+            System.out.println("success");
+        }
+    }
+
+    @Test
+    public void AllGroupMybatisTest(){
+        ApiResult apiResult = iGroupService.findAll();
+
+        if(apiResult.getStatus() != 200){
+            System.out.println("success");
+        }
     }
 
     @Test

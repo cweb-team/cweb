@@ -2,20 +2,27 @@ package com.test.cweb.service.impl;
 
 import com.test.cweb.model.User;
 import com.test.cweb.service.IUserService;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.realm.Realm;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Set;
 
 public class UserRealmService extends AuthorizingRealm {
 
     @Resource
     IUserService iUserService;
+
 
     /**
      * 验证当前登录的用户，获取认证信息
@@ -41,7 +48,11 @@ public class UserRealmService extends AuthorizingRealm {
 //        }
         /**AuthenticatingRealm 使用 CredentialsMatcher 进行密码匹配**/
         if(null != account && null != password){
-            return new SimpleAuthenticationInfo(user.getAccount(), user.getPassword(), getName());
+            SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(user.getAccount(), password, getName());
+            Subject currentUser = SecurityUtils.getSubject();
+            Session session = currentUser.getSession();
+            session.setAttribute("user",user);
+            return simpleAuthenticationInfo;
         }else{
             return null;
         }
@@ -60,8 +71,8 @@ public class UserRealmService extends AuthorizingRealm {
         String account = (String)pc.getPrimaryPrincipal();
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
 
-        authorizationInfo.setRoles(iUserService.getRoles(account));
-        authorizationInfo.setStringPermissions(iUserService.getPermissions(account));
+        authorizationInfo.setRoles(iUserService.getRolesStr(account));
+        authorizationInfo.setStringPermissions(iUserService.getPermissionsStr(account));
 //        System.out.println("Shiro 授权");
         return authorizationInfo;
     }
