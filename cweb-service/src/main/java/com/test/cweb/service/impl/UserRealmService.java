@@ -71,8 +71,8 @@ public class UserRealmService extends AuthorizingRealm {
         String account = (String)pc.getPrimaryPrincipal();
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
 
-        authorizationInfo.setRoles(iUserService.getRoles(account));
-        authorizationInfo.setStringPermissions(iUserService.getPermissions(account));
+        authorizationInfo.setRoles(iUserService.getRolesStr(account));
+        authorizationInfo.setStringPermissions(iUserService.getPermissionsStr(account));
 //        System.out.println("Shiro 授权");
         return authorizationInfo;
     }

@@ -15,6 +15,6 @@ public interface IUserService {
     ApiResult findOne(String name);
     ApiResult findAll(String name);
     User findByAccount(String account);
-    Set<String> getRoles(String account);
-    Set<String > getPermissions(String account);
+    Set<String> getRolesStr(String account);
+    Set<String > getPermissionsStr(String account);
 }

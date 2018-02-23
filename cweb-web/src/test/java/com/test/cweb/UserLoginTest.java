@@ -22,6 +22,7 @@ import org.springframework.test.context.ContextConfiguration;
 
 import javax.annotation.Resource;
 import java.sql.Timestamp;
+import java.util.HashMap;
 
 @RunWith(org.springframework.test.context.junit4.SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations="classpath:applicationContext.xml")
@@ -52,6 +53,15 @@ public class UserLoginTest {
         group.setDescription("test");
         group.setGroupName("testGroup");
         ApiResult apiResult = iGroupService.addOne(group);
+
+        if(apiResult.getStatus() != 200){
+            System.out.println("success");
+        }
+    }
+
+    @Test
+    public void AllGroupMybatisTest(){
+        ApiResult apiResult = iGroupService.findAll();
 
         if(apiResult.getStatus() != 200){
             System.out.println("success");

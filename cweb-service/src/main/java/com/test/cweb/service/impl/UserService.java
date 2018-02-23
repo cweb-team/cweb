@@ -68,27 +68,18 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public Set getRoles(String account){
+    public Set getRolesStr(String account){
         User user = this.findByAccount(account);
 
-        List<Role> roles = user.getRoles();
-        Set<String> roles_str = new HashSet<>();
-        for(Role role :roles){
-            roles_str.add(role.getRoleName().toString());
-        }
+        Set<String> roles_str = user.getRolesStr();
         return roles_str;
     }
 
     @Override
-    public Set getPermissions(String account){
+    public Set getPermissionsStr(String account){
         User user= this.findByAccount(account);
 
-        List<Permission> permissions = user.getPermissions();
-        Set<String> perms_str = new HashSet<>();
-        for(Permission permission :permissions){
-            perms_str.add(permission.getPkId().toString());
-        }
-
+        Set<String> perms_str = user.getPermissionsStr();
         return perms_str;
     }
 

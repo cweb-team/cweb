@@ -1,7 +1,9 @@
 package com.test.cweb.model;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class User {
     private Integer pkId;
@@ -152,5 +154,21 @@ public class User {
 
     public void setPermissions(List<Permission> permissions) {
         this.permissions = permissions;
+    }
+
+    public Set<String> getRolesStr(){
+        Set<String> roles_str = new HashSet<>();
+        for(Role role :this.getRoles()){
+            roles_str.add(role.getRoleName().toString());
+        }
+        return roles_str;
+    }
+
+    public Set<String> getPermissionsStr(){
+        Set<String> perms_str = new HashSet<>();
+        for(Permission permission :this.getPermissions()){
+            perms_str.add(permission.getPkId().toString());
+        }
+        return perms_str;
     }
 }
