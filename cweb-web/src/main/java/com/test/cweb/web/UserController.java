@@ -24,7 +24,7 @@ import javax.servlet.http.HttpSession;
  * @date 18/2/1
  */
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/user/login")
 public class UserController extends ApplicationController {
 
     @Resource
@@ -32,7 +32,7 @@ public class UserController extends ApplicationController {
 
 
 
-    @RequestMapping("/login/")
+    @RequestMapping("/")
     public ModelAndView index() {
         return buildMAV("login.jsp", "login");
     }
