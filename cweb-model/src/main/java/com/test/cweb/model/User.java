@@ -5,6 +5,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * @author hyl
+ * @date 2018/02/25
+ */
 public class User {
     private Integer pkId;
 
@@ -157,18 +161,18 @@ public class User {
     }
 
     public Set<String> getRolesStr(){
-        Set<String> roles_str = new HashSet<>();
+        Set<String> rolesStr = new HashSet<>();
         for(Role role :this.getRoles()){
-            roles_str.add(role.getRoleName().toString());
+            rolesStr.add(role.getRoleName().toString());
         }
-        return roles_str;
+        return rolesStr;
     }
 
     public Set<String> getPermissionsStr(){
-        Set<String> perms_str = new HashSet<>();
+        Set<String> permsStr = new HashSet<>();
         for(Permission permission :this.getPermissions()){
-            perms_str.add(permission.getPkId().toString());
+            permsStr.add(permission.getPkId().toString());
         }
-        return perms_str;
+        return permsStr;
     }
 }

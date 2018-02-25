@@ -6,6 +6,10 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
+/**
+ * @author hyl
+ * @date 2018/02/25
+ */
 public interface TeamDao {
 
     int countByExample(TeamExample example);

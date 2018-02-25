@@ -1,5 +1,9 @@
 package com.test.cweb.model;
 
+/**
+ * @author hyl
+ * @date 2018/02/25
+ */
 public class Permission {
     private Integer pkId;
 

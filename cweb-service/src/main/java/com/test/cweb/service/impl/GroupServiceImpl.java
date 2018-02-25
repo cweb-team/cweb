@@ -13,8 +13,12 @@ import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * @author hyl
+ * @date 2018/02/25
+ */
 @Service
-public class GroupService implements IGroupService {
+public class GroupServiceImpl implements IGroupService {
     @Resource
     GroupDao groupDao;
 

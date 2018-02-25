@@ -20,7 +20,7 @@ import java.util.Set;
  * @date 18/2/1
  */
 @Service
-public class UserService implements IUserService {
+public class UserServiceImpl implements IUserService {
 
     @Resource
     UserDao userDao;
@@ -29,7 +29,7 @@ public class UserService implements IUserService {
     public ApiResult findOne(String name){
         ApiResult apiResult = new ApiResult();
 
-        HashMap<String, Object> search = new HashMap<>();
+        HashMap<String, Object> search = new HashMap<>(100);
         search.put("name", name);
         User user  = userDao.findOne(search);
 
@@ -46,7 +46,7 @@ public class UserService implements IUserService {
     public ApiResult findAll(String name){
         ApiResult apiResult = new ApiResult();
 
-        HashMap<String,Object> search = new HashMap<>();
+        HashMap<String,Object> search = new HashMap<>(100);
         search.put("name",name);
         User user = userDao.findAll(search);
 
@@ -60,27 +60,42 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User findByAccount(String account){
-        HashMap<String,Object> search = new HashMap<>();
+    public User getUserByAccount(String account){
+        HashMap<String,Object> search = new HashMap<>(100);
         search.put("account",account);
         User user = userDao.selectByAccount(search);
+
         return user;
     }
 
     @Override
-    public Set getRolesStr(String account){
-        User user = this.findByAccount(account);
+    public ApiResult findByAccount(String account){
+        ApiResult apiResult = new ApiResult();
 
-        Set<String> roles_str = user.getRolesStr();
-        return roles_str;
+        User user = this.getUserByAccount(account);
+
+        if(user != null) {
+            apiResult.success(user);
+        }else{
+            apiResult.fail("用户不存在！");
+        }
+        return apiResult;
+    }
+
+    @Override
+    public Set getRolesStr(String account){
+        User user = this.getUserByAccount(account);
+
+        Set<String> rolesStr = user.getRolesStr();
+        return rolesStr;
     }
 
     @Override
     public Set getPermissionsStr(String account){
-        User user= this.findByAccount(account);
+        User user= this.getUserByAccount(account);
 
-        Set<String> perms_str = user.getPermissionsStr();
-        return perms_str;
+        Set<String> permsStr = user.getPermissionsStr();
+        return permsStr;
     }
 
 

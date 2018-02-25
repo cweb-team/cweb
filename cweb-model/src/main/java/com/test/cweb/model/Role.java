@@ -2,6 +2,10 @@ package com.test.cweb.model;
 
 import java.sql.Date;
 
+/**
+ * @author hyl
+ * @date 2018/02/25
+ */
 public class Role {
     private Integer pkId;
 

@@ -18,6 +18,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Set;
 
+/**
+ * @author hyl
+ * @date 2018/02/25
+ */
 public class UserRealmService extends AuthorizingRealm {
 
     @Resource
@@ -32,15 +36,17 @@ public class UserRealmService extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+        //得到账号
+        String account = (String)token.getPrincipal();
+        //得到密码
+        String password = new String((char[])token.getCredentials());
 
-        String account = (String)token.getPrincipal();  				//得到账号
-        String password = new String((char[])token.getCredentials()); 	//得到密码
-
-        User user = iUserService.findByAccount(account);
+        User user = iUserService.getUserByAccount(account);
 
         /**检测是否有此用户 **/
         if(user == null){
-            throw new UnknownAccountException();//没有找到账号异常
+            //没有找到账号异常
+            throw new UnknownAccountException();
         }
 //        /**检验账号是否被锁定 **/
 //        if(Boolean.TRUE.equals(user.getLocked())){
@@ -73,7 +79,6 @@ public class UserRealmService extends AuthorizingRealm {
 
         authorizationInfo.setRoles(iUserService.getRolesStr(account));
         authorizationInfo.setStringPermissions(iUserService.getPermissionsStr(account));
-//        System.out.println("Shiro 授权");
         return authorizationInfo;
     }
 
