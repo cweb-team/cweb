@@ -16,4 +16,11 @@ public class TestPageController extends ApplicationController{
     public ModelAndView index() {
         return buildMAV("index.jsp");
     }
+
+    @RequestMapping("/user/profile")
+    public ModelAndView userProfile() {
+        return buildMAV("profile.jsp","profile");
+    }
+
+
 }

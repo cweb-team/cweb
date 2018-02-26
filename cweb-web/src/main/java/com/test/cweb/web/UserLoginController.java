@@ -35,6 +35,8 @@ public class UserLoginController extends ApplicationController {
         return buildMAV("login.jsp", "login");
     }
 
+
+
     @RequestMapping("/tryLogin")
     @ResponseBody
     public ApiResult tryLogin(@RequestParam(value="account",required = true) String account,@RequestParam(value="password",required = true) String password){

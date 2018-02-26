@@ -40,7 +40,7 @@ public class UserLoginTest {
     @Test
     public void UserTest(){
         String account="abc123";
-        User user = iUserService.findByAccount(account);
+        User user = iUserService.getUserByAccount(account);
         System.out.print(user);
     }
 

@@ -112,7 +112,7 @@
                     success: function(resp){
                         if(resp.status == 200){
                             console.log(resp.data);
-                            $(location).attr("href","profile");
+                            // $(location).attr("href","../profile");
                         }
                     },
                     fail: function(resp){
