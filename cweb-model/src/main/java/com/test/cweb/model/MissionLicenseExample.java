@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author hyl
+ * @date 2018/02/25
+ */
 public class MissionLicenseExample {
     protected String orderByClause;
 

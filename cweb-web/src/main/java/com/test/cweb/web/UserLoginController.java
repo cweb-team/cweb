@@ -25,17 +25,17 @@ import javax.servlet.http.HttpSession;
  */
 @Controller
 @RequestMapping("/user/login")
-public class UserController extends ApplicationController {
+public class UserLoginController extends ApplicationController {
 
     @Resource
     IUserService iUserService;
-
-
 
     @RequestMapping("/")
     public ModelAndView index() {
         return buildMAV("login.jsp", "login");
     }
+
+
 
     @RequestMapping("/tryLogin")
     @ResponseBody
@@ -59,13 +59,9 @@ public class UserController extends ApplicationController {
     @RequestMapping("/findByAccount")
     @ResponseBody
     public ApiResult findAll(@RequestParam(value="name",required = true) String name){
-        ApiResult apiResult = iUserService.findAll(name);
+        ApiResult apiResult = iUserService.findByAccount(name);
         return apiResult;
     }
 
-    @RequestMapping("/profile")
-    @ResponseBody
-    public ModelAndView profile(){
-        return buildMAV("profile.jsp", "profile");
-    }
+
 }

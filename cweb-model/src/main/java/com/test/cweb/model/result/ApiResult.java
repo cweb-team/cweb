@@ -14,7 +14,7 @@ public class ApiResult implements Serializable {
     private Integer status;
     private String msg;
 
-    //可能用到的跟路径
+    /**可能用到的跟路径**/
     private String resourceUrl="";
     private String contextUrl="";
 
@@ -73,7 +73,7 @@ public class ApiResult implements Serializable {
         this.msg = msg;
     }
 
-    //返回错误格式
+    /**返回错误格式**/
     public void fail(Integer status) {
         fail(404, "操作失败");
     }
@@ -86,7 +86,7 @@ public class ApiResult implements Serializable {
         fail(404);
     }
 
-    //返回正确格式
+    /**返回正确格式**/
     public void success(Object data) {
         success(200);
         this.data = data;

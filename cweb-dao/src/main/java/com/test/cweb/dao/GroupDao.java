@@ -5,6 +5,10 @@ import com.test.cweb.model.GroupExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
+/**
+ * @author hyl
+ * @date 2018/02/25
+ */
 public interface GroupDao {
 
     int countByExample(GroupExample example);
