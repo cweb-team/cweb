@@ -34,6 +34,7 @@ rebel.xml
 
 #properties
 database.properties
+config.properties
 log4j.properties
 *.properties
 
@@ -45,4 +46,10 @@ META-INF/
 
 
 *deploy.sh
+
+#web
+package-lock.json
+package.json
+/node_modules
+/.idea
 
