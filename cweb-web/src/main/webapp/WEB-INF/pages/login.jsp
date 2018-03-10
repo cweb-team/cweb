@@ -24,7 +24,7 @@
     </style>
 </head>
 <body>
-<div id="vueControl">
+<div id="vueControl-login">
     <div id="login-container">
         <h2>拍手精灵</h2>
         <h3>更好的管理拍手xxxxx</h3>
@@ -58,7 +58,7 @@
             </div>
             <div id="goto-registerOrForget">
                 <forget><a>忘记密码?</a></forget>
-                <register>没有账号? <a>注册</a></register>
+                <register>没有账号? <a href="/register/">注册</a></register>
             </div>
         </form>
     </div>
@@ -83,7 +83,7 @@
 
 <script>
     var vueApp = new Vue({
-        el:'#vueControl',
+        el:'#vueControl-login',
         data:{
             title:'',
             inputMobile:'',
@@ -106,7 +106,31 @@
                     var loginPhoneNum = this.$data.inputMobile, //获取input框的手机号
                         loginPw = this.$data.inputPw;           //获取input框的密码
 
+                    axios.post('./backApi/changePrice',{
+                        price:loginPhoneNum,
+                        id:loginPw,
+                    }).then(function (response) {
+                        let data = response.data;
+                        if (data.statusCode > 0) {
+                            swal({
+                                text:data.statusMsg,
+                                button: false,
+                                icon: "error",
+                                timer: 2000,
+                            });
+                        } else if (data.statusCode === 0) {
+                            swal({
+                                text:"提交成功!",
+                                button: false,
+                                icon: "success",
+                                timer: 2000
+                            }).then(function () {
 
+                            });
+                        }
+                    }).catch(function (err) {
+                        console.log(err);
+                    });
 
 
 
