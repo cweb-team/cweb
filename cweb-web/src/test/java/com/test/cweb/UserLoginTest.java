@@ -45,30 +45,6 @@ public class UserLoginTest {
     }
 
     @Test
-    public void GroupMybatisTest(){
-        Group group = new Group();
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        group.setCreateTime(timestamp);
-        group.setLeaderId(0);
-        group.setDescription("test");
-        group.setGroupName("testGroup");
-        ApiResult apiResult = iGroupService.addOne(group);
-
-        if(apiResult.getStatus() != 200){
-            System.out.println("success");
-        }
-    }
-
-    @Test
-    public void AllGroupMybatisTest(){
-        ApiResult apiResult = iGroupService.findAll();
-
-        if(apiResult.getStatus() != 200){
-            System.out.println("success");
-        }
-    }
-
-    @Test
     public void LoginTest(){
 
 
