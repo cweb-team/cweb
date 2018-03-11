@@ -30,6 +30,11 @@ public class UserLoginController extends ApplicationController {
     @Resource
     IUserService iUserService;
 
+    @RequestMapping("")
+    public String indexRedirect() {
+        return "redirect:/user/login/";
+    }
+
     @RequestMapping("/")
     public ModelAndView index() {
         return buildMAV("login.jsp", "login");
@@ -37,7 +42,7 @@ public class UserLoginController extends ApplicationController {
 
 
 
-    @RequestMapping("/tryLogin")
+    @RequestMapping("/tryLogin.do")
     @ResponseBody
     public ApiResult tryLogin(@RequestParam(value="account",required = true) String account,@RequestParam(value="password",required = true) String password){
         ApiResult apiResult = new ApiResult();
@@ -56,7 +61,7 @@ public class UserLoginController extends ApplicationController {
         }
     }
 
-    @RequestMapping("/findByAccount")
+    @RequestMapping("/findByAccount.do")
     @ResponseBody
     public ApiResult findAll(@RequestParam(value="name",required = true) String name){
         ApiResult apiResult = iUserService.findByAccount(name);

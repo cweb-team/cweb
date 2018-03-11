@@ -25,11 +25,11 @@ public class GroupTest {
         group.setLeaderId(0);
         group.setDescription("test");
         group.setGroupName("testGroup");
-        ApiResult apiResult = iGroupService.addOne(group);
-
-        if(apiResult.getStatus() != 200){
-            System.out.println("success");
-        }
+//        ApiResult apiResult = iGroupService.addOne(group);
+//
+//        if(apiResult.getStatus() != 200){
+//            System.out.println("success");
+//        }
     }
 
     @Test

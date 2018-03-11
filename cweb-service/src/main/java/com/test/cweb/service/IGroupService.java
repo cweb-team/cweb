@@ -11,6 +11,16 @@ import java.util.List;
  * @date 2018/02/25
  */
 public interface IGroupService {
+    /**
+     * 创建团队
+     * @param group
+     * @return
+     */
     ApiResult addOne(Group group);
+
+    /**
+     * 查看所有团队
+     * @return
+     */
     ApiResult findAll();
 }
