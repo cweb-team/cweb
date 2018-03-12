@@ -32,12 +32,12 @@ public class GroupTest {
 //        }
     }
 
-    @Test
-    public void AllGroupMybatisTest(){
-        ApiResult apiResult = iGroupService.findAll();
-
-        if(apiResult.getStatus() != 200){
-            System.out.println("success");
-        }
-    }
+//    @Test
+//    public void AllGroupMybatisTest(){
+//        ApiResult apiResult = iGroupService.findAll();
+//
+//        if(apiResult.getStatus() != 200){
+//            System.out.println("success");
+//        }
+//    }
 }

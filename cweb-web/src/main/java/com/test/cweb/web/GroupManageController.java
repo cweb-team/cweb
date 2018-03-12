@@ -41,7 +41,8 @@ public class GroupManageController extends ApplicationController{
     //检测是否有创建团队的权限
     @RequestMapping("/addOneGroup.do")
     @ResponseBody
-    public ApiResult addOneGroup(@RequestParam(value="groupName",required = true)String groupName,@RequestParam(value = "description",required = true) String description) {
+    public ApiResult addOneGroup(@RequestParam(value="groupName",required = true)String groupName,
+                                 @RequestParam(value = "description",required = true) String description) {
         User user = (User) httpSession.getAttribute("user");
 
         Group group = new Group();
@@ -54,6 +55,33 @@ public class GroupManageController extends ApplicationController{
 
         return apiResult;
     }
+
+    //检测是否登录
+    @RequestMapping("/checkGroupInfo.do")
+    @ResponseBody
+    public ApiResult checkGroupInfo() {
+        User user = (User) httpSession.getAttribute("user");
+        ApiResult apiResult = iGroupService.findGroupByUserId(user.getPkId());
+        return apiResult;
+    }
+
+    //检测是否登录
+    //检查是否有修改团队信息的权限
+    @RequestMapping("/modifyGroupInfo.do")
+    @ResponseBody
+    public ApiResult modifyGroupInfo(@RequestParam(value="groupId",required = true)String groupId,
+                                     @RequestParam(value="groupName",required = true)String groupName,
+                                     @RequestParam(value = "description",required = true) String description) {
+
+        User user = (User) httpSession.getAttribute("user");
+        Group group = new Group();
+        group.setPkId(Integer.parseInt(groupId));
+        group.setDescription(description);
+        group.setGroupName(groupName);
+        ApiResult apiResult = iGroupService.updateGroup(group);
+        return apiResult;
+    }
+
 
 
 }
