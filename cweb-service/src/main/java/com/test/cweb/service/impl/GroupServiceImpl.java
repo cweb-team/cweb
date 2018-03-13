@@ -55,9 +55,9 @@ public class GroupServiceImpl implements IGroupService {
     }
 
     @Override
-    public ApiResult findGroupByUserId(int leaderId){
+    public ApiResult findGroupByUserId(int userId){
         ApiResult apiResult = new ApiResult();
-        Group group = groupDao.selectByUserId(leaderId);
+        Group group = groupDao.selectByUserId(userId);
         if (group != null){
             apiResult.success(group);
         }else{

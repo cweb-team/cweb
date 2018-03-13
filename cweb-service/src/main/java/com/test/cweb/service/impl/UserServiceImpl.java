@@ -1,8 +1,8 @@
 package com.test.cweb.service.impl;
 
-import com.test.cweb.model.Permission;
-import com.test.cweb.model.Role;
-import com.test.cweb.model.User;
+import com.test.cweb.dao.UserGroupTeamDao;
+import com.test.cweb.dao.UserRoleDao;
+import com.test.cweb.model.*;
 import com.test.cweb.dao.UserDao;
 import com.test.cweb.model.result.ApiResult;
 import com.test.cweb.service.IUserService;
@@ -24,6 +24,12 @@ public class UserServiceImpl implements IUserService {
 
     @Resource
     UserDao userDao;
+
+    @Resource
+    UserRoleDao userRoleDao;
+
+    @Resource
+    UserGroupTeamDao userGroupTeamDao;
 
     @Override
     public ApiResult findOne(String name){
@@ -98,7 +104,46 @@ public class UserServiceImpl implements IUserService {
         return permsStr;
     }
 
+    @Override
+    public ApiResult addRole(UserRole userRole){
+        ApiResult apiResult = new ApiResult();
 
+        int result = userRoleDao.insertSelective(userRole);
+        if(result !=0){
+            apiResult.success("任命成功");
+        }else{
+            apiResult.fail("任命失败");
+        }
+        return apiResult;
+    }
+
+    @Override
+    public ApiResult updateUserGroupTeam(UserGroupTeam userGroupTeam){
+        ApiResult apiResult = new ApiResult();
+
+        int result = userGroupTeamDao.updateByPrimaryKeySelective(userGroupTeam);
+        if(result !=0){
+            apiResult.success("任命成功");
+        }else{
+            apiResult.fail("任命失败");
+        }
+        return apiResult;
+    }
+
+    @Override
+    public UserGroupTeam findByUserGroup(UserGroupTeam userGroupTeam){
+        UserGroupTeamExample userGroupTeamExample = new UserGroupTeamExample();
+        UserGroupTeamExample.Criteria criteria = userGroupTeamExample.createCriteria();
+        criteria.andUserIdEqualTo(userGroupTeam.getUserId());
+        criteria.andGroupIdEqualTo(userGroupTeam.getGroupId());
+        List<UserGroupTeam> userGroupTeams = userGroupTeamDao.selectByExample(userGroupTeamExample);
+        if (userGroupTeams.size()>0){
+            return userGroupTeams.get(0);
+        }else{
+            return null;
+        }
+
+    }
 }
 
 

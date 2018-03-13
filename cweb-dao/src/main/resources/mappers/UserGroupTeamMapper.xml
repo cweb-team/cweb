@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.test.cweb.dao.UserGroupTeamDao" >
+  <resultMap id="BaseResultMap" type="com.test.cweb.model.UserGroupTeam" >
+    <id column="PK_ID" property="pkId" jdbcType="INTEGER" />
+    <result column="USER_ID" property="userId" jdbcType="INTEGER" />
+    <result column="GROUP_ID" property="groupId" jdbcType="INTEGER" />
+    <result column="TEAM_ID" property="teamId" jdbcType="INTEGER" />
+    <result column="GROUP_TIME" property="groupTime" jdbcType="TIMESTAMP" />
+    <result column="TEAM_TIME" property="teamTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    PK_ID, USER_ID, GROUP_ID, TEAM_ID, GROUP_TIME, TEAM_TIME
+  </sql>
+
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.test.cweb.model.UserGroupTeamExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from T_USER_GROUP_TEAM
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_USER_GROUP_TEAM
+    where PK_ID = #{pkId,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from T_USER_GROUP_TEAM
+    where PK_ID = #{pkId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.test.cweb.model.UserGroupTeamExample" >
+    delete from T_USER_GROUP_TEAM
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+
+  <insert id="insert" parameterType="com.test.cweb.model.UserGroupTeam" >
+    insert into T_USER_GROUP_TEAM (PK_ID, USER_ID, GROUP_ID, 
+      TEAM_ID, GROUP_TIME, TEAM_TIME
+      )
+    values (#{pkId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{groupId,jdbcType=INTEGER}, 
+      #{teamId,jdbcType=INTEGER}, #{groupTime,jdbcType=TIMESTAMP}, #{teamTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.test.cweb.model.UserGroupTeam" >
+    insert into T_USER_GROUP_TEAM
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pkId != null" >
+        PK_ID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="groupId != null" >
+        GROUP_ID,
+      </if>
+      <if test="teamId != null" >
+        TEAM_ID,
+      </if>
+      <if test="groupTime != null" >
+        GROUP_TIME,
+      </if>
+      <if test="teamTime != null" >
+        TEAM_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pkId != null" >
+        #{pkId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="groupId != null" >
+        #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="teamId != null" >
+        #{teamId,jdbcType=INTEGER},
+      </if>
+      <if test="groupTime != null" >
+        #{groupTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="teamTime != null" >
+        #{teamTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="countByExample" parameterType="com.test.cweb.model.UserGroupTeamExample" resultType="java.lang.Integer" >
+    select count(*) from T_USER_GROUP_TEAM
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+
+  <update id="updateByExampleSelective" parameterType="map" >
+    update T_USER_GROUP_TEAM
+    <set >
+      <if test="record.pkId != null" >
+        PK_ID = #{record.pkId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null" >
+        USER_ID = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.groupId != null" >
+        GROUP_ID = #{record.groupId,jdbcType=INTEGER},
+      </if>
+      <if test="record.teamId != null" >
+        TEAM_ID = #{record.teamId,jdbcType=INTEGER},
+      </if>
+      <if test="record.groupTime != null" >
+        GROUP_TIME = #{record.groupTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.teamTime != null" >
+        TEAM_TIME = #{record.teamTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update T_USER_GROUP_TEAM
+    set PK_ID = #{record.pkId,jdbcType=INTEGER},
+      USER_ID = #{record.userId,jdbcType=INTEGER},
+      GROUP_ID = #{record.groupId,jdbcType=INTEGER},
+      TEAM_ID = #{record.teamId,jdbcType=INTEGER},
+      GROUP_TIME = #{record.groupTime,jdbcType=TIMESTAMP},
+      TEAM_TIME = #{record.teamTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.test.cweb.model.UserGroupTeam" >
+    update T_USER_GROUP_TEAM
+    <set >
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="groupId != null" >
+        GROUP_ID = #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="teamId != null" >
+        TEAM_ID = #{teamId,jdbcType=INTEGER},
+      </if>
+      <if test="groupTime != null" >
+        GROUP_TIME = #{groupTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="teamTime != null" >
+        TEAM_TIME = #{teamTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where PK_ID = #{pkId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.test.cweb.model.UserGroupTeam" >
+    update T_USER_GROUP_TEAM
+    set USER_ID = #{userId,jdbcType=INTEGER},
+      GROUP_ID = #{groupId,jdbcType=INTEGER},
+      TEAM_ID = #{teamId,jdbcType=INTEGER},
+      GROUP_TIME = #{groupTime,jdbcType=TIMESTAMP},
+      TEAM_TIME = #{teamTime,jdbcType=TIMESTAMP}
+    where PK_ID = #{pkId,jdbcType=INTEGER}
+  </update>
+</mapper>
