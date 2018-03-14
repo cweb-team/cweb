@@ -92,7 +92,30 @@
         methods: {
             loginSubmit: function () {
                 //此处未登录点击事件,ajax在此处
-                alert("登陆事件");
+
+                var account = $("#phoneNum").val();
+                var password = $("#password").val();
+                $.ajax({
+                    url: "tryLogin.do",
+                    type: "get",
+                    dataType: "json",
+                    data: {
+                        account: account,
+                        password:password,
+                    },
+                    success: function(resp){
+                        if(resp.status == 200){
+                            console.log(resp.data);
+                            $(location).attr("href","../profile");
+                        }
+                    },
+                    fail: function(resp){
+                        if(resp.status == 404){
+                            console.log(resp.data);
+                        }
+                    }
+                })
+
                 var valInputs = document.querySelectorAll(".input-need-vali"),
                     isPassed = 0;
                 _.forEach(valInputs, function(itm){
