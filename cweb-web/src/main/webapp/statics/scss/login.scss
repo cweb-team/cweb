@@ -11,7 +11,7 @@ body{
 .hide{
     display: none !important;
 }
-div#vueControl{
+div#vueControl-login{
     width: 100%;
     div#login-container{
         width: 400px;
@@ -20,10 +20,7 @@ div#vueControl{
         background-color: rgba(255, 255, 255, 0.85);
         margin-top: 120px;
         border-radius: 4px;
-        h2{
-            text-align:center;
-        }
-        h3{
+        h2,h3{
             text-align:center;
         }
         form#login-input{
@@ -71,6 +68,7 @@ div#vueControl{
                 }
                 a{
                     color: rgb(23, 81, 153);
+                    text-decoration: none;
                 }
             }
             .inputAlert{

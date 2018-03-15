@@ -37,7 +37,7 @@
                 /login/** = anon
                 /user/login/** = anon
                 <!-- 如果某个资源允许访问， 直接匹配成anon 即可 -->
-
+                /register/** = anon
                 <!-- 如果某个资源需要认证，且要有相应的角色，可以直接如下设置，可以设置多个角色用逗号隔开,  有可以设置权限控制 -->
                 <!--  也是使用注解来实现， 具体见 UserController 类 -->
                 /admin = authc ,roles[admin]  ,perms[user:create]

@@ -1,18 +1,12 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Chirs
-  Date: 2018/2/6
-  Time: 11:01
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="en">
+<%--<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">--%>
+<!doctype html>
+<html xmlns=http://www.w3.org/1999/xhtml>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,user-scalable=1.0,
                  initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,minimal-ui">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
     <title>登录/Log in</title>
     <!-- 引入login样式 -->
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/login.css">
@@ -30,7 +24,7 @@
     </style>
 </head>
 <body>
-<div id="vueControl">
+<div id="vueControl-login">
     <div id="login-container">
         <h2>拍手精灵</h2>
         <h3>更好的管理拍手xxxxx</h3>
@@ -64,7 +58,7 @@
             </div>
             <div id="goto-registerOrForget">
                 <forget><a>忘记密码?</a></forget>
-                <register>没有账号? <a>注册</a></register>
+                <register>没有账号? <a href="/register/">注册</a></register>
             </div>
         </form>
     </div>
@@ -89,7 +83,7 @@
 
 <script>
     var vueApp = new Vue({
-        el:'#vueControl',
+        el:'#vueControl-login',
         data:{
             title:'',
             inputMobile:'',
@@ -135,7 +129,31 @@
                     var loginPhoneNum = this.$data.inputMobile, //获取input框的手机号
                         loginPw = this.$data.inputPw;           //获取input框的密码
 
+                    axios.post('./backApi/changePrice',{
+                        price:loginPhoneNum,
+                        id:loginPw,
+                    }).then(function (response) {
+                        let data = response.data;
+                        if (data.statusCode > 0) {
+                            swal({
+                                text:data.statusMsg,
+                                button: false,
+                                icon: "error",
+                                timer: 2000,
+                            });
+                        } else if (data.statusCode === 0) {
+                            swal({
+                                text:"提交成功!",
+                                button: false,
+                                icon: "success",
+                                timer: 2000
+                            }).then(function () {
 
+                            });
+                        }
+                    }).catch(function (err) {
+                        console.log(err);
+                    });
 
 
 

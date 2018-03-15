@@ -1,0 +1,30 @@
+{
+  "name": "cweb",
+  "version": "0.0.1",
+  "description": "cweb team",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "css": "webpack --config webpack.css.config.js"
+  },
+  "author": "Development Department Of CWE",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^0.28.7",
+    "cssnano": "^3.10.0",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "ignore-loader": "^0.1.2",
+    "node-sass": "^4.7.2",
+    "postcss-loader": "^2.0.9",
+    "resolve-url-loader": "^2.2.0",
+    "sass-loader": "^6.0.6",
+    "webpack": "^ 3.8.1"
+  },
+  "dependencies": {
+    "gulp-sass": "^3.1.0",
+    "webpack-dev-server": "^2.10.0"
+  }
+}
