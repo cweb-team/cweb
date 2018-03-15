@@ -4,6 +4,7 @@ import com.test.cweb.dao.GroupDao;
 import com.test.cweb.model.Group;
 import com.test.cweb.model.GroupExample;
 import com.test.cweb.model.GroupExample.Criteria;
+import com.test.cweb.model.Team;
 import com.test.cweb.model.result.ApiResult;
 import com.test.cweb.service.IGroupService;
 import org.apache.ibatis.jdbc.Null;
@@ -23,7 +24,7 @@ public class GroupServiceImpl implements IGroupService {
     GroupDao groupDao;
 
     @Override
-    public ApiResult addOne(Group group){
+    public ApiResult addOneGroup(Group group){
         ApiResult apiResult = new ApiResult();
 
         int result = groupDao.insertSelective(group);
@@ -68,7 +69,7 @@ public class GroupServiceImpl implements IGroupService {
     }
 
     @Override
-    public  ApiResult updateGroup(Group group){
+    public ApiResult updateGroup(Group group){
         ApiResult apiResult = new ApiResult();
         int result = groupDao.updateByPrimaryKeySelective(group);
         if(result >0){
@@ -79,4 +80,6 @@ public class GroupServiceImpl implements IGroupService {
         }
         return apiResult;
     }
+
+
 }
