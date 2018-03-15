@@ -38,13 +38,45 @@ public class GroupServiceImpl implements IGroupService {
     }
 
     @Override
-    public ApiResult findAll(){
+    public ApiResult findGroupByLeaderId(int leaderId){
         ApiResult apiResult = new ApiResult();
         GroupExample groupExample = new GroupExample();
-        groupExample.createCriteria();
+        Criteria criteria = groupExample.createCriteria();
+        criteria.andLeaderIdEqualTo(leaderId);
         List<Group> groups = groupDao.selectByExample(groupExample);
-        apiResult.success(groups);
+        if(groups.size() > 0){
+            Group group = groups.get(0);
+            apiResult.success(group);
+        }else{
+            apiResult.fail("无结果");
+        }
 
+        return apiResult;
+    }
+
+    @Override
+    public ApiResult findGroupByUserId(int userId){
+        ApiResult apiResult = new ApiResult();
+        Group group = groupDao.selectByUserId(userId);
+        if (group != null){
+            apiResult.success(group);
+        }else{
+            apiResult.fail("无结果");
+        }
+
+        return apiResult;
+    }
+
+    @Override
+    public  ApiResult updateGroup(Group group){
+        ApiResult apiResult = new ApiResult();
+        int result = groupDao.updateByPrimaryKeySelective(group);
+        if(result >0){
+            Group resultGroup = groupDao.selectByPrimaryKey(group.getPkId());
+            apiResult.success(resultGroup);
+        }else{
+            apiResult.fail();
+        }
         return apiResult;
     }
 }

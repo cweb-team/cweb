@@ -1,5 +1,7 @@
 package com.test.cweb.model;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -15,6 +17,8 @@ public class Group {
     private String groupName;
 
     private Date createTime;
+
+    private String createTimeStr;
 
     private String description;
 
@@ -50,6 +54,19 @@ public class Group {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public String getCreateTimeStr() {
+        if(this.createTimeStr == null){
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            this.setCreateTimeStr(simpleDateFormat.format(this.getCreateTime()));
+        }
+        return createTimeStr;
+
+    }
+
+    public void setCreateTimeStr(String createTimeStr) {
+        this.createTimeStr = createTimeStr;
     }
 
     public String getDescription() {

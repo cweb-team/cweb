@@ -25,6 +25,8 @@ public interface GroupDao {
 
     Group selectByPrimaryKey(Integer pkId);
 
+    Group selectByUserId(Integer userId);
+
     int updateByExampleSelective(@Param("record") Group record, @Param("example") GroupExample example);
 
     int updateByExample(@Param("record") Group record, @Param("example") GroupExample example);

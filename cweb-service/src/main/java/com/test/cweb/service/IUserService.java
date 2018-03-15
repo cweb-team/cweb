@@ -1,6 +1,8 @@
 package com.test.cweb.service;
 
 import com.test.cweb.model.User;
+import com.test.cweb.model.UserGroupTeam;
+import com.test.cweb.model.UserRole;
 import com.test.cweb.model.result.ApiResult;
 
 import java.util.List;
@@ -52,5 +54,26 @@ public interface IUserService {
      * @param account
      * @return
      */
-    Set<String > getPermissionsStr(String account);
+    Set<String> getPermissionsStr(String account);
+
+    /**
+     * 职务任命
+     * @param userRole
+     * @return
+     */
+    ApiResult addRole(UserRole userRole);
+
+    /**
+     * 小组信息更新
+     * @param userGroupTeam
+     * @return
+     */
+    ApiResult updateUserGroupTeam(UserGroupTeam userGroupTeam);
+
+    /**
+     * 查找用户团队小队关联信息
+     * @param userGroupTeam
+     * @return
+     */
+    UserGroupTeam findByUserGroup(UserGroupTeam userGroupTeam);
 }

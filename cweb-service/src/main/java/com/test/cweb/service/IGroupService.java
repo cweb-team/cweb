@@ -19,8 +19,22 @@ public interface IGroupService {
     ApiResult addOne(Group group);
 
     /**
-     * 查看所有团队
+     * 查找自己创建的团队
      * @return
      */
-    ApiResult findAll();
+    ApiResult findGroupByLeaderId(int leaderId);
+
+    /**
+     * 查找所在团队
+     * @param leaderId
+     * @return
+     */
+    ApiResult findGroupByUserId(int leaderId);
+
+    /**
+     * 更新团队信息
+     * @param group
+     * @return
+     */
+    ApiResult updateGroup(Group group);
 }

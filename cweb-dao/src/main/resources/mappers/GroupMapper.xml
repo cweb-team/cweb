@@ -82,7 +82,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    PK_ID, LEADER_ID, GROUP_NAME, CREATE_TIME, DESCRIPTION
+    T_GROUP.PK_ID, T_GROUP.LEADER_ID, T_GROUP.GROUP_NAME, T_GROUP.CREATE_TIME, T_GROUP.DESCRIPTION
   </sql>
   <sql id="Multi_Column_List" >
     T_GROUP.PK_ID, T_GROUP.LEADER_ID, GROUP_NAME, T_GROUP.CREATE_TIME, DESCRIPTION,
@@ -115,6 +115,12 @@
     <include refid="Multi_Column_List" />
     from T_GROUP LEFT JOIN T_TEAM ON T_GROUP.PK_ID = T_TEAM.GROUP_ID
     where LEADER_ID = #{pkId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select
+    <include refid="Base_Column_List" />
+    from T_GROUP LEFT JOIN T_USER_GROUP_TEAM ON T_GROUP.PK_ID = T_USER_GROUP_TEAM.GROUP_ID
+    where T_USER_GROUP_TEAM.USER_ID = #{userId,jdbcType=INTEGER}
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
