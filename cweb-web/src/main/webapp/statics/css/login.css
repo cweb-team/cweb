@@ -11,65 +11,64 @@ body {
 .hide {
   display: none !important; }
 
-div#vueControl-login {
+div#vueController-login {
   width: 100%; }
-  div#vueControl-login div#login-container {
+  div#vueController-login div#login-container {
     width: 400px;
     margin: 0 auto;
     padding: 30px 0 20px;
     background-color: rgba(255, 255, 255, 0.85);
-    margin-top: 120px;
+    margin-top: 20vh;
     border-radius: 4px; }
-    div#vueControl-login div#login-container h2, div#vueControl-login div#login-container h3 {
+    div#vueController-login div#login-container h2, div#vueController-login div#login-container h3 {
       text-align: center; }
-    div#vueControl-login div#login-container form#login-input {
+    div#vueController-login div#login-container form#login-input {
       width: 100%;
       margin: 0 auto; }
-      div#vueControl-login div#login-container form#login-input div {
+      div#vueController-login div#login-container form#login-input div {
         width: 80%;
         height: 40px;
         margin: 0px auto;
         margin-bottom: 30px; }
-        div#vueControl-login div#login-container form#login-input div input {
+        div#vueController-login div#login-container form#login-input div input {
           width: 300px;
           height: 40px;
           margin: 0px 10px;
           padding: .5em .6em;
           display: inline-block;
-          border: none;
-          border-bottom: 1px solid #ccc;
           outline: none;
           vertical-align: middle;
-          box-sizing: border-box; }
-        div#vueControl-login div#login-container form#login-input div #login-submit-button {
+          box-sizing: border-box;
+          box-shadow: inset 0 1px 2px rgba(27, 31, 35, 0.075); }
+        div#vueController-login div#login-container form#login-input div #login-submit-button {
           width: 300px;
           height: 40px;
           margin: 0px 10px;
           color: white;
           background-color: #0084ff; }
-      div#vueControl-login div#login-container form#login-input #goto-registerOrForget {
+      div#vueController-login div#login-container form#login-input #goto-registerOrForget {
         text-align: center;
         margin-bottom: 20px; }
-        div#vueControl-login div#login-container form#login-input #goto-registerOrForget forget {
+        div#vueController-login div#login-container form#login-input #goto-registerOrForget forget {
           float: left;
           position: relative;
           left: 10px; }
-        div#vueControl-login div#login-container form#login-input #goto-registerOrForget register {
+        div#vueController-login div#login-container form#login-input #goto-registerOrForget register {
           float: right;
           position: relative;
           right: 10px; }
-        div#vueControl-login div#login-container form#login-input #goto-registerOrForget a {
+        div#vueController-login div#login-container form#login-input #goto-registerOrForget a {
           color: #175199;
           text-decoration: none; }
-      div#vueControl-login div#login-container form#login-input .inputAlert {
+      div#vueController-login div#login-container form#login-input .inputAlert {
         left: 320px;
         bottom: 2.54em;
         height: 40px;
         width: 280px;
         margin: 0; }
-        div#vueControl-login div#login-container form#login-input .inputAlert div {
+        div#vueController-login div#login-container form#login-input .inputAlert div {
           margin: 0; }
-        div#vueControl-login div#login-container form#login-input .inputAlert span {
+        div#vueController-login div#login-container form#login-input .inputAlert span {
           line-height: 40px; }
-        div#vueControl-login div#login-container form#login-input .inputAlert i {
+        div#vueController-login div#login-container form#login-input .inputAlert i {
           display: none; }
