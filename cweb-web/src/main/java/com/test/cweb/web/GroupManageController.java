@@ -1,12 +1,10 @@
 package com.test.cweb.web;
 
 import com.test.cweb.dao.GroupDao;
-import com.test.cweb.model.Group;
-import com.test.cweb.model.User;
-import com.test.cweb.model.UserGroupTeam;
-import com.test.cweb.model.UserRole;
+import com.test.cweb.model.*;
 import com.test.cweb.model.result.ApiResult;
 import com.test.cweb.service.IGroupService;
+import com.test.cweb.service.ITeamService;
 import com.test.cweb.service.IUserService;
 import org.apache.shiro.session.Session;
 import org.springframework.stereotype.Controller;
@@ -36,6 +34,9 @@ public class GroupManageController extends ApplicationController{
     IUserService iUserService;
 
     @Resource
+    ITeamService iTeamService;
+
+    @Resource
     HttpSession httpSession;
 
     @RequestMapping("/")
@@ -58,7 +59,7 @@ public class GroupManageController extends ApplicationController{
         group.setLeaderId(user.getPkId());
         group.setDescription(groupName);
         group.setGroupName(description);
-        ApiResult apiResult = iGroupService.addOne(group);
+        ApiResult apiResult = iGroupService.addOneGroup(group);
 
         return apiResult;
     }
@@ -116,6 +117,23 @@ public class GroupManageController extends ApplicationController{
         }else {
             apiResult = iUserService.addRole(userRole);
         }return apiResult;
+    }
+
+    //检测是否登录
+    //检查是否有创建分队的权限
+    @RequestMapping("/addOneTeam.do")
+    @ResponseBody
+    public ApiResult addOneTeam(@RequestParam(value="groupId",required = true)String groupId,
+                                @RequestParam(value="teamName",required = true)String teamName,
+                                @RequestParam(value="description",required = true)String description) {
+        User user = (User) httpSession.getAttribute("user");
+        Team team = new Team();
+        team.setGroupId(Integer.parseInt(groupId));
+        team.setTeamName(teamName);
+        team.setDescription(description);
+
+        ApiResult apiResult = iTeamService.addOneTeam(team);
+        return apiResult;
     }
 
 }

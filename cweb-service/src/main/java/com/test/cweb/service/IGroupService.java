@@ -1,6 +1,7 @@
 package com.test.cweb.service;
 
 import com.test.cweb.model.Group;
+import com.test.cweb.model.Team;
 import com.test.cweb.model.result.ApiResult;
 
 import java.util.HashMap;
@@ -16,7 +17,7 @@ public interface IGroupService {
      * @param group
      * @return
      */
-    ApiResult addOne(Group group);
+    ApiResult addOneGroup(Group group);
 
     /**
      * 查找自己创建的团队
@@ -37,4 +38,6 @@ public interface IGroupService {
      * @return
      */
     ApiResult updateGroup(Group group);
+
+
 }
