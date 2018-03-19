@@ -19,8 +19,41 @@ body{
 #vueController-register{
   width: 100%;
   #register-container{
+    width: 100%;
     padding: 0 4%;
-    height: 200px;
-    background-color: #2D6CDF;
+    margin-top: 20vh;
+    #register-childContainer{
+      margin: 0 auto;
+      width: 500px;
+      padding: 0 4%;
+      #register-form{
+        width: 100%;
+        padding-top: 15px;
+        background-color: rgba(255, 255, 255, 0.55);
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        div{
+          text-align: center;
+          input{
+            width: 210px;
+            height: 36px;
+            margin: 15px 0;
+          }
+          button{
+            width: 210px;
+            height: 36px;
+            margin: 15px 0 30px;
+            color: white;
+            background-color: #0084ff;
+          }
+        }
+        h4{
+          text-align: center;
+          font-size: 16px;
+          margin: 10px 0 10px;
+        }
+      }
+    }
   }
 }

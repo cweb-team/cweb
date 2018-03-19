@@ -24,10 +24,34 @@
 <body>
     <div id="vueController-register">
         <div id="register-container">
-            <h4>
-                注册账号
-            </h4>
+            <div id="register-childContainer">
+                <form id="register-form" class="pure-form">
+                    <h4>
+                        注册账号
+                    </h4>
+                    <div id="register-inputUserName">
+                        <input placeholder="用户名">
+                    </div>
+                    <div id="register-inputPhone">
+                        <input placeholder="手机号">
+                    </div>
+                    <div id="register-inputEmail">
+                        <input placeholder="邮箱">
+                    </div>
+                    <div id="register-inputPassword">
+                        <input placeholder="输入密码">
+                    </div>
+                    <div id="register-submitData">
+                        <button class="pure-button">
+                            注册
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </body>
+<script>
+
+</script>
 </html>

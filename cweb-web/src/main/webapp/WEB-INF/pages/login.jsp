@@ -58,7 +58,7 @@
             </div>
             <div id="goto-registerOrForget">
                 <forget><a>忘记密码?</a></forget>
-                <register>没有账号? <a href="register/">注册</a></register>
+                <register>没有账号? <a href="../../register/">注册</a></register>
             </div>
         </form>
     </div>
@@ -138,7 +138,6 @@
                     }).then(function (response) {
                         let data = response.data;
                         let code = data.status;
-                        console.log(code);
                         if (code == 200) {
                             swal({
                                 text:"提交成功!",
@@ -146,7 +145,6 @@
                                 icon: "success",
                                 timer: 2000
                             }).then(function () {
-                                console.log("跳转1");
                                 location.href = "../../register/";
                             });
                         }
@@ -157,28 +155,12 @@
                                 icon: "error",
                                 timer: 2000
                             }).then(function () {
-                                return false;
+                                document.querySelector('#login-input').reset();
                             });
-                            // alert(data.msg);
                         }
                     }).catch(function (err) {
                         console.log(err);
                     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 }
             },
             //此处为输入框失去焦点时,根据正则验证验证输入框内容,
