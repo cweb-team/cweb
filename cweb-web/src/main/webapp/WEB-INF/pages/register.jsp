@@ -31,15 +31,35 @@
                     </h4>
                     <div id="register-inputUserName">
                         <input placeholder="用户名">
+                        <el-alert   class="inputAlert hide"
+                                    id="for-userName"
+                                    title="这个昵称已经被占用"
+                                    type="error">
+                        </el-alert>
                     </div>
                     <div id="register-inputPhone">
                         <input placeholder="手机号">
+                        <el-alert   class="inputAlert hide"
+                                    id="for-phoneNum"
+                                    title="请输入正确的手机号(11位)"
+                                    type="error">
+                        </el-alert>
                     </div>
                     <div id="register-inputEmail">
                         <input placeholder="邮箱">
+                        <el-alert   class="inputAlert hide"
+                                    id="for-email"
+                                    title="请输入正确的邮箱"
+                                    type="error">
+                        </el-alert>
                     </div>
                     <div id="register-inputPassword">
                         <input placeholder="输入密码">
+                        <el-alert   class="inputAlert hide"
+                                    id="for-password"
+                                    title="这个昵称已经被占用"
+                                    type="error">
+                        </el-alert>
                     </div>
                     <div id="register-submitData">
                         <button class="pure-button">
@@ -51,7 +71,26 @@
         </div>
     </div>
 </body>
+<!-- 引入正则验证json文件 -->
+<script src="<%=request.getContextPath()%>/js/json/regAlert.js"></script>
+<!-- 引入sweetalert2.0组件 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert@2.0.8/dist/sweetalert.min.js"></script>
+<!-- 引入jQuery组件库 -->
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<!-- 引入vue.js -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.9/dist/vue.min.js"></script>
+<!-- 引入loadsh.js -->
+<script src="https://cdn.jsdelivr.net/npm/lodash/lodash.min.js"></script>
+<!-- 引入axios.js -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<!-- 引入element组件库 -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
 <script>
+    var vueApp = new Vue({
+       el:'#vueController-register',
+       data:{
 
+       },
+    });
 </script>
 </html>
