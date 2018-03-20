@@ -30,7 +30,7 @@
                         注册账号
                     </h4>
                     <div id="register-inputUserName">
-                        <input placeholder="用户名">
+                        <input placeholder="用户名" v-model="inputUserName">
                         <el-alert   class="inputAlert hide"
                                     id="for-userName"
                                     title="这个昵称已经被占用"
@@ -38,7 +38,7 @@
                         </el-alert>
                     </div>
                     <div id="register-inputPhone">
-                        <input placeholder="手机号">
+                        <input placeholder="手机号" v-model="inputPhoneNumber">
                         <el-alert   class="inputAlert hide"
                                     id="for-phoneNum"
                                     title="请输入正确的手机号(11位)"
@@ -46,14 +46,14 @@
                         </el-alert>
                     </div>
                     <div id="register-inputEmail">
-                        <input placeholder="邮箱">
+                        <input placeholder="邮箱" v-model="inputEmail">
                         <el-alert   class="inputAlert hide"
                                     id="for-email"
                                     title="请输入正确的邮箱"
                                     type="error">
                         </el-alert>
                     </div>
-                    <div id="register-inputPassword">
+                    <div id="register-inputPassword" v-model="inputPassWord">
                         <input placeholder="输入密码">
                         <el-alert   class="inputAlert hide"
                                     id="for-password"
@@ -62,7 +62,7 @@
                         </el-alert>
                     </div>
                     <div id="register-submitData">
-                        <button class="pure-button">
+                        <button class="pure-button" @click="test">
                             注册
                         </button>
                     </div>
@@ -87,10 +87,18 @@
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 <script>
     var vueApp = new Vue({
-       el:'#vueController-register',
-       data:{
-
-       },
+        el:'#vueController-register',
+        data:{
+            inputUserName:'',
+            inputPhoneNumber:'',
+            inputEmail:'',
+            inputPassWord:'',
+        },
+        methods:{
+            test :function () {
+                alert(123);
+            }
+        }
     });
 </script>
 </html>
