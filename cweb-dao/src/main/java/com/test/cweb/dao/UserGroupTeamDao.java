@@ -27,4 +27,11 @@ public interface UserGroupTeamDao {
     int updateByPrimaryKeySelective(UserGroupTeam record);
 
     int updateByPrimaryKey(UserGroupTeam record);
+
+    /**
+     * 将Team字段设成null 用于删除team时级联操作
+     * @param teamId
+     * @return
+     */
+    int updateTeamToNull(int teamId);
 }

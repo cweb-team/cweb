@@ -136,4 +136,23 @@ public class GroupManageController extends ApplicationController{
         return apiResult;
     }
 
+    //检测是否登录
+    //检查是否有删除团队的权限
+    @RequestMapping("/deleteGroup.do")
+    @ResponseBody
+    public ApiResult deleteGroup(@RequestParam(value="groupId",required = true)String groupId) {
+
+        ApiResult apiResult = new ApiResult();
+
+        User user = (User) httpSession.getAttribute("user");
+        int userId = user.getPkId();
+        Group group = iGroupService.findGroupByGroupId(Integer.parseInt(groupId));
+        if (userId == group.getLeaderId()){
+            apiResult = iGroupService.deleteGroup(Integer.parseInt(groupId));
+        }
+
+        return apiResult;
+    }
+
+
 }

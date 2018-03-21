@@ -231,4 +231,9 @@
       TEAM_TIME = #{teamTime,jdbcType=TIMESTAMP}
     where PK_ID = #{pkId,jdbcType=INTEGER}
   </update>
+  <update id="updateTeamToNull" parameterType="java.lang.Integer">
+    update T_USER_GROUP_TEAM
+    set TEAM_ID = NULL
+    where TEAM_ID = #{teamId,jdbcType=INTEGER}
+  </update>
 </mapper>

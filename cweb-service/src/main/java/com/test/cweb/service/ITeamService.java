@@ -14,4 +14,26 @@ public interface ITeamService {
      * @return
      */
     ApiResult addOneTeam(Team team);
+
+    /**
+     * 删除一个分队
+     * @param teamId
+     * @return
+     */
+    ApiResult deleteOneTeam(int teamId);
+
+    /**
+     * 查找一个分队
+     * @param teamId
+     * @return
+     */
+    Team findOneTeam(int teamId);
+
+    /**
+     * 更新分队信息
+     * @param team
+     * @return
+     */
+    ApiResult updateOneTeam(Team team);
+
 }
