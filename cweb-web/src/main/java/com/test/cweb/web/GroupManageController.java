@@ -1,11 +1,14 @@
 package com.test.cweb.web;
 
+import com.test.cweb.Common;
 import com.test.cweb.dao.GroupDao;
 import com.test.cweb.model.*;
 import com.test.cweb.model.result.ApiResult;
 import com.test.cweb.service.IGroupService;
 import com.test.cweb.service.ITeamService;
+import com.test.cweb.service.IUserGroupTeamService;
 import com.test.cweb.service.IUserService;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.session.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +20,8 @@ import com.test.cweb.ApplicationController;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *  @author HYL
@@ -37,6 +42,9 @@ public class GroupManageController extends ApplicationController{
     ITeamService iTeamService;
 
     @Resource
+    IUserGroupTeamService iUserGroupTeamService;
+
+    @Resource
     HttpSession httpSession;
 
     @RequestMapping("/")
@@ -49,8 +57,8 @@ public class GroupManageController extends ApplicationController{
     //检测是否有创建团队的权限
     @RequestMapping("/addOneGroup.do")
     @ResponseBody
-    public ApiResult addOneGroup(@RequestParam(value="groupName",required = true)String groupName,
-                                 @RequestParam(value = "description",required = true) String description) {
+    public ApiResult addOneGroup(@RequestParam(value="groupName")String groupName,
+                                 @RequestParam(value = "description") String description) {
         User user = (User) httpSession.getAttribute("user");
 
         Group group = new Group();
@@ -77,9 +85,9 @@ public class GroupManageController extends ApplicationController{
     //检查是否有修改团队信息的权限
     @RequestMapping("/modifyGroupInfo.do")
     @ResponseBody
-    public ApiResult modifyGroupInfo(@RequestParam(value="groupId",required = true)String groupId,
-                                     @RequestParam(value="groupName",required = true)String groupName,
-                                     @RequestParam(value = "description",required = true) String description) {
+    public ApiResult modifyGroupInfo(@RequestParam(value="groupId")String groupId,
+                                     @RequestParam(value="groupName")String groupName,
+                                     @RequestParam(value = "description") String description) {
 
         User user = (User) httpSession.getAttribute("user");
         Group group = new Group();
@@ -92,26 +100,26 @@ public class GroupManageController extends ApplicationController{
 
     //检测是否登录
     //检查是否有职务任命的权限
-    @RequestMapping("/appointRole.do")
+    @RequestMapping("/appointDuty.do")
     @ResponseBody
-    public ApiResult appointDuty(@RequestParam(value="userId",required = true)String userId,
-                                 @RequestParam(value="roleId",required = true)String roleId,
-                                 @RequestParam(value="groupId",required = true)String groupId,
-                                 @RequestParam(value="teamId",required = false)String teamId) {
+    public ApiResult appointDuty(@RequestParam(value="userId")String userId,
+                                 @RequestParam(value="roleId")String roleId,
+                                 @RequestParam(value="groupId")String groupId,
+                                 @RequestParam(value="teamId",required = false,defaultValue = "")String teamId) {
         ApiResult apiResult = new ApiResult();
 
         User user = (User) httpSession.getAttribute("user");
         UserRole userRole = new UserRole();
         userRole.setUserId(Integer.parseInt(userId));
         userRole.setRoleId(Integer.parseInt(roleId));
-        if (Integer.parseInt(roleId) == 4){
+        if (Integer.parseInt(roleId) == Common.ROLE_TEAM_LEADER_ID){
             UserGroupTeam userGroupTeam = new UserGroupTeam();
             userGroupTeam.setUserId(Integer.parseInt(userId));
             userGroupTeam.setGroupId(Integer.parseInt(groupId));
-            userGroupTeam = iUserService.findByUserGroup(userGroupTeam);
+            userGroupTeam = iUserGroupTeamService.findByUserGroup(userGroupTeam);
             userGroupTeam.setTeamId(Integer.parseInt(teamId));
             apiResult = iUserService.updateUserGroupTeam(userGroupTeam);
-            if(apiResult.getStatus() == 200){
+            if(apiResult.getStatus() == ApiResult.SUCCESS_STATUS){
                 apiResult = iUserService.addRole(userRole);
             }
         }else {
@@ -120,12 +128,51 @@ public class GroupManageController extends ApplicationController{
     }
 
     //检测是否登录
+    //检查是否有职务撤销的权限
+    @RequestMapping("/removeDuty.do")
+    @ResponseBody
+    @RequiresRoles({Common.ROLE_GROUPLEADER_NAME,Common.ROLE_GROUPLEADER_SUB_NAME})
+    public ApiResult removeDuty(@RequestParam(value="userId")String userId,
+                                 @RequestParam(value="roleId")String roleId,
+                                 @RequestParam(value="groupId")String groupId) {
+        ApiResult apiResult = new ApiResult();
+        User user = (User) httpSession.getAttribute("user");
+        // 2. 检测执行者是否和被执行者在同一个团队下
+        UserGroupTeam userGroupTeam_0 = iUserGroupTeamService.findByUserId(Integer.parseInt(userId));
+        if (userGroupTeam_0.getGroupId() != Integer.parseInt(groupId)){
+             apiResult.fail();
+             return apiResult;
+        }
+        if (Integer.parseInt(roleId) == Common.ROLE_GROUPLEADER_SUB_ID) {
+            Group group = iGroupService.findGroupByGroupId(Integer.parseInt(groupId));
+            if (group.getLeaderId().equals(user.getPkId())){
+                UserRole userRole = new UserRole();
+                userRole.setUserId(Integer.parseInt(userId));
+                userRole.setRoleId(Integer.parseInt(roleId));
+                    apiResult = iUserService.removeRole(userRole);
+            }else{
+                apiResult.fail();
+            }
+        }else if (Integer.parseInt(roleId) == Common.ROLE_TEAM_LEADER_ID){
+            UserRole userRole = new UserRole();
+            userRole.setUserId(Integer.parseInt(userId));
+            userRole.setRoleId(Integer.parseInt(roleId));
+            apiResult = iUserService.removeRole(userRole);
+        }else{
+            apiResult.fail();
+        }
+
+        return apiResult;
+    }
+
+
+    //检测是否登录
     //检查是否有创建分队的权限
     @RequestMapping("/addOneTeam.do")
     @ResponseBody
-    public ApiResult addOneTeam(@RequestParam(value="groupId",required = true)String groupId,
-                                @RequestParam(value="teamName",required = true)String teamName,
-                                @RequestParam(value="description",required = true)String description) {
+    public ApiResult addOneTeam(@RequestParam(value="groupId")String groupId,
+                                @RequestParam(value="teamName")String teamName,
+                                @RequestParam(value="description")String description) {
         User user = (User) httpSession.getAttribute("user");
         Team team = new Team();
         team.setGroupId(Integer.parseInt(groupId));
@@ -140,7 +187,7 @@ public class GroupManageController extends ApplicationController{
     //检查是否有删除团队的权限
     @RequestMapping("/deleteGroup.do")
     @ResponseBody
-    public ApiResult deleteGroup(@RequestParam(value="groupId",required = true)String groupId) {
+    public ApiResult deleteGroup(@RequestParam(value="groupId")String groupId) {
 
         ApiResult apiResult = new ApiResult();
 
@@ -154,5 +201,31 @@ public class GroupManageController extends ApplicationController{
         return apiResult;
     }
 
+    @RequestMapping("/checkAllMember.do")
+    @ResponseBody
+    public ApiResult checkAllMember(@RequestParam(value="groupId")String groupId) {
+
+        ApiResult apiResult = new ApiResult();
+
+        User user = (User) httpSession.getAttribute("user");
+        int userId = user.getPkId();
+        Group group = iGroupService.findGroupByGroupId(Integer.parseInt(groupId));
+        List<User> userList = new ArrayList();
+        if (user.getPkId().equals(group.getLeaderId())){
+
+            List<UserGroupTeam>  userGroupTeamList= iUserGroupTeamService.findAllMebmerByGroupId(Integer.parseInt(groupId));
+            for (UserGroupTeam userGroupTeam : userGroupTeamList){
+                User userResult = iUserService.findOneById(userGroupTeam.getUserId());
+                User userTmp = new User();
+                userTmp.setRealName(userResult.getRealName());
+                userTmp.setPhoneNum(userResult.getPhoneNum());
+                userTmp.setPkId(userResult.getPkId());
+                userList.add(userTmp);
+            }
+            apiResult.success(userList);
+        }
+
+        return apiResult;
+    }
 
 }
