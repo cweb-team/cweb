@@ -2,16 +2,16 @@ package com.test.cweb.model;
 
 import java.util.Date;
 
-/**
- * @author hyl
- * @date 2018/02/25
- */
-public class MissionLicense {
+public class Mission {
     private Integer pkId;
+
+    private Integer missionType;
 
     private Integer groupId;
 
-    private Date licenseTagTime;
+    private Date beginTime;
+
+    private Date endTime;
 
     private String description;
 
@@ -21,7 +21,11 @@ public class MissionLicense {
 
     private Integer signUpNum;
 
+    private Date createTime;
+
     private Date updateTime;
+
+    private Integer state;
 
     public Integer getPkId() {
         return pkId;
@@ -29,6 +33,14 @@ public class MissionLicense {
 
     public void setPkId(Integer pkId) {
         this.pkId = pkId;
+    }
+
+    public Integer getMissionType() {
+        return missionType;
+    }
+
+    public void setMissionType(Integer missionType) {
+        this.missionType = missionType;
     }
 
     public Integer getGroupId() {
@@ -39,12 +51,20 @@ public class MissionLicense {
         this.groupId = groupId;
     }
 
-    public Date getLicenseTagTime() {
-        return licenseTagTime;
+    public Date getBeginTime() {
+        return beginTime;
     }
 
-    public void setLicenseTagTime(Date licenseTagTime) {
-        this.licenseTagTime = licenseTagTime;
+    public void setBeginTime(Date beginTime) {
+        this.beginTime = beginTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 
     public String getDescription() {
@@ -52,7 +72,7 @@ public class MissionLicense {
     }
 
     public void setDescription(String description) {
-        this.description = description == null ? null : description.trim();
+        this.description = description;
     }
 
     public Date getPublishTime() {
@@ -79,11 +99,27 @@ public class MissionLicense {
         this.signUpNum = signUpNum;
     }
 
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
     public Date getUpdateTime() {
         return updateTime;
     }
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
     }
 }

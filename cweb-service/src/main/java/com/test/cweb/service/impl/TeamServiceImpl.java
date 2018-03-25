@@ -6,6 +6,7 @@ import com.test.cweb.model.Team;
 import com.test.cweb.model.TeamExample;
 import com.test.cweb.model.result.ApiResult;
 import com.test.cweb.service.ITeamService;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
@@ -13,6 +14,7 @@ import javax.annotation.Resource;
  * @author hyl
  * @data 18/3/15 下午11:18
  */
+@Service
 public class TeamServiceImpl implements ITeamService {
 
     @Resource

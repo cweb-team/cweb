@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * @author hyl
- * @date 2018/02/25
- */
 public class MissionLicenseInfoExample {
     protected String orderByClause;
 
@@ -586,6 +582,246 @@ public class MissionLicenseInfoExample {
 
         public Criteria andVideoUploadStatusNotBetween(Integer value1, Integer value2) {
             addCriterion("VIDEO_UPLOAD_STATUS not between", value1, value2, "videoUploadStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andResultIsNull() {
+            addCriterion("RESULT is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andResultIsNotNull() {
+            addCriterion("RESULT is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andResultEqualTo(Integer value) {
+            addCriterion("RESULT =", value, "result");
+            return (Criteria) this;
+        }
+
+        public Criteria andResultNotEqualTo(Integer value) {
+            addCriterion("RESULT <>", value, "result");
+            return (Criteria) this;
+        }
+
+        public Criteria andResultGreaterThan(Integer value) {
+            addCriterion("RESULT >", value, "result");
+            return (Criteria) this;
+        }
+
+        public Criteria andResultGreaterThanOrEqualTo(Integer value) {
+            addCriterion("RESULT >=", value, "result");
+            return (Criteria) this;
+        }
+
+        public Criteria andResultLessThan(Integer value) {
+            addCriterion("RESULT <", value, "result");
+            return (Criteria) this;
+        }
+
+        public Criteria andResultLessThanOrEqualTo(Integer value) {
+            addCriterion("RESULT <=", value, "result");
+            return (Criteria) this;
+        }
+
+        public Criteria andResultIn(List<Integer> values) {
+            addCriterion("RESULT in", values, "result");
+            return (Criteria) this;
+        }
+
+        public Criteria andResultNotIn(List<Integer> values) {
+            addCriterion("RESULT not in", values, "result");
+            return (Criteria) this;
+        }
+
+        public Criteria andResultBetween(Integer value1, Integer value2) {
+            addCriterion("RESULT between", value1, value2, "result");
+            return (Criteria) this;
+        }
+
+        public Criteria andResultNotBetween(Integer value1, Integer value2) {
+            addCriterion("RESULT not between", value1, value2, "result");
+            return (Criteria) this;
+        }
+
+        public Criteria andBidIsNull() {
+            addCriterion("BID is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBidIsNotNull() {
+            addCriterion("BID is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBidEqualTo(Integer value) {
+            addCriterion("BID =", value, "bid");
+            return (Criteria) this;
+        }
+
+        public Criteria andBidNotEqualTo(Integer value) {
+            addCriterion("BID <>", value, "bid");
+            return (Criteria) this;
+        }
+
+        public Criteria andBidGreaterThan(Integer value) {
+            addCriterion("BID >", value, "bid");
+            return (Criteria) this;
+        }
+
+        public Criteria andBidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("BID >=", value, "bid");
+            return (Criteria) this;
+        }
+
+        public Criteria andBidLessThan(Integer value) {
+            addCriterion("BID <", value, "bid");
+            return (Criteria) this;
+        }
+
+        public Criteria andBidLessThanOrEqualTo(Integer value) {
+            addCriterion("BID <=", value, "bid");
+            return (Criteria) this;
+        }
+
+        public Criteria andBidIn(List<Integer> values) {
+            addCriterion("BID in", values, "bid");
+            return (Criteria) this;
+        }
+
+        public Criteria andBidNotIn(List<Integer> values) {
+            addCriterion("BID not in", values, "bid");
+            return (Criteria) this;
+        }
+
+        public Criteria andBidBetween(Integer value1, Integer value2) {
+            addCriterion("BID between", value1, value2, "bid");
+            return (Criteria) this;
+        }
+
+        public Criteria andBidNotBetween(Integer value1, Integer value2) {
+            addCriterion("BID not between", value1, value2, "bid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeIsNull() {
+            addCriterion("CREATE_TIME is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeIsNotNull() {
+            addCriterion("CREATE_TIME is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeEqualTo(Date value) {
+            addCriterion("CREATE_TIME =", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeNotEqualTo(Date value) {
+            addCriterion("CREATE_TIME <>", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeGreaterThan(Date value) {
+            addCriterion("CREATE_TIME >", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("CREATE_TIME >=", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeLessThan(Date value) {
+            addCriterion("CREATE_TIME <", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeLessThanOrEqualTo(Date value) {
+            addCriterion("CREATE_TIME <=", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeIn(List<Date> values) {
+            addCriterion("CREATE_TIME in", values, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeNotIn(List<Date> values) {
+            addCriterion("CREATE_TIME not in", values, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeBetween(Date value1, Date value2) {
+            addCriterion("CREATE_TIME between", value1, value2, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
+            addCriterion("CREATE_TIME not between", value1, value2, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTimeIsNull() {
+            addCriterion("UPDATE_TIME is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTimeIsNotNull() {
+            addCriterion("UPDATE_TIME is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTimeEqualTo(Date value) {
+            addCriterion("UPDATE_TIME =", value, "updateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTimeNotEqualTo(Date value) {
+            addCriterion("UPDATE_TIME <>", value, "updateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTimeGreaterThan(Date value) {
+            addCriterion("UPDATE_TIME >", value, "updateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("UPDATE_TIME >=", value, "updateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTimeLessThan(Date value) {
+            addCriterion("UPDATE_TIME <", value, "updateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTimeLessThanOrEqualTo(Date value) {
+            addCriterion("UPDATE_TIME <=", value, "updateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTimeIn(List<Date> values) {
+            addCriterion("UPDATE_TIME in", values, "updateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTimeNotIn(List<Date> values) {
+            addCriterion("UPDATE_TIME not in", values, "updateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTimeBetween(Date value1, Date value2) {
+            addCriterion("UPDATE_TIME between", value1, value2, "updateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTimeNotBetween(Date value1, Date value2) {
+            addCriterion("UPDATE_TIME not between", value1, value2, "updateTime");
             return (Criteria) this;
         }
     }
