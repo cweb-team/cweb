@@ -11,6 +11,8 @@ public class ApiResult implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    public static int SUCCESS_STATUS = 20000;
+    public static int FAIL_STATUS = 40000;
     private Integer status;
     private String msg;
 
@@ -75,20 +77,20 @@ public class ApiResult implements Serializable {
 
     /**返回错误格式**/
     public void fail(Integer status) {
-        fail(404, "操作失败");
+        fail(status, "操作失败");
     }
 
     public void fail(String msg) {
-        fail(404, msg);
+        fail(ApiResult.FAIL_STATUS, msg);
     }
 
     public void fail() {
-        fail(404);
+        fail(ApiResult.FAIL_STATUS);
     }
 
     /**返回正确格式**/
     public void success(Object data) {
-        success(200);
+        success(ApiResult.SUCCESS_STATUS);
         this.data = data;
     }
 
@@ -98,7 +100,7 @@ public class ApiResult implements Serializable {
     }
 
     public void success() {
-        success(200);
+        success(ApiResult.SUCCESS_STATUS);
     }
 
     @Override

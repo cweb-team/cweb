@@ -28,6 +28,8 @@ public interface IUserService {
      */
     ApiResult findAll(String name);
 
+    User findOneById(int userId);
+
     /**
      * 根据账号查询结果通过json返回
      * @param account
@@ -57,11 +59,18 @@ public interface IUserService {
     Set<String> getPermissionsStr(String account);
 
     /**
-     * 职务任命
+     * 添加角色
      * @param userRole
      * @return
      */
     ApiResult addRole(UserRole userRole);
+
+    /**
+     * 移除角色
+     * @param userRole
+     * @return
+     */
+    ApiResult removeRole(UserRole userRole);
 
     /**
      * 小组信息更新
@@ -70,10 +79,5 @@ public interface IUserService {
      */
     ApiResult updateUserGroupTeam(UserGroupTeam userGroupTeam);
 
-    /**
-     * 查找用户团队小队关联信息
-     * @param userGroupTeam
-     * @return
-     */
-    UserGroupTeam findByUserGroup(UserGroupTeam userGroupTeam);
+
 }
