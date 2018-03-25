@@ -138,8 +138,8 @@ public class GroupManageController extends ApplicationController{
         ApiResult apiResult = new ApiResult();
         User user = (User) httpSession.getAttribute("user");
         // 2. 检测执行者是否和被执行者在同一个团队下
-        UserGroupTeam userGroupTeam_0 = iUserGroupTeamService.findByUserId(Integer.parseInt(userId));
-        if (userGroupTeam_0.getGroupId() != Integer.parseInt(groupId)){
+        UserGroupTeam userGroupTeam0 = iUserGroupTeamService.findByUserId(Integer.parseInt(userId));
+        if (userGroupTeam0.getGroupId() != Integer.parseInt(groupId)){
              apiResult.fail();
              return apiResult;
         }
@@ -168,9 +168,9 @@ public class GroupManageController extends ApplicationController{
 
     //检测是否登录
     //检查是否有创建分队的权限
-    @RequestMapping("/addOneTeam.do")
+    @RequestMapping("/createOneTeam.do")
     @ResponseBody
-    public ApiResult addOneTeam(@RequestParam(value="groupId")String groupId,
+    public ApiResult createOneTeam(@RequestParam(value="groupId")String groupId,
                                 @RequestParam(value="teamName")String teamName,
                                 @RequestParam(value="description")String description) {
         User user = (User) httpSession.getAttribute("user");
@@ -210,7 +210,7 @@ public class GroupManageController extends ApplicationController{
         User user = (User) httpSession.getAttribute("user");
         int userId = user.getPkId();
         Group group = iGroupService.findGroupByGroupId(Integer.parseInt(groupId));
-        List<User> userList = new ArrayList();
+        List<User> userList = new ArrayList<User>();
         if (user.getPkId().equals(group.getLeaderId())){
 
             List<UserGroupTeam>  userGroupTeamList= iUserGroupTeamService.findAllMebmerByGroupId(Integer.parseInt(groupId));
