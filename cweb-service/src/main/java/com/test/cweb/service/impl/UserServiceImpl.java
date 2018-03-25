@@ -66,6 +66,12 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    public User findOneById(int userId) {
+        User user = userDao.selectByPrimaryKey(userId);
+        return user;
+    }
+
+    @Override
     public User getUserByAccount(String account){
         HashMap<String,Object> search = new HashMap<>(100);
         search.put("account",account);
@@ -116,6 +122,21 @@ public class UserServiceImpl implements IUserService {
         }
         return apiResult;
     }
+    @Override
+    public ApiResult removeRole(UserRole userRole){
+        ApiResult apiResult = new ApiResult();
+
+        UserRoleExample userRoleExample = new UserRoleExample();
+        UserRoleExample.Criteria criteria = userRoleExample.createCriteria();
+        criteria.andUserIdEqualTo(userRole.getUserId()).andRoleIdEqualTo(userRole.getRoleId());
+        int result = userRoleDao.deleteByExample(userRoleExample);
+        if (result !=0){
+            apiResult.success("删除成功");
+        }else{
+            apiResult.fail("删除失败");
+        }
+        return apiResult;
+    }
 
     @Override
     public ApiResult updateUserGroupTeam(UserGroupTeam userGroupTeam){
@@ -130,20 +151,7 @@ public class UserServiceImpl implements IUserService {
         return apiResult;
     }
 
-    @Override
-    public UserGroupTeam findByUserGroup(UserGroupTeam userGroupTeam){
-        UserGroupTeamExample userGroupTeamExample = new UserGroupTeamExample();
-        UserGroupTeamExample.Criteria criteria = userGroupTeamExample.createCriteria();
-        criteria.andUserIdEqualTo(userGroupTeam.getUserId());
-        criteria.andGroupIdEqualTo(userGroupTeam.getGroupId());
-        List<UserGroupTeam> userGroupTeams = userGroupTeamDao.selectByExample(userGroupTeamExample);
-        if (userGroupTeams.size()>0){
-            return userGroupTeams.get(0);
-        }else{
-            return null;
-        }
 
-    }
 }
 
 

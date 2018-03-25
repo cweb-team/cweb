@@ -82,4 +82,22 @@ public class GroupServiceImpl implements IGroupService {
     }
 
 
+    @Override
+    public Group findGroupByGroupId(int groupId){
+        Group group = groupDao.selectByPrimaryKey(groupId);
+        return group;
+    }
+
+    @Override
+    public ApiResult deleteGroup(int groupId){
+        ApiResult apiResult = new ApiResult();
+        int result = groupDao.deleteByPrimaryKey(groupId);
+        if (result != 0){
+            apiResult.success("成功解散");
+        }else {
+            apiResult.fail("解散失败");
+        }
+        return apiResult;
+    }
+
 }

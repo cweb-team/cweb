@@ -39,5 +39,19 @@ public interface IGroupService {
      */
     ApiResult updateGroup(Group group);
 
+    /**
+     * 根据团队Id查找团队
+     * @param groupId
+     * @return
+     */
+    Group findGroupByGroupId(int groupId);
+
+    /**
+     * 删除Group
+     * @param groupId
+     * @return
+     */
+    ApiResult deleteGroup(int groupId);
+
 
 }
