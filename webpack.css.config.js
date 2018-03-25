@@ -15,7 +15,7 @@ var cssLoader = {
     plugins: [
         new ExtractTextPlugin({ // define where to save the file
 
-            filename: 'cweb-web/src/main/webapp/statics/css/login.css',
+            filename: 'cweb-web/src/main/webapp/statics/css/register.css',
 
             allChunks: true,
         }),
@@ -30,11 +30,11 @@ var cssLoader = {
 var css = Object.assign({}, cssLoader, {
     name: "css",
     entry: [
-        './cweb-web/src/main/webapp/statics/scss/login.scss',       //入口文件必须./ 绝对路径
+        './cweb-web/src/main/webapp/statics/scss/register.scss',       //入口文件必须./ 绝对路径
     ] ,
     output: {
         //path: 'public/js',
-        filename: 'cweb-web/src/main/webapp/statics/css/login.css'
+        filename: 'cweb-web/src/main/webapp/statics/css/register.css'
 
     }
 });

@@ -23,7 +23,11 @@
 </head>
 <body>
     <div id="vueController-register">
-
+        <div id="register-container">
+            <h4>
+                注册账号
+            </h4>
+        </div>
     </div>
 </body>
 </html>

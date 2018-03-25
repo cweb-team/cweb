@@ -4,18 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * @author hyl
- * @date 2018/02/25
- */
-public class MissionLicenseExample {
+public class MissionExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public MissionLicenseExample() {
+    public MissionExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -169,6 +165,66 @@ public class MissionLicenseExample {
             return (Criteria) this;
         }
 
+        public Criteria andMissionTypeIsNull() {
+            addCriterion("MISSION_TYPE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMissionTypeIsNotNull() {
+            addCriterion("MISSION_TYPE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMissionTypeEqualTo(Integer value) {
+            addCriterion("MISSION_TYPE =", value, "missionType");
+            return (Criteria) this;
+        }
+
+        public Criteria andMissionTypeNotEqualTo(Integer value) {
+            addCriterion("MISSION_TYPE <>", value, "missionType");
+            return (Criteria) this;
+        }
+
+        public Criteria andMissionTypeGreaterThan(Integer value) {
+            addCriterion("MISSION_TYPE >", value, "missionType");
+            return (Criteria) this;
+        }
+
+        public Criteria andMissionTypeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("MISSION_TYPE >=", value, "missionType");
+            return (Criteria) this;
+        }
+
+        public Criteria andMissionTypeLessThan(Integer value) {
+            addCriterion("MISSION_TYPE <", value, "missionType");
+            return (Criteria) this;
+        }
+
+        public Criteria andMissionTypeLessThanOrEqualTo(Integer value) {
+            addCriterion("MISSION_TYPE <=", value, "missionType");
+            return (Criteria) this;
+        }
+
+        public Criteria andMissionTypeIn(List<Integer> values) {
+            addCriterion("MISSION_TYPE in", values, "missionType");
+            return (Criteria) this;
+        }
+
+        public Criteria andMissionTypeNotIn(List<Integer> values) {
+            addCriterion("MISSION_TYPE not in", values, "missionType");
+            return (Criteria) this;
+        }
+
+        public Criteria andMissionTypeBetween(Integer value1, Integer value2) {
+            addCriterion("MISSION_TYPE between", value1, value2, "missionType");
+            return (Criteria) this;
+        }
+
+        public Criteria andMissionTypeNotBetween(Integer value1, Integer value2) {
+            addCriterion("MISSION_TYPE not between", value1, value2, "missionType");
+            return (Criteria) this;
+        }
+
         public Criteria andGroupIdIsNull() {
             addCriterion("GROUP_ID is null");
             return (Criteria) this;
@@ -229,63 +285,123 @@ public class MissionLicenseExample {
             return (Criteria) this;
         }
 
-        public Criteria andLicenseTagTimeIsNull() {
-            addCriterion("LICENSE_TAG_TIME is null");
+        public Criteria andBeginTimeIsNull() {
+            addCriterion("BEGIN_TIME is null");
             return (Criteria) this;
         }
 
-        public Criteria andLicenseTagTimeIsNotNull() {
-            addCriterion("LICENSE_TAG_TIME is not null");
+        public Criteria andBeginTimeIsNotNull() {
+            addCriterion("BEGIN_TIME is not null");
             return (Criteria) this;
         }
 
-        public Criteria andLicenseTagTimeEqualTo(Date value) {
-            addCriterion("LICENSE_TAG_TIME =", value, "licenseTagTime");
+        public Criteria andBeginTimeEqualTo(Date value) {
+            addCriterion("BEGIN_TIME =", value, "beginTime");
             return (Criteria) this;
         }
 
-        public Criteria andLicenseTagTimeNotEqualTo(Date value) {
-            addCriterion("LICENSE_TAG_TIME <>", value, "licenseTagTime");
+        public Criteria andBeginTimeNotEqualTo(Date value) {
+            addCriterion("BEGIN_TIME <>", value, "beginTime");
             return (Criteria) this;
         }
 
-        public Criteria andLicenseTagTimeGreaterThan(Date value) {
-            addCriterion("LICENSE_TAG_TIME >", value, "licenseTagTime");
+        public Criteria andBeginTimeGreaterThan(Date value) {
+            addCriterion("BEGIN_TIME >", value, "beginTime");
             return (Criteria) this;
         }
 
-        public Criteria andLicenseTagTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("LICENSE_TAG_TIME >=", value, "licenseTagTime");
+        public Criteria andBeginTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("BEGIN_TIME >=", value, "beginTime");
             return (Criteria) this;
         }
 
-        public Criteria andLicenseTagTimeLessThan(Date value) {
-            addCriterion("LICENSE_TAG_TIME <", value, "licenseTagTime");
+        public Criteria andBeginTimeLessThan(Date value) {
+            addCriterion("BEGIN_TIME <", value, "beginTime");
             return (Criteria) this;
         }
 
-        public Criteria andLicenseTagTimeLessThanOrEqualTo(Date value) {
-            addCriterion("LICENSE_TAG_TIME <=", value, "licenseTagTime");
+        public Criteria andBeginTimeLessThanOrEqualTo(Date value) {
+            addCriterion("BEGIN_TIME <=", value, "beginTime");
             return (Criteria) this;
         }
 
-        public Criteria andLicenseTagTimeIn(List<Date> values) {
-            addCriterion("LICENSE_TAG_TIME in", values, "licenseTagTime");
+        public Criteria andBeginTimeIn(List<Date> values) {
+            addCriterion("BEGIN_TIME in", values, "beginTime");
             return (Criteria) this;
         }
 
-        public Criteria andLicenseTagTimeNotIn(List<Date> values) {
-            addCriterion("LICENSE_TAG_TIME not in", values, "licenseTagTime");
+        public Criteria andBeginTimeNotIn(List<Date> values) {
+            addCriterion("BEGIN_TIME not in", values, "beginTime");
             return (Criteria) this;
         }
 
-        public Criteria andLicenseTagTimeBetween(Date value1, Date value2) {
-            addCriterion("LICENSE_TAG_TIME between", value1, value2, "licenseTagTime");
+        public Criteria andBeginTimeBetween(Date value1, Date value2) {
+            addCriterion("BEGIN_TIME between", value1, value2, "beginTime");
             return (Criteria) this;
         }
 
-        public Criteria andLicenseTagTimeNotBetween(Date value1, Date value2) {
-            addCriterion("LICENSE_TAG_TIME not between", value1, value2, "licenseTagTime");
+        public Criteria andBeginTimeNotBetween(Date value1, Date value2) {
+            addCriterion("BEGIN_TIME not between", value1, value2, "beginTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndTimeIsNull() {
+            addCriterion("END_TIME is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndTimeIsNotNull() {
+            addCriterion("END_TIME is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndTimeEqualTo(Date value) {
+            addCriterion("END_TIME =", value, "endTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndTimeNotEqualTo(Date value) {
+            addCriterion("END_TIME <>", value, "endTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndTimeGreaterThan(Date value) {
+            addCriterion("END_TIME >", value, "endTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("END_TIME >=", value, "endTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndTimeLessThan(Date value) {
+            addCriterion("END_TIME <", value, "endTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndTimeLessThanOrEqualTo(Date value) {
+            addCriterion("END_TIME <=", value, "endTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndTimeIn(List<Date> values) {
+            addCriterion("END_TIME in", values, "endTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndTimeNotIn(List<Date> values) {
+            addCriterion("END_TIME not in", values, "endTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndTimeBetween(Date value1, Date value2) {
+            addCriterion("END_TIME between", value1, value2, "endTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andEndTimeNotBetween(Date value1, Date value2) {
+            addCriterion("END_TIME not between", value1, value2, "endTime");
             return (Criteria) this;
         }
 
@@ -539,6 +655,66 @@ public class MissionLicenseExample {
             return (Criteria) this;
         }
 
+        public Criteria andCreateTimeIsNull() {
+            addCriterion("CREATE_TIME is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeIsNotNull() {
+            addCriterion("CREATE_TIME is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeEqualTo(Date value) {
+            addCriterion("CREATE_TIME =", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeNotEqualTo(Date value) {
+            addCriterion("CREATE_TIME <>", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeGreaterThan(Date value) {
+            addCriterion("CREATE_TIME >", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("CREATE_TIME >=", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeLessThan(Date value) {
+            addCriterion("CREATE_TIME <", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeLessThanOrEqualTo(Date value) {
+            addCriterion("CREATE_TIME <=", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeIn(List<Date> values) {
+            addCriterion("CREATE_TIME in", values, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeNotIn(List<Date> values) {
+            addCriterion("CREATE_TIME not in", values, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeBetween(Date value1, Date value2) {
+            addCriterion("CREATE_TIME between", value1, value2, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
+            addCriterion("CREATE_TIME not between", value1, value2, "createTime");
+            return (Criteria) this;
+        }
+
         public Criteria andUpdateTimeIsNull() {
             addCriterion("UPDATE_TIME is null");
             return (Criteria) this;
@@ -596,6 +772,66 @@ public class MissionLicenseExample {
 
         public Criteria andUpdateTimeNotBetween(Date value1, Date value2) {
             addCriterion("UPDATE_TIME not between", value1, value2, "updateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStateIsNull() {
+            addCriterion("STATE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStateIsNotNull() {
+            addCriterion("STATE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStateEqualTo(Integer value) {
+            addCriterion("STATE =", value, "state");
+            return (Criteria) this;
+        }
+
+        public Criteria andStateNotEqualTo(Integer value) {
+            addCriterion("STATE <>", value, "state");
+            return (Criteria) this;
+        }
+
+        public Criteria andStateGreaterThan(Integer value) {
+            addCriterion("STATE >", value, "state");
+            return (Criteria) this;
+        }
+
+        public Criteria andStateGreaterThanOrEqualTo(Integer value) {
+            addCriterion("STATE >=", value, "state");
+            return (Criteria) this;
+        }
+
+        public Criteria andStateLessThan(Integer value) {
+            addCriterion("STATE <", value, "state");
+            return (Criteria) this;
+        }
+
+        public Criteria andStateLessThanOrEqualTo(Integer value) {
+            addCriterion("STATE <=", value, "state");
+            return (Criteria) this;
+        }
+
+        public Criteria andStateIn(List<Integer> values) {
+            addCriterion("STATE in", values, "state");
+            return (Criteria) this;
+        }
+
+        public Criteria andStateNotIn(List<Integer> values) {
+            addCriterion("STATE not in", values, "state");
+            return (Criteria) this;
+        }
+
+        public Criteria andStateBetween(Integer value1, Integer value2) {
+            addCriterion("STATE between", value1, value2, "state");
+            return (Criteria) this;
+        }
+
+        public Criteria andStateNotBetween(Integer value1, Integer value2) {
+            addCriterion("STATE not between", value1, value2, "state");
             return (Criteria) this;
         }
     }

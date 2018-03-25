@@ -2,10 +2,6 @@ package com.test.cweb.model;
 
 import java.util.Date;
 
-/**
- * @author hyl
- * @date 2018/02/25
- */
 public class MissionLicenseInfo {
     private Integer pkId;
 
@@ -22,6 +18,14 @@ public class MissionLicenseInfo {
     private Integer finalScreenUploadStatus;
 
     private Integer videoUploadStatus;
+
+    private Integer result;
+
+    private Integer bid;
+
+    private Date createTime;
+
+    private Date updateTime;
 
     public Integer getPkId() {
         return pkId;
@@ -85,5 +89,37 @@ public class MissionLicenseInfo {
 
     public void setVideoUploadStatus(Integer videoUploadStatus) {
         this.videoUploadStatus = videoUploadStatus;
+    }
+
+    public Integer getResult() {
+        return result;
+    }
+
+    public void setResult(Integer result) {
+        this.result = result;
+    }
+
+    public Integer getBid() {
+        return bid;
+    }
+
+    public void setBid(Integer bid) {
+        this.bid = bid;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 }

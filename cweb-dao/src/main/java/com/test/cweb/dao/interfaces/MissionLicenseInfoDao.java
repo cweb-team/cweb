@@ -1,16 +1,14 @@
-package com.test.cweb.dao;
+package com.test.cweb.dao.interfaces;
 
 import com.test.cweb.model.MissionLicenseInfo;
 import com.test.cweb.model.MissionLicenseInfoExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
-/**
- * @author hyl
- * @date 2018/02/25
- */
+@Component
 public interface MissionLicenseInfoDao {
-    int countByExample(MissionLicenseInfoExample example);
+    long countByExample(MissionLicenseInfoExample example);
 
     int deleteByExample(MissionLicenseInfoExample example);
 
