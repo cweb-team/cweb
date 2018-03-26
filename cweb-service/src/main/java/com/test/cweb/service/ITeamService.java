@@ -36,4 +36,12 @@ public interface ITeamService {
      */
     ApiResult updateOneTeam(Team team);
 
+    /**
+     * 查看团队下的所有分队
+     * @param gourpId
+     * @return
+     */
+    ApiResult findTeamsByGroupId(int gourpId);
+
+    ApiResult removeOneMember(int memberId);
 }

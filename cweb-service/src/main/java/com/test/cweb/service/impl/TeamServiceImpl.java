@@ -8,6 +8,7 @@ import com.test.cweb.model.result.ApiResult;
 import com.test.cweb.service.ITeamService;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author hyl
@@ -39,7 +40,7 @@ public class TeamServiceImpl implements ITeamService {
     public ApiResult deleteOneTeam(int teamId){
         ApiResult apiResult =new ApiResult();
 
-        //1. 将usergroupteam表的team字段更新
+        //1. 将T_USERGROUPTEAM表的team字段更新
         int result1 = userGroupTeamDao.updateTeamToNull(teamId);
         //2. 删除team表中的记录
         TeamExample teamExample = new TeamExample();
@@ -75,6 +76,33 @@ public class TeamServiceImpl implements ITeamService {
             apiResult.success(resultTeam);
         }else{
             apiResult.fail("更新失败");
+        }
+        return apiResult;
+    }
+
+    @Override
+    public ApiResult findTeamsByGroupId(int groupId) {
+        ApiResult apiResult = new ApiResult();
+        TeamExample teamExample = new TeamExample();
+        TeamExample.Criteria criteria = teamExample.createCriteria();
+        criteria.andGroupIdEqualTo(groupId);
+        List<Team> teams = teamDao.selectByExample(teamExample);
+        if (teams != null){
+            apiResult.success(teams);
+        }else{
+            apiResult.fail("查找失败");
+        }
+        return apiResult;
+    }
+
+    @Override
+    public ApiResult removeOneMember(int userId) {
+        ApiResult apiResult = new ApiResult();
+        int result = userGroupTeamDao.updateTeamToNullByUserId(userId);
+        if (result != 0){
+            apiResult.success("删除成功");
+        }else{
+            apiResult.fail("删除失败");
         }
         return apiResult;
     }

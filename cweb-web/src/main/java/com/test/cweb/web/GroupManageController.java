@@ -55,9 +55,9 @@ public class GroupManageController extends ApplicationController{
 
     //检测是否登录
     //检测是否有创建团队的权限
-    @RequestMapping("/addOneGroup.do")
+    @RequestMapping("/createGroup.do")
     @ResponseBody
-    public ApiResult addOneGroup(@RequestParam(value="groupName")String groupName,
+    public ApiResult createGroup(@RequestParam(value="groupName")String groupName,
                                  @RequestParam(value = "description") String description) {
         User user = (User) httpSession.getAttribute("user");
 
@@ -166,10 +166,16 @@ public class GroupManageController extends ApplicationController{
     }
 
 
-    //检测是否登录
-    //检查是否有创建分队的权限
+    /**
+     * 创建新的分队
+     * @param groupId
+     * @param teamName
+     * @param description
+     * @return
+     */
     @RequestMapping("/createOneTeam.do")
     @ResponseBody
+    @RequiresRoles({Common.ROLE_GROUPLEADER_NAME,Common.ROLE_GROUPLEADER_SUB_NAME})
     public ApiResult createOneTeam(@RequestParam(value="groupId")String groupId,
                                 @RequestParam(value="teamName")String teamName,
                                 @RequestParam(value="description")String description) {
@@ -180,6 +186,61 @@ public class GroupManageController extends ApplicationController{
         team.setDescription(description);
 
         ApiResult apiResult = iTeamService.addOneTeam(team);
+        return apiResult;
+    }
+
+    /**
+     * 修改分队信息
+     * @param teamId
+     * @param teamName
+     * @param description
+     * @return
+     */
+    @RequestMapping("/modifyOneTeam.do")
+    @ResponseBody
+    @RequiresRoles({Common.ROLE_GROUPLEADER_NAME,Common.ROLE_GROUPLEADER_SUB_NAME})
+    public ApiResult modifyOneTeam(@RequestParam(value="teamId")String teamId,
+                                   @RequestParam(value="teamName")String teamName,
+                                   @RequestParam(value="description")String description) {
+        ApiResult apiResult = new ApiResult();
+        User user = (User) httpSession.getAttribute("user");
+        Team resultTeam = iTeamService.findOneTeam(Integer.parseInt(teamId));
+        int groupId = resultTeam.getGroupId();
+        UserGroupTeam userGroupTeam = iUserGroupTeamService.findByUserId(user.getPkId());
+        if (userGroupTeam != null && userGroupTeam.getGroupId().equals(groupId)){
+            Team team = new Team();
+            team.setPkId(Integer.parseInt(teamId));
+            team.setDescription(description);
+            team.setTeamName(teamName);
+            apiResult = iTeamService.updateOneTeam(team);
+        }else{
+            apiResult.fail("修改失败");
+        }
+        return apiResult;
+    }
+
+
+    @RequestMapping("/deleteOneTeam.do")
+    @ResponseBody
+    @RequiresRoles({Common.ROLE_GROUPLEADER_NAME,Common.ROLE_GROUPLEADER_SUB_NAME})
+    public ApiResult deleteOneTeam(@RequestParam(value="groupId")String groupId,
+                                   @RequestParam(value="teamId")String teamId) {
+
+        ApiResult apiResult = new ApiResult();
+
+        User user = (User) httpSession.getAttribute("user");
+        UserGroupTeam userGroupTeam = iUserGroupTeamService.findByUserId(user.getPkId());
+        if (userGroupTeam.getGroupId().equals(Integer.parseInt(groupId))){
+            Team team = iTeamService.findOneTeam(Integer.parseInt(teamId));
+            if (team.getGroupId().equals(Integer.parseInt(groupId))){
+                apiResult= iTeamService.deleteOneTeam(Integer.parseInt(teamId));
+            }else{
+                apiResult.fail("删除失败");
+            }
+        }else{
+            apiResult.fail("删除失败");
+        }
+
         return apiResult;
     }
 
@@ -225,6 +286,18 @@ public class GroupManageController extends ApplicationController{
             apiResult.success(userList);
         }
 
+        return apiResult;
+    }
+
+    /**
+     * 查看所有分队
+     * @param groupId
+     * @return
+     */
+    @RequestMapping("/checkAllTeam.do")
+    @ResponseBody
+    public ApiResult checkAllTeam(@RequestParam(value="groupId")String groupId) {
+        ApiResult apiResult = iTeamService.findTeamsByGroupId(Integer.parseInt(groupId));
         return apiResult;
     }
 

@@ -34,4 +34,11 @@ public interface UserGroupTeamDao {
      * @return
      */
     int updateTeamToNull(int teamId);
+
+    /**
+     * 根据userId将Team字段设成null
+     * @param userId
+     * @return
+     */
+    int updateTeamToNullByUserId(int userId);
 }
