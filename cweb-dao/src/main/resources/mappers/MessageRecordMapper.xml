@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.test.cweb.dao.UserGroupTeamDao" >
-  <resultMap id="BaseResultMap" type="com.test.cweb.model.UserGroupTeam" >
+<mapper namespace="com.test.cweb.dao.MessageRecordDao" >
+  <resultMap id="BaseResultMap" type="com.test.cweb.model.MessageRecord" >
     <id column="PK_ID" property="pkId" jdbcType="INTEGER" />
     <result column="USER_ID" property="userId" jdbcType="INTEGER" />
-    <result column="GROUP_ID" property="groupId" jdbcType="INTEGER" />
-    <result column="TEAM_ID" property="teamId" jdbcType="INTEGER" />
-    <result column="GROUP_TIME" property="groupTime" jdbcType="TIMESTAMP" />
-    <result column="TEAM_TIME" property="teamTime" jdbcType="TIMESTAMP" />
+    <result column="MESSAGE_ID" property="messageId" jdbcType="INTEGER" />
+    <result column="DEAL_FLAG" property="dealFlag" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -68,17 +66,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    PK_ID, USER_ID, GROUP_ID, TEAM_ID, GROUP_TIME, TEAM_TIME
+    PK_ID, USER_ID, MESSAGE_ID, DEAL_FLAG
   </sql>
-
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.test.cweb.model.UserGroupTeamExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.test.cweb.model.MessageRecordExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from T_USER_GROUP_TEAM
+    from T_MESSAGE_RECORD
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -89,31 +86,27 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from T_USER_GROUP_TEAM
+    from T_MESSAGE_RECORD
     where PK_ID = #{pkId,jdbcType=INTEGER}
   </select>
-
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from T_USER_GROUP_TEAM
+    delete from T_MESSAGE_RECORD
     where PK_ID = #{pkId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.test.cweb.model.UserGroupTeamExample" >
-    delete from T_USER_GROUP_TEAM
+  <delete id="deleteByExample" parameterType="com.test.cweb.model.MessageRecordExample" >
+    delete from T_MESSAGE_RECORD
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-
-  <insert id="insert" parameterType="com.test.cweb.model.UserGroupTeam" >
-    insert into T_USER_GROUP_TEAM (PK_ID, USER_ID, GROUP_ID, 
-      TEAM_ID, GROUP_TIME, TEAM_TIME
-      )
-    values (#{pkId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{groupId,jdbcType=INTEGER}, 
-      #{teamId,jdbcType=INTEGER}, #{groupTime,jdbcType=TIMESTAMP}, #{teamTime,jdbcType=TIMESTAMP}
-      )
+  <insert id="insert" parameterType="com.test.cweb.model.MessageRecord" >
+    insert into T_MESSAGE_RECORD (PK_ID, USER_ID, MESSAGE_ID, 
+      DEAL_FLAG)
+    values (#{pkId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{messageId,jdbcType=INTEGER}, 
+      #{dealFlag,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.test.cweb.model.UserGroupTeam" >
-    insert into T_USER_GROUP_TEAM
+  <insert id="insertSelective" parameterType="com.test.cweb.model.MessageRecord" >
+    insert into T_MESSAGE_RECORD
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="pkId != null" >
         PK_ID,
@@ -121,17 +114,11 @@
       <if test="userId != null" >
         USER_ID,
       </if>
-      <if test="groupId != null" >
-        GROUP_ID,
+      <if test="messageId != null" >
+        MESSAGE_ID,
       </if>
-      <if test="teamId != null" >
-        TEAM_ID,
-      </if>
-      <if test="groupTime != null" >
-        GROUP_TIME,
-      </if>
-      <if test="teamTime != null" >
-        TEAM_TIME,
+      <if test="dealFlag != null" >
+        DEAL_FLAG,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -141,30 +128,22 @@
       <if test="userId != null" >
         #{userId,jdbcType=INTEGER},
       </if>
-      <if test="groupId != null" >
-        #{groupId,jdbcType=INTEGER},
+      <if test="messageId != null" >
+        #{messageId,jdbcType=INTEGER},
       </if>
-      <if test="teamId != null" >
-        #{teamId,jdbcType=INTEGER},
-      </if>
-      <if test="groupTime != null" >
-        #{groupTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="teamTime != null" >
-        #{teamTime,jdbcType=TIMESTAMP},
+      <if test="dealFlag != null" >
+        #{dealFlag,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
-
-  <select id="countByExample" parameterType="com.test.cweb.model.UserGroupTeamExample" resultType="java.lang.Integer" >
-    select count(*) from T_USER_GROUP_TEAM
+  <select id="countByExample" parameterType="com.test.cweb.model.MessageRecordExample" resultType="java.lang.Integer" >
+    select count(*) from T_MESSAGE_RECORD
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-
   <update id="updateByExampleSelective" parameterType="map" >
-    update T_USER_GROUP_TEAM
+    update T_MESSAGE_RECORD
     <set >
       <if test="record.pkId != null" >
         PK_ID = #{record.pkId,jdbcType=INTEGER},
@@ -172,17 +151,11 @@
       <if test="record.userId != null" >
         USER_ID = #{record.userId,jdbcType=INTEGER},
       </if>
-      <if test="record.groupId != null" >
-        GROUP_ID = #{record.groupId,jdbcType=INTEGER},
+      <if test="record.messageId != null" >
+        MESSAGE_ID = #{record.messageId,jdbcType=INTEGER},
       </if>
-      <if test="record.teamId != null" >
-        TEAM_ID = #{record.teamId,jdbcType=INTEGER},
-      </if>
-      <if test="record.groupTime != null" >
-        GROUP_TIME = #{record.groupTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.teamTime != null" >
-        TEAM_TIME = #{record.teamTime,jdbcType=TIMESTAMP},
+      <if test="record.dealFlag != null" >
+        DEAL_FLAG = #{record.dealFlag,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -190,55 +163,35 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update T_USER_GROUP_TEAM
+    update T_MESSAGE_RECORD
     set PK_ID = #{record.pkId,jdbcType=INTEGER},
       USER_ID = #{record.userId,jdbcType=INTEGER},
-      GROUP_ID = #{record.groupId,jdbcType=INTEGER},
-      TEAM_ID = #{record.teamId,jdbcType=INTEGER},
-      GROUP_TIME = #{record.groupTime,jdbcType=TIMESTAMP},
-      TEAM_TIME = #{record.teamTime,jdbcType=TIMESTAMP}
+      MESSAGE_ID = #{record.messageId,jdbcType=INTEGER},
+      DEAL_FLAG = #{record.dealFlag,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.test.cweb.model.UserGroupTeam" >
-    update T_USER_GROUP_TEAM
+  <update id="updateByPrimaryKeySelective" parameterType="com.test.cweb.model.MessageRecord" >
+    update T_MESSAGE_RECORD
     <set >
       <if test="userId != null" >
         USER_ID = #{userId,jdbcType=INTEGER},
       </if>
-      <if test="groupId != null" >
-        GROUP_ID = #{groupId,jdbcType=INTEGER},
+      <if test="messageId != null" >
+        MESSAGE_ID = #{messageId,jdbcType=INTEGER},
       </if>
-      <if test="teamId != null" >
-        TEAM_ID = #{teamId,jdbcType=INTEGER},
-      </if>
-      <if test="groupTime != null" >
-        GROUP_TIME = #{groupTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="teamTime != null" >
-        TEAM_TIME = #{teamTime,jdbcType=TIMESTAMP},
+      <if test="dealFlag != null" >
+        DEAL_FLAG = #{dealFlag,jdbcType=INTEGER},
       </if>
     </set>
     where PK_ID = #{pkId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.test.cweb.model.UserGroupTeam" >
-    update T_USER_GROUP_TEAM
+  <update id="updateByPrimaryKey" parameterType="com.test.cweb.model.MessageRecord" >
+    update T_MESSAGE_RECORD
     set USER_ID = #{userId,jdbcType=INTEGER},
-      GROUP_ID = #{groupId,jdbcType=INTEGER},
-      TEAM_ID = #{teamId,jdbcType=INTEGER},
-      GROUP_TIME = #{groupTime,jdbcType=TIMESTAMP},
-      TEAM_TIME = #{teamTime,jdbcType=TIMESTAMP}
+      MESSAGE_ID = #{messageId,jdbcType=INTEGER},
+      DEAL_FLAG = #{dealFlag,jdbcType=INTEGER}
     where PK_ID = #{pkId,jdbcType=INTEGER}
-  </update>
-  <update id="updateTeamToNull" parameterType="java.lang.Integer">
-    update T_USER_GROUP_TEAM
-    set TEAM_ID = NULL
-    where TEAM_ID = #{teamId,jdbcType=INTEGER}
-  </update>
-  <update id="updateTeamToNullByUserId" parameterType="java.lang.Integer">
-    update T_USER_GROUP_TEAM
-    set TEAM_ID = NULL
-    where USER_ID = #{userId,jdbcType=INTEGER}
   </update>
 </mapper>
