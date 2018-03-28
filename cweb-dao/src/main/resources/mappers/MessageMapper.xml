@@ -111,7 +111,7 @@
       #{author,jdbcType=INTEGER}, #{link,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.test.cweb.model.Message" >
+  <insert id="insertSelective" keyProperty="pkId" useGeneratedKeys="true" parameterType="com.test.cweb.model.Message" >
     insert into T_MESSAGE
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="pkId != null" >

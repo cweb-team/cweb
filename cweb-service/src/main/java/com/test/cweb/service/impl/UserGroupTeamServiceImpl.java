@@ -3,6 +3,7 @@ package com.test.cweb.service.impl;
 import com.test.cweb.dao.UserGroupTeamDao;
 import com.test.cweb.model.UserGroupTeam;
 import com.test.cweb.model.UserGroupTeamExample;
+import com.test.cweb.model.result.ApiResult;
 import com.test.cweb.service.IUserGroupTeamService;
 import org.springframework.stereotype.Service;
 
@@ -40,5 +41,52 @@ public class UserGroupTeamServiceImpl implements IUserGroupTeamService{
         List<UserGroupTeam> userGroupTeamList = userGroupTeamDao.selectByExample(userGroupTeamExample);
         return userGroupTeamList;
 
+    }
+
+    @Override
+    public UserGroupTeam findByUserGroup(UserGroupTeam userGroupTeam) {
+        UserGroupTeamExample userGroupTeamExample = new UserGroupTeamExample();
+        UserGroupTeamExample.Criteria criteria = userGroupTeamExample.createCriteria();
+
+        UserGroupTeam result = null;
+        List<UserGroupTeam> userGroupTeamList = null;
+        if (userGroupTeam.getUserId() != null){
+            criteria.andUserIdEqualTo(userGroupTeam.getUserId());
+        }else if(userGroupTeam.getTeamId() != null){
+            criteria.andTeamIdEqualTo(userGroupTeam.getTeamId());
+        }else if (userGroupTeam.getGroupId() != null){
+            criteria.andGroupIdEqualTo(userGroupTeam.getGroupId());
+        }
+        userGroupTeamList = userGroupTeamDao.selectByExample(userGroupTeamExample);
+        if (userGroupTeamList.size() > 0){
+            result = userGroupTeamList.get(0);
+            return result;
+        }
+
+        return null;
+    }
+
+    @Override
+    public ApiResult addOneRecord(UserGroupTeam userGroupTeam) {
+        ApiResult apiResult = new ApiResult();
+        int result = userGroupTeamDao.insertSelective(userGroupTeam);
+        if (result != 0){
+            apiResult.success("添加成功");
+        }else{
+            apiResult.fail("添加失败");
+        }
+        return apiResult;
+    }
+
+    @Override
+    public ApiResult updateOneRecord(UserGroupTeam userGroupTeam) {
+        ApiResult apiResult = new ApiResult();
+        int result = userGroupTeamDao.updateByPrimaryKeySelective(userGroupTeam);
+        if (result != 0 ){
+            apiResult.success("更新成功");
+        }else{
+            apiResult.fail("更新失败");
+        }
+        return apiResult;
     }
 }

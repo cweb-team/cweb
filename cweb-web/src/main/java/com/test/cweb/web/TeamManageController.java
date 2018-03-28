@@ -1,16 +1,11 @@
 package com.test.cweb.web;
 
 import com.test.cweb.ApplicationController;
-import com.test.cweb.Common;
-import com.test.cweb.model.Image;
-import com.test.cweb.model.Team;
-import com.test.cweb.model.User;
-import com.test.cweb.model.UserGroupTeam;
+import com.test.cweb.CommonConstant;
+import com.test.cweb.TimeUtil;
+import com.test.cweb.model.*;
 import com.test.cweb.model.result.ApiResult;
-import com.test.cweb.service.IGroupService;
-import com.test.cweb.service.ITeamService;
-import com.test.cweb.service.IUserGroupTeamService;
-import com.test.cweb.service.IUserService;
+import com.test.cweb.service.*;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,6 +38,8 @@ public class TeamManageController extends ApplicationController {
     @Resource
     HttpSession httpSession;
 
+    @Resource
+    IMessageService iMessageService;
 
     /**
      * 修改分队信息
@@ -74,7 +71,7 @@ public class TeamManageController extends ApplicationController {
 
     @RequestMapping("/removeMember.do")
     @ResponseBody
-    @RequiresRoles({Common.ROLE_TEAM_LEADER_NAME})
+    @RequiresRoles({CommonConstant.ROLE_TEAM_LEADER_NAME})
     public ApiResult removeMember(@RequestParam(value="userId")String userId,
                                     @RequestParam(value="teamId",required = true)String teamId) {
         ApiResult apiResult = new ApiResult();
@@ -93,4 +90,56 @@ public class TeamManageController extends ApplicationController {
 
         return apiResult;
     }
+    @RequestMapping("/inviteMember.do")
+    @ResponseBody
+    @RequiresRoles({CommonConstant.ROLE_TEAM_LEADER_NAME})
+    public ApiResult inviteMember(@RequestParam(value="userId")String userId,
+                                  @RequestParam(value="teamId",required = true)String teamId) {
+        ApiResult apiResult = new ApiResult();
+        User user = (User) httpSession.getAttribute("user");
+        int userIdInt = Integer.parseInt(userId);
+        int teamIdInt = Integer.parseInt(teamId);
+        UserGroupTeam invitingUserGroupTeam = iUserGroupTeamService.findByUserId(user.getPkId());
+        UserGroupTeam invitedUserGroupTeam = iUserGroupTeamService.findByUserId(userIdInt);
+        Boolean invitable = invitedUserGroupTeam == null ||
+                (invitedUserGroupTeam != null
+                    && invitingUserGroupTeam.getGroupId().equals(invitedUserGroupTeam.getGroupId())
+                    && invitedUserGroupTeam.getTeamId() == null);
+        if (invitable){
+            if (invitingUserGroupTeam.getTeamId().equals(teamIdInt)){
+                Message message = new Message();
+                message.setAuthor(user.getPkId());
+                message.setCreateTime(TimeUtil.getLocalTime_v1());
+
+                MessageRecord messageRecord = new MessageRecord();
+                messageRecord.setUserId(userIdInt);
+                apiResult = iMessageService.inviteUserToTeam(message,messageRecord);
+
+                if (apiResult.getStatus().equals(ApiResult.SUCCESS_STATUS)){
+                    apiResult.success("发出邀请成功");
+                }
+            }else{
+                apiResult.fail("发出邀请失败");
+            }
+        }else{
+            apiResult.fail("发出邀请失败");
+        }
+
+        return apiResult;
+    }
+
+
 }
+//                if (invitedUserGroupTeam == null){
+//                    invitedUserGroupTeam = new UserGroupTeam();
+//                    invitedUserGroupTeam.setGroupId(invitingUserGroupTeam.getGroupId());
+//                    invitedUserGroupTeam.setTeamId(teamIdInt);
+//                    invitedUserGroupTeam.setUserId(userIdInt);
+//                    invitedUserGroupTeam.setGroupTime(TimeUtil.getLocalTime_v1());
+//                    invitedUserGroupTeam.setTeamTime(TimeUtil.getLocalTime_v1());
+//                    apiResult =iUserGroupTeamService.addOneRecord(invitedUserGroupTeam);
+//                }else{
+//                    invitedUserGroupTeam.setTeamId(teamIdInt);
+//                    invitedUserGroupTeam.setTeamTime(TimeUtil.getLocalTime_v1());
+//                    apiResult = iUserGroupTeamService.updateOneRecord(invitedUserGroupTeam);
+//                }
