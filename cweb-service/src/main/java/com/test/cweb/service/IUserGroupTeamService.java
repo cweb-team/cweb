@@ -1,6 +1,7 @@
 package com.test.cweb.service;
 
 import com.test.cweb.model.UserGroupTeam;
+import com.test.cweb.model.result.ApiResult;
 
 import java.util.List;
 
@@ -29,4 +30,18 @@ public interface IUserGroupTeamService {
      * @return
      */
     UserGroupTeam findByUserGroup(UserGroupTeam userGroupTeam);
+
+    /**
+     * 添加一条记录
+     * @param userGroupTeam
+     * @return
+     */
+    ApiResult addOneRecord(UserGroupTeam userGroupTeam);
+
+    /**
+     * 更新一条记录
+     * @param userGroupTeam
+     * @return
+     */
+    ApiResult updateOneRecord(UserGroupTeam userGroupTeam);
 }

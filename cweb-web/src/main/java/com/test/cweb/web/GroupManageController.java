@@ -1,7 +1,6 @@
 package com.test.cweb.web;
 
-import com.test.cweb.Common;
-import com.test.cweb.dao.GroupDao;
+import com.test.cweb.CommonConstant;
 import com.test.cweb.model.*;
 import com.test.cweb.model.result.ApiResult;
 import com.test.cweb.service.IGroupService;
@@ -9,7 +8,6 @@ import com.test.cweb.service.ITeamService;
 import com.test.cweb.service.IUserGroupTeamService;
 import com.test.cweb.service.IUserService;
 import org.apache.shiro.authz.annotation.RequiresRoles;
-import org.apache.shiro.session.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -112,7 +110,7 @@ public class GroupManageController extends ApplicationController{
         UserRole userRole = new UserRole();
         userRole.setUserId(Integer.parseInt(userId));
         userRole.setRoleId(Integer.parseInt(roleId));
-        if (Integer.parseInt(roleId) == Common.ROLE_TEAM_LEADER_ID){
+        if (Integer.parseInt(roleId) == CommonConstant.ROLE_TEAM_LEADER_ID){
             UserGroupTeam userGroupTeam = new UserGroupTeam();
             userGroupTeam.setUserId(Integer.parseInt(userId));
             userGroupTeam.setGroupId(Integer.parseInt(groupId));
@@ -131,7 +129,7 @@ public class GroupManageController extends ApplicationController{
     //检查是否有职务撤销的权限
     @RequestMapping("/removeDuty.do")
     @ResponseBody
-    @RequiresRoles({Common.ROLE_GROUPLEADER_NAME,Common.ROLE_GROUPLEADER_SUB_NAME})
+    @RequiresRoles({CommonConstant.ROLE_GROUPLEADER_NAME, CommonConstant.ROLE_GROUPLEADER_SUB_NAME})
     public ApiResult removeDuty(@RequestParam(value="userId")String userId,
                                  @RequestParam(value="roleId")String roleId,
                                  @RequestParam(value="groupId")String groupId) {
@@ -143,7 +141,7 @@ public class GroupManageController extends ApplicationController{
              apiResult.fail();
              return apiResult;
         }
-        if (Integer.parseInt(roleId) == Common.ROLE_GROUPLEADER_SUB_ID) {
+        if (Integer.parseInt(roleId) == CommonConstant.ROLE_GROUPLEADER_SUB_ID) {
             Group group = iGroupService.findGroupByGroupId(Integer.parseInt(groupId));
             if (group.getLeaderId().equals(user.getPkId())){
                 UserRole userRole = new UserRole();
@@ -153,7 +151,7 @@ public class GroupManageController extends ApplicationController{
             }else{
                 apiResult.fail();
             }
-        }else if (Integer.parseInt(roleId) == Common.ROLE_TEAM_LEADER_ID){
+        }else if (Integer.parseInt(roleId) == CommonConstant.ROLE_TEAM_LEADER_ID){
             UserRole userRole = new UserRole();
             userRole.setUserId(Integer.parseInt(userId));
             userRole.setRoleId(Integer.parseInt(roleId));
@@ -175,7 +173,7 @@ public class GroupManageController extends ApplicationController{
      */
     @RequestMapping("/createOneTeam.do")
     @ResponseBody
-    @RequiresRoles({Common.ROLE_GROUPLEADER_NAME,Common.ROLE_GROUPLEADER_SUB_NAME})
+    @RequiresRoles({CommonConstant.ROLE_GROUPLEADER_NAME, CommonConstant.ROLE_GROUPLEADER_SUB_NAME})
     public ApiResult createOneTeam(@RequestParam(value="groupId")String groupId,
                                 @RequestParam(value="teamName")String teamName,
                                 @RequestParam(value="description")String description) {
@@ -198,7 +196,7 @@ public class GroupManageController extends ApplicationController{
      */
     @RequestMapping("/modifyOneTeam.do")
     @ResponseBody
-    @RequiresRoles({Common.ROLE_GROUPLEADER_NAME,Common.ROLE_GROUPLEADER_SUB_NAME})
+    @RequiresRoles({CommonConstant.ROLE_GROUPLEADER_NAME, CommonConstant.ROLE_GROUPLEADER_SUB_NAME})
     public ApiResult modifyOneTeam(@RequestParam(value="teamId")String teamId,
                                    @RequestParam(value="teamName")String teamName,
                                    @RequestParam(value="description")String description) {
@@ -222,7 +220,7 @@ public class GroupManageController extends ApplicationController{
 
     @RequestMapping("/deleteOneTeam.do")
     @ResponseBody
-    @RequiresRoles({Common.ROLE_GROUPLEADER_NAME,Common.ROLE_GROUPLEADER_SUB_NAME})
+    @RequiresRoles({CommonConstant.ROLE_GROUPLEADER_NAME, CommonConstant.ROLE_GROUPLEADER_SUB_NAME})
     public ApiResult deleteOneTeam(@RequestParam(value="groupId")String groupId,
                                    @RequestParam(value="teamId")String teamId) {
 
