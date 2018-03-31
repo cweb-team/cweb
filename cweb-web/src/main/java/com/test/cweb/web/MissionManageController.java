@@ -4,8 +4,8 @@ import com.test.cweb.model.Mission;
 import com.test.cweb.model.MissionLicenseInfo;
 import com.test.cweb.model.constants.MissionContants;
 import com.test.cweb.model.result.ApiResult;
-import com.test.cweb.service.interfaces.IMissionLicenseInfoServer;
-import com.test.cweb.service.interfaces.IMissionService;
+import com.test.cweb.service.IMissionLicenseInfoService;
+import com.test.cweb.service.IMissionService;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
@@ -30,7 +30,9 @@ public class MissionManageController {
     IMissionService missionService;
 
     @Resource
-    IMissionLicenseInfoServer missionLicenseInfoServer;
+    IMissionLicenseInfoService missionLicenseInfoServer;
+
+
     /**
      * 测试用接口
      * @param request
@@ -122,7 +124,7 @@ public class MissionManageController {
     }
 
     /**
-     * 新建一个Mission,返回新任务的Id
+     * 保存mission，根据operate参数决定新建还是修改，最终保存的mission状态为草稿状态
      * @author zgh
      * @param groupId       任务所属团队
      * @param type          任务类型    1——拍牌任务
@@ -130,17 +132,18 @@ public class MissionManageController {
      * @param endTime       任务结束时间
      * @param description   任务描述
      * @param bookNum       标书数量
+     * @param operate       操作类型    1——新建  2——修改
      * @return apiResult    data部分为新任务ID
      */
-    @RequestMapping("/create")
+    @RequestMapping("/save")
     @ResponseBody
-    public ApiResult createMission(@RequestParam(value = "groupId", required = true)Integer groupId,
+    public ApiResult saveMission(@RequestParam(value = "groupId", required = true)Integer groupId,
                                    @RequestParam(value = "type", required = true, defaultValue = "1")Integer type,
                                    @RequestParam(value = "beginTime", required = true)Date beginTime,
                                    @RequestParam(value = "endTime", required = true)Date endTime,
                                    @RequestParam(value = "description", required = true)String description,
-                                   @RequestParam(value = "bookNum", required = true)Integer bookNum) {
-
+                                   @RequestParam(value = "bookNum", required = true)Integer bookNum,
+                                   @RequestParam(value="operate", required = true)Integer operate) {
         ApiResult result = new ApiResult();
         try {
             //构建一个mission
@@ -151,18 +154,30 @@ public class MissionManageController {
             newMission.setEndTime(endTime);
             newMission.setDescription(description);
             newMission.setBookNum(bookNum);
-            newMission.setCreateTime(new Date());
             //新建时修改时间和创建时间相同
             newMission.setUpdateTime(new Date());
             newMission.setState(MissionContants.MissionState.draft);
-            Integer newMissionId = missionService.createMission(newMission);
-            if (null == newMissionId) {
-                logger.info("新建任务失败" + newMission.toString());
-                result.fail("新建任务失败");
-            } else {
-                logger.info("新建任务成功! missionId = " + newMissionId);
-                result.success(newMissionId);
+
+            //根据operate决定操作
+            if (null == operate) {
+                logger.info("参数不能为空!");
+                result.fail("新建任务出错");
+                return result;
+            } else if (operate.equals(1)) {
+                //新建保存
+                Integer newMissionId = missionService.createMission(newMission);
+                if (null == newMissionId) {
+                    logger.info("新建任务失败" + newMission.toString());
+                    result.fail("新建任务失败");
+                } else {
+                    logger.info("新建任务成功! missionId = " + newMissionId);
+                    result.success(newMissionId);
+                }
+            } else if (operate.equals(2)) {
+                //修改保存
+
             }
+
         } catch (Exception e) {
             logger.error("新建任务出错" + e.getMessage());
             e.printStackTrace();
@@ -203,7 +218,9 @@ public class MissionManageController {
      * @param request
      * @return
      */
-    public ApiResult allotMissionToGroup(HttpServletRequest request) {
+    @RequestMapping("/allocate")
+    @ResponseBody
+    public ApiResult allocateMission(HttpServletRequest request) {
 
         return null;
     }
@@ -214,7 +231,7 @@ public class MissionManageController {
      * @param missionID
      * @return
      */
-    @RequestMapping("publish")
+    @RequestMapping("/publish")
     @ResponseBody
     public ApiResult publishMission(@RequestParam(value = "missionId", required = true)Integer missionID) {
         ApiResult result = new ApiResult();

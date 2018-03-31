@@ -1,4 +1,4 @@
-package com.test.cweb.service.interfaces;
+package com.test.cweb.service;
 
 import com.test.cweb.model.Mission;
 

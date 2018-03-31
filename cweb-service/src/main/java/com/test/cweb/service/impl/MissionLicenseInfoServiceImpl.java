@@ -1,9 +1,9 @@
 package com.test.cweb.service.impl;
 
-import com.test.cweb.dao.interfaces.MissionLicenseInfoDao;
+import com.test.cweb.dao.MissionLicenseInfoDao;
 import com.test.cweb.model.MissionLicenseInfo;
 import com.test.cweb.model.MissionLicenseInfoExample;
-import com.test.cweb.service.interfaces.IMissionLicenseInfoServer;
+import com.test.cweb.service.IMissionLicenseInfoService;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +14,9 @@ import java.util.List;
  * Created by feir4 on 2018/3/23.
  */
 @Service
-public class MissionLicenseInfoServerImpl implements IMissionLicenseInfoServer {
+public class MissionLicenseInfoServiceImpl implements IMissionLicenseInfoService {
 
-    private Logger logger = Logger.getLogger(MissionLicenseInfoServerImpl.class);
+    private Logger logger = Logger.getLogger(MissionLicenseInfoServiceImpl.class);
 
     @Resource
     MissionLicenseInfoDao missionLicenseInfoDao;

@@ -1,4 +1,4 @@
-package com.test.cweb.dao.interfaces;
+package com.test.cweb.dao;
 
 import com.test.cweb.model.Mission;
 import com.test.cweb.model.MissionExample;

@@ -7,6 +7,7 @@ import com.test.cweb.model.Message;
 import com.test.cweb.model.MessageRecord;
 import com.test.cweb.model.result.ApiResult;
 import com.test.cweb.service.IMessageService;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 
@@ -14,6 +15,7 @@ import javax.annotation.Resource;
  * @author hyl
  * @data 18/3/28 下午11:06
  */
+@Component
 public class MessageServiceImpl implements IMessageService {
     @Resource
     MessageDao messageDao;

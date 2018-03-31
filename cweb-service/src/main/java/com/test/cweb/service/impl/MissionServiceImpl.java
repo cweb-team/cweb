@@ -1,9 +1,9 @@
 package com.test.cweb.service.impl;
 
-import com.test.cweb.dao.interfaces.MissionDao;
+import com.test.cweb.dao.MissionDao;
 import com.test.cweb.model.Mission;
 import com.test.cweb.model.MissionExample;
-import com.test.cweb.service.interfaces.IMissionService;
+import com.test.cweb.service.IMissionService;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
