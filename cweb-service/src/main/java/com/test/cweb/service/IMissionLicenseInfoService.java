@@ -1,4 +1,4 @@
-package com.test.cweb.service.interfaces;
+package com.test.cweb.service;
 
 import com.test.cweb.model.MissionLicenseInfo;
 
@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * @author zgh
  */
-public interface IMissionLicenseInfoServer {
+public interface IMissionLicenseInfoService {
 
     /**
      * 根据missionId查询报名任务的人员列表

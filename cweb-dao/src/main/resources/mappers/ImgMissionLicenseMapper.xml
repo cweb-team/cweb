@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.test.cweb.dao.interfaces.ImgMissionLicenseDao">
+<mapper namespace="com.test.cweb.dao.ImgMissionLicenseDao">
   <resultMap id="BaseResultMap" type="com.test.cweb.model.ImgMissionLicense">
     <id column="PK_ID" jdbcType="INTEGER" property="pkId" />
     <result column="MISSION_LICNESE_ID" jdbcType="INTEGER" property="missionLicneseId" />
