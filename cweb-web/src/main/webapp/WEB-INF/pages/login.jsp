@@ -138,7 +138,7 @@
                     }).then(function (response) {
                         let data = response.data;
                         let code = data.status;
-                        if (code == 200) {
+                        if (code == 20000) {
                             swal({
                                 text:"提交成功!",
                                 button: true,
