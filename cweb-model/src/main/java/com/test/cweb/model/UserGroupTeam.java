@@ -15,6 +15,8 @@ public class UserGroupTeam {
 
     private Date teamTime;
 
+    private User user;
+
     public Integer getPkId() {
         return pkId;
     }
@@ -61,5 +63,13 @@ public class UserGroupTeam {
 
     public void setTeamTime(Date teamTime) {
         this.teamTime = teamTime;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

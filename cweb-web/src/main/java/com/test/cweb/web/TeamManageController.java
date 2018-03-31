@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author hyl
@@ -52,8 +54,8 @@ public class TeamManageController extends ApplicationController {
     @RequestMapping("/modifyMyTeam.do")
     @ResponseBody
     public ApiResult modifyMyTeam(@RequestParam(value="teamId",required = true)String teamId,
-                                   @RequestParam(value="teamName",required = true)String teamName,
-                                   @RequestParam(value="description",required = true)String description) {
+              @RequestParam(value="teamName",required = true)String teamName,
+              @RequestParam(value="description",required = true)String description) {
         ApiResult apiResult = new ApiResult();
         User user = (User) httpSession.getAttribute("user");
         Team resultTeam = iTeamService.findOneTeam(Integer.parseInt(teamId));
@@ -74,7 +76,7 @@ public class TeamManageController extends ApplicationController {
     @ResponseBody
     @RequiresRoles({CommonConstant.ROLE_TEAM_LEADER_NAME})
     public ApiResult removeMember(@RequestParam(value="userId")String userId,
-                                    @RequestParam(value="teamId",required = true)String teamId) {
+              @RequestParam(value="teamId",required = true)String teamId) {
         ApiResult apiResult = new ApiResult();
         User user = (User) httpSession.getAttribute("user");
         int userIdInt = Integer.parseInt(userId);
@@ -91,11 +93,12 @@ public class TeamManageController extends ApplicationController {
 
         return apiResult;
     }
+
     @RequestMapping("/inviteMember.do")
     @ResponseBody
     @RequiresRoles({CommonConstant.ROLE_TEAM_LEADER_NAME})
     public ApiResult inviteMember(@RequestParam(value="userId")String userId,
-                                  @RequestParam(value="teamId",required = true)String teamId) {
+              @RequestParam(value="teamId",required = true)String teamId) {
         ApiResult apiResult = new ApiResult();
         User user = (User) httpSession.getAttribute("user");
         int userIdInt = Integer.parseInt(userId);
@@ -124,6 +127,33 @@ public class TeamManageController extends ApplicationController {
             }
         }else{
             apiResult.fail("发出邀请失败");
+        }
+
+        return apiResult;
+    }
+
+    /**
+     * 查看分队成员信息
+     * @param teamId
+     * @return
+     */
+    @RequestMapping("/checkAllMember.do")
+    @ResponseBody
+    @RequiresRoles({CommonConstant.ROLE_TEAM_LEADER_NAME})
+    public ApiResult checkAllMember(@RequestParam(value="teamId")String teamId) {
+
+        ApiResult apiResult = new ApiResult();
+
+        User user = (User) httpSession.getAttribute("user");
+        int teamIdInt = Integer.parseInt(teamId);
+        Team team = iTeamService.findOneTeam(teamIdInt);
+        List<User> userList = new ArrayList<User>();
+        if (user.getPkId().equals(team.getLeaderId())){
+            List<UserGroupTeam>  userGroupTeamList= iUserGroupTeamService.findAllMemberByTeamId(teamIdInt);
+            for (UserGroupTeam userGroupTeam : userGroupTeamList){
+                userList.add(userGroupTeam.getUser());
+            }
+            apiResult.success(userList);
         }
 
         return apiResult;

@@ -20,6 +20,8 @@ public interface UserGroupTeamDao {
 
     UserGroupTeam selectByPrimaryKey(Integer pkId);
 
+    UserGroupTeam selectMultiUserByPrimaryKey(Integer pkId);
+
     int updateByExampleSelective(@Param("record") UserGroupTeam record, @Param("example") UserGroupTeamExample example);
 
     int updateByExample(@Param("record") UserGroupTeam record, @Param("example") UserGroupTeamExample example);

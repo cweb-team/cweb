@@ -260,6 +260,11 @@ public class GroupManageController extends ApplicationController{
         return apiResult;
     }
 
+    /**
+     * 查看成员信息
+     * @param groupId
+     * @return
+     */
     @RequestMapping("/checkAllMember.do")
     @ResponseBody
     public ApiResult checkAllMember(@RequestParam(value="groupId")String groupId) {
