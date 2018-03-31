@@ -1,0 +1,36 @@
+html, body, ul {
+  margin: 0;
+  padding: 0; }
+
+.f-right {
+  float: right !important; }
+
+.f-left {
+  float: left !important; }
+
+header {
+  background: #fff; }
+  header #header-control {
+    border-bottom: none;
+    height: 80px; }
+    header #header-control .el-menu-item {
+      height: 80px;
+      line-height: 80px; }
+    header #header-control .el-submenu__title {
+      height: 80px;
+      line-height: 80px; }
+    header #header-control #header-logo {
+      display: inline-block;
+      width: 280px;
+      height: 80px;
+      background: #efefef; }
+
+bodyContainer {
+  height: 800px; }
+
+aside.el-aside {
+  background-color: #373d41; }
+
+main.el-main {
+  background-color: #ccc;
+  padding: 0; }
