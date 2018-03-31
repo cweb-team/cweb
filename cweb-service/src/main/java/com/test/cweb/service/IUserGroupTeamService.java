@@ -25,6 +25,13 @@ public interface IUserGroupTeamService {
     List<UserGroupTeam> findAllMebmerByGroupId(int groupId);
 
     /**
+     * 根据groupId查找所有的数据
+     * @param teamId
+     * @return
+     */
+    List<UserGroupTeam> findAllMemberByTeamId(int teamId);
+
+    /**
      * 查找用户团队小队关联信息
      * @param userGroupTeam
      * @return

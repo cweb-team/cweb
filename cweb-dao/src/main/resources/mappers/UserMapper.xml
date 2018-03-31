@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.test.cweb.dao.UserDao" >
+    <resultMap id="SimplifiedResultMap" type="com.test.cweb.model.User">
+        <id column="PK_ID" property="pkId" jdbcType="INTEGER" />
+        <result column="REAL_NAME" property="realName" jdbcType="VARCHAR" />
+        <result column="PHONE_NUM" property="phoneNum" jdbcType="VARCHAR" />
+        <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+        <result column="NICKNAME" property="nickname" jdbcType="VARCHAR" />
+        <result column="ICON" property="icon" jdbcType="VARCHAR" />
+        <result column="ICON_THUMB" property="iconThumb" jdbcType="VARCHAR" />
+    </resultMap>
     <resultMap id="BaseResultMap" type="com.test.cweb.model.User" >
         <id column="PK_ID" property="pkId" jdbcType="INTEGER" />
         <result column="ACCOUNT" property="account" jdbcType="VARCHAR" />
@@ -102,6 +111,10 @@
             </foreach>
         </where>
     </sql>
+    <sql id="Simplified_Column_List" >
+        PK_ID, REAL_NAME, PHONE_NUM, EMAIL,
+        NICKNAME, ICON, ICON_THUMB
+    </sql>
     <sql id="Base_Column_List" >
         PK_ID, ACCOUNT, PASSWORD, REAL_NAME, PHONE_NUM, EMAIL, CREATE_TIME, LAST_LOGIN_TIME,
         LOGIN_COUNT, LAST_LOGIN_IP, NICKNAME, ICON, ICON_THUMB
@@ -127,6 +140,12 @@
         <if test="orderByClause != null" >
             order by ${orderByClause}
         </if>
+    </select>
+    <select id="selectSimplifiedByPrimaryKey" resultMap="SimplifiedResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from T_USER
+        where PK_ID = #{pkId,jdbcType=INTEGER}
     </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
         select

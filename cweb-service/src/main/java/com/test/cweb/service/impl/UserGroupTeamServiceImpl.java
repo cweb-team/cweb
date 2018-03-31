@@ -38,8 +38,17 @@ public class UserGroupTeamServiceImpl implements IUserGroupTeamService{
         UserGroupTeamExample userGroupTeamExample = new UserGroupTeamExample();
         UserGroupTeamExample.Criteria criteria = userGroupTeamExample.createCriteria();
         criteria.andGroupIdEqualTo(groupId);
-        List<UserGroupTeam> userGroupTeamList = userGroupTeamDao.selectByExample(userGroupTeamExample);
-        return userGroupTeamList;
+        return userGroupTeamDao.selectByExample(userGroupTeamExample);
+
+
+    }
+
+    @Override
+    public List<UserGroupTeam> findAllMemberByTeamId(int teamId) {
+        UserGroupTeamExample userGroupTeamExample = new UserGroupTeamExample();
+        UserGroupTeamExample.Criteria criteria = userGroupTeamExample.createCriteria();
+        criteria.andTeamIdEqualTo(teamId);
+        return userGroupTeamDao.selectByExample(userGroupTeamExample);
 
     }
 

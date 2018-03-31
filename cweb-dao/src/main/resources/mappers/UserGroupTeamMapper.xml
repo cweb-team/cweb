@@ -9,6 +9,16 @@
     <result column="GROUP_TIME" property="groupTime" jdbcType="TIMESTAMP" />
     <result column="TEAM_TIME" property="teamTime" jdbcType="TIMESTAMP" />
   </resultMap>
+  <resultMap id="MultiUserResultMap" type="com.test.cweb.model.UserGroupTeam">
+    <id column="PK_ID" property="pkId" jdbcType="INTEGER" />
+    <result column="USER_ID" property="userId" jdbcType="INTEGER" />
+    <result column="GROUP_ID" property="groupId" jdbcType="INTEGER" />
+    <result column="TEAM_ID" property="teamId" jdbcType="INTEGER" />
+    <result column="GROUP_TIME" property="groupTime" jdbcType="TIMESTAMP" />
+    <result column="TEAM_TIME" property="teamTime" jdbcType="TIMESTAMP" />
+    <association property="user" column="USER_ID" javaType="com.test.cweb.model.User"
+                 select="com.test.cweb.dao.UserDao.selectSimplifiedByPrimaryKey" />
+  </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -70,6 +80,11 @@
   <sql id="Base_Column_List" >
     PK_ID, USER_ID, GROUP_ID, TEAM_ID, GROUP_TIME, TEAM_TIME
   </sql>
+  <sql id="Multi_User_List">
+    T_USER_GROUP_TEAM.PK_ID, T_USER_GROUP_TEAM.USER_ID, T_USER_GROUP_TEAM.GROUP_ID, T_USER_GROUP_TEAM.TEAM_ID, T_USER_GROUP_TEAM.GROUP_TIME, T_USER_GROUP_TEAM.TEAM_TIME,
+    T_USER.REAL_NAME,T_USER.PHONE_NUM,T_USER.EMAIL,T_USER.NICKNAME,T_USER.ICON,T_USER.ICON_THUMB
+  </sql>
+
 
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.test.cweb.model.UserGroupTeamExample" >
     select
@@ -88,6 +103,12 @@
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
+    <include refid="Base_Column_List" />
+    from T_USER_GROUP_TEAM
+    where PK_ID = #{pkId,jdbcType=INTEGER}
+  </select>
+  <select id="selectMultiUserByPrimaryKey" resultMap="MultiUserResultMap" parameterType="java.lang.Integer" >
+    select
     <include refid="Base_Column_List" />
     from T_USER_GROUP_TEAM
     where PK_ID = #{pkId,jdbcType=INTEGER}
