@@ -1,0 +1,51 @@
+html,body,ul{
+    margin:0;
+    padding:0;
+}
+
+.f-right {
+  float :right !important;
+}
+.f-left {
+  float :left !important; 
+}
+
+//头部样式
+header{
+    background: #fff;
+    #header-control{
+        border-bottom: none;
+        height: 80px;
+        .el-menu-item{
+            height: 80px;
+            line-height: 80px;
+        }
+        .el-submenu__title{
+            height: 80px;
+            line-height: 80px;
+        }
+        #header-logo{
+            display: inline-block;
+            width: 280px;
+            height: 80px;
+            background: #efefef;
+        }
+    }
+}
+
+bodyContainer{
+    height: 800px;
+}
+
+//侧边栏样式
+aside.el-aside{  
+    background-color: #373d41;
+}
+
+//主菜单
+main.el-main{
+    background-color: #ccc;
+    padding: 0;
+}
+
+
