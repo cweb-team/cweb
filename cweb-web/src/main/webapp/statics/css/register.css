@@ -18,6 +18,45 @@ body {
 #vueController-register {
   width: 100%; }
   #vueController-register #register-container {
+    width: 100%;
     padding: 0 4%;
-    height: 200px;
-    background-color: #2D6CDF; }
+    margin-top: 20vh; }
+    #vueController-register #register-container #register-childContainer {
+      margin: 0 auto;
+      width: 500px;
+      padding: 0 4%; }
+      #vueController-register #register-container #register-childContainer #register-form {
+        width: 100%;
+        padding-top: 15px;
+        background-color: rgba(255, 255, 255, 0.55);
+        border-radius: 4px; }
+        #vueController-register #register-container #register-childContainer #register-form div {
+          text-align: center;
+          height: 66px; }
+          #vueController-register #register-container #register-childContainer #register-form div input {
+            width: 210px;
+            height: 36px;
+            margin: 15px 0; }
+          #vueController-register #register-container #register-childContainer #register-form div button {
+            width: 210px;
+            height: 36px;
+            margin: 15px 0 30px;
+            color: white;
+            background-color: #0084ff; }
+          #vueController-register #register-container #register-childContainer #register-form div .inputAlert {
+            width: 230px;
+            height: 36px;
+            margin: 0 auto;
+            bottom: 3.2em;
+            left: 250px; }
+            #vueController-register #register-container #register-childContainer #register-form div .inputAlert div {
+              margin: 0;
+              height: 36px; }
+              #vueController-register #register-container #register-childContainer #register-form div .inputAlert div span {
+                line-height: 34px; }
+              #vueController-register #register-container #register-childContainer #register-form div .inputAlert div i {
+                display: none; }
+        #vueController-register #register-container #register-childContainer #register-form h4 {
+          text-align: center;
+          font-size: 16px;
+          margin: 10px 0 10px; }
