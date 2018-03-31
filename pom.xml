@@ -21,6 +21,7 @@
         <mybatis.version>3.3.0</mybatis.version>
         <mybatis-spring.version>1.2.3</mybatis-spring.version>
         <mysql.version>5.1.36</mysql.version>
+        <pagehelper.version>5.1.2</pagehelper.version>
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <druid.version>1.0.26</druid.version>
         <!--<slf4j.version>1.5.8</slf4j.version>-->
@@ -121,6 +122,13 @@
                 <artifactId>mybatis-spring</artifactId>
                 <version>${mybatis-spring.version}</version>
             </dependency>
+            <!--分页工具-->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper</artifactId>
+                <version>${pagehelper.version}</version>
+            </dependency>
+
 
             <dependency>
                 <groupId>commons-dbcp</groupId>
