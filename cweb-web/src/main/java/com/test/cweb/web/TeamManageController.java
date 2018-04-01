@@ -27,22 +27,16 @@ import java.util.List;
 public class TeamManageController extends ApplicationController {
 
     @Resource
-    IGroupService iGroupService;
+    private ITeamService iTeamService;
 
     @Resource
-    IUserService iUserService;
+    private IUserGroupTeamService iUserGroupTeamService;
 
     @Resource
-    ITeamService iTeamService;
+    private HttpSession httpSession;
 
     @Resource
-    IUserGroupTeamService iUserGroupTeamService;
-
-    @Resource
-    HttpSession httpSession;
-
-    @Resource
-    IMessageService iMessageService;
+    private IMessageService iMessageService;
 
     /**
      * 修改分队信息

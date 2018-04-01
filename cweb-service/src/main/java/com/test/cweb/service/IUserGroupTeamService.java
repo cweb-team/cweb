@@ -51,4 +51,20 @@ public interface IUserGroupTeamService {
      * @return
      */
     ApiResult updateOneRecord(UserGroupTeam userGroupTeam);
+
+    /**
+     * 用户加入团队
+     * @param userId
+     * @param groupId
+     * @return
+     */
+    ApiResult userJoinGroup(int userId,int groupId);
+
+    /**
+     * 用户加入分队
+     * @param userId
+     * @param teamId
+     * @return
+     */
+    ApiResult userJoinTeam(int userId, int teamId);
 }
