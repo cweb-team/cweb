@@ -1,6 +1,8 @@
 package com.test.cweb.service.impl;
 
+import com.test.cweb.dao.TeamDao;
 import com.test.cweb.dao.UserGroupTeamDao;
+import com.test.cweb.model.Team;
 import com.test.cweb.model.UserGroupTeam;
 import com.test.cweb.model.UserGroupTeamExample;
 import com.test.cweb.model.result.ApiResult;
@@ -19,6 +21,9 @@ public class UserGroupTeamServiceImpl implements IUserGroupTeamService{
 
     @Resource
     UserGroupTeamDao userGroupTeamDao;
+
+    @Resource
+    TeamDao teamDao;
 
     @Override
     public UserGroupTeam findByUserId(int userId){
@@ -98,4 +103,43 @@ public class UserGroupTeamServiceImpl implements IUserGroupTeamService{
         }
         return apiResult;
     }
+
+    @Override
+    public ApiResult userJoinGroup(int userId, int groupId) {
+        UserGroupTeam userGroupTeam = new UserGroupTeam();
+        userGroupTeam.setUserId(userId);
+        userGroupTeam.setGroupId(groupId);
+        ApiResult apiResult = this.addOneRecord(userGroupTeam);
+        return apiResult;
+    }
+
+    @Override
+    public ApiResult userJoinTeam(int userId, int teamId) {
+        ApiResult apiResult = new ApiResult();
+
+        UserGroupTeamExample userGroupTeamExample = new UserGroupTeamExample();
+        UserGroupTeamExample.Criteria criteria = userGroupTeamExample.createCriteria();
+        criteria.andUserIdEqualTo(userId);
+        List<UserGroupTeam> userGroupTeamList = userGroupTeamDao.selectByExample(userGroupTeamExample);
+        Team team = teamDao.selectByPrimaryKey(teamId);
+        int groupId = team.getGroupId();
+        //1. 用户未加入团队
+        if (userGroupTeamList.size() <= 0){
+            UserGroupTeam userGroupTeam = new UserGroupTeam();
+            userGroupTeam.setGroupId(groupId);
+            userGroupTeam.setUserId(userId);
+            userGroupTeam.setTeamId(teamId);
+            apiResult = this.addOneRecord(userGroupTeam);
+        }else { // 用户已加入团队
+            UserGroupTeam userGroupTeam = userGroupTeamList.get(0);
+            if (userGroupTeam.getGroupId().equals(groupId)){
+                userGroupTeam.setTeamId(teamId);
+                apiResult = this.updateOneRecord(userGroupTeam);
+            }else {
+                apiResult.fail();
+            }
+        }
+        return apiResult
+    }
+
 }
