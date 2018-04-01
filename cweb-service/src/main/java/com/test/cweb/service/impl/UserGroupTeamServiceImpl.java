@@ -139,7 +139,7 @@ public class UserGroupTeamServiceImpl implements IUserGroupTeamService{
                 apiResult.fail();
             }
         }
-        return apiResult
+        return apiResult;
     }
 
 }
