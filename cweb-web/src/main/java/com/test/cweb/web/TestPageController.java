@@ -23,6 +23,6 @@ public class TestPageController extends ApplicationController{
         return buildMAV("profile.jsp","profile");
     }
 
-    @RequestMapping("/center")
-    public ModelAndView userCenter() {return buildMAV("userCenter.jsp", "userCenter");}
+    @RequestMapping("/indexMain")
+    public ModelAndView indexMain() {return buildMAV("indexMain.jsp", "indexMain");}
 }
