@@ -13,6 +13,7 @@ import java.util.List;
 
 /**
  * Created by feir4 on 2018/3/20.
+ * @author zgh
  */
 @Service
 public class MissionServiceImpl implements IMissionService {
@@ -29,20 +30,22 @@ public class MissionServiceImpl implements IMissionService {
             logger.info("插入的任务不能为空");
             return null;
         }
-        //TODO:获取新任务ID missionId
-        mission.setPkId(missionId);
         int result = missionDao.insertSelective(mission);
         if (1 == result) {
-            return missionId;
-        } else {
-            logger.info("插入不正确 mission: " + mission.toString());
-            return null;
+            missionId = mission.getPkId();
         }
+        return missionId;
     }
 
     @Override
-    public void updateMission() throws Exception {
-
+    public int updateMission(Mission mission) throws Exception {
+        int result = 0;
+        if (null == mission) {
+            logger.info("参数不能为空");
+            return result;
+        }
+        result = missionDao.updateByPrimaryKeySelective(mission);
+        return result;
     }
 
     @Override
