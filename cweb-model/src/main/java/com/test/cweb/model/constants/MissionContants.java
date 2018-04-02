@@ -11,7 +11,7 @@ public class MissionContants {
         /**
          * 1——拍牌任务
          */
-        public static Integer license = 1;
+        public static final Integer LICENSE = 1;
     }
 
     public static class MissionState{
@@ -19,18 +19,40 @@ public class MissionContants {
         /**
          * 0——草稿
          */
-        public static Integer draft = 0;
+        public static final Integer DRAFT = 0;
         /**
          * 1——已发布
          */
-        public static Integer published = 1;
+        public static final Integer PUBLISHED = 1;
         /**
          * 2——进行中
          */
-        public static Integer underway = 2;
+        public static final Integer UNDERWAY = 2;
         /**
          * 3——已结束
          */
-        public static Integer finished = 3;
+        public static final Integer FINISHED = 3;
+    }
+
+    /**
+     * 任务管理相关操作类型
+     */
+    public static class MissionManage{
+        /**
+         * 1——新建
+         */
+        public static final Integer ADD = 1;
+        /**
+         * 2——修改
+         */
+        public static final Integer UPDATE = 2;
+        /**
+         * 3——发布
+         */
+        public static final Integer PUBLISH = 3;
+        /**
+         * 4——删除
+         */
+        public static final Integer DELETE = 4;
     }
 }

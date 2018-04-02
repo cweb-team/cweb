@@ -21,11 +21,12 @@ public interface IMissionService {
 
     /**
      * 修改任务信息
-     *
+     * @param mission   任务实例
+     * @return 修改行数
      * @author zgh
      * @date 2018-3-18
      */
-    public void updateMission() throws Exception;
+    public int updateMission(Mission mission) throws Exception;
 
     /**
      * 查询Mission列表

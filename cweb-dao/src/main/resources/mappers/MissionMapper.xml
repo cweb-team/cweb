@@ -108,7 +108,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.test.cweb.model.Mission">
+  <insert id="insert" useGeneratedKeys="true" keyProperty="pkId" parameterType="com.test.cweb.model.Mission">
     insert into T_MISSION (PK_ID, MISSION_TYPE, GROUP_ID, 
       BEGIN_TIME, END_TIME, DESCRIPTION, 
       PUBLISH_TIME, BOOK_NUM, SIGN_UP_NUM, 
@@ -120,7 +120,7 @@
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{state,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.test.cweb.model.Mission">
+  <insert id="insertSelective" parameterType="com.test.cweb.model.Mission" useGeneratedKeys="true" keyProperty="pkId">
     insert into T_MISSION
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="pkId != null">
