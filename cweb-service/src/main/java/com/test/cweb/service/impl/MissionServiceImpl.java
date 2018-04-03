@@ -91,4 +91,14 @@ public class MissionServiceImpl implements IMissionService {
         }
         return result;
     }
+
+    @Override
+    public Integer deleteMission(Integer missionId) throws Exception {
+        if (null == missionId) {
+            logger.info("参数不能为空");
+            return null;
+        }
+        Integer result = missionDao.deleteByPrimaryKey(missionId);
+        return result;
+    }
 }
