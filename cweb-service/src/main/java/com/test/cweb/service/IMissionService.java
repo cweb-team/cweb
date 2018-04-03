@@ -54,7 +54,18 @@ public interface IMissionService {
      * @param missionId 任务Id
      * @param state     任务状态
      * @return
+     * @author zgh
      */
     public Integer modifyMissionState(Integer missionId, Integer state) throws Exception;
+
+    /**
+     * 删除任务
+     *
+     * @param missionId 任务ID
+     * @return 删除记录数目
+     * @throws Exception
+     * @author zgh
+     */
+    public Integer deleteMission(Integer missionId) throws Exception;
 
 }

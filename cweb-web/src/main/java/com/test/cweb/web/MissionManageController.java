@@ -211,8 +211,24 @@ public class MissionManageController {
     @RequestMapping("/delete")
     @ResponseBody
     public ApiResult deleteMission(@RequestParam(value = "missionId", required = true)Integer missionId) {
+        ApiResult result = new ApiResult();
+        try {
 
-        return null;
+            Integer deleteCount = missionService.deleteMission(missionId);
+            if (deleteCount.equals(1)) {
+                logger.info("任务删除成功：missionId: " + missionId);
+                result.success("任务删除成功");
+            } else {
+                logger.info("任务删除失败：missionId: " + missionId);
+                result.success("任务删除失败");
+            }
+        } catch (Exception e) {
+            logger.error("删除任务出错");
+            e.printStackTrace();
+            result.fail("删除失败");
+        } finally {
+            return result;
+        }
     }
 
     /**
@@ -232,7 +248,7 @@ public class MissionManageController {
     /**
      * 发布Mission
      *
-     * @param missionID
+     * @param missionID 任务ID
      * @return
      * @author zgh
      */
@@ -245,6 +261,7 @@ public class MissionManageController {
             Integer updateResult = missionService.modifyMissionState(missionID, 1);
             if (null == updateResult) {
                 logger.info("发布失败");
+                result.fail("发布失败");
             } else if (1 == updateResult) {
                 logger.info("任务发布成功! missionId = " + missionID);
                 result.success("发布成功");
