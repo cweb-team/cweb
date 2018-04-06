@@ -1,0 +1,66 @@
+#groupTeam-container table#groupTeam-table {
+  width: 100%;
+  font-size: 12px; }
+  #groupTeam-container table#groupTeam-table td, #groupTeam-container table#groupTeam-table th {
+    text-align: center;
+    vertical-align: middle; }
+  #groupTeam-container table#groupTeam-table th {
+    padding: 18px; }
+  #groupTeam-container table#groupTeam-table td {
+    height: 32px; }
+  #groupTeam-container table#groupTeam-table tbody tr {
+    background: #fff; }
+    #groupTeam-container table#groupTeam-table tbody tr td a {
+      background-color: #42B8DD;
+      display: inline-block;
+      padding: 4px 8px;
+      color: #fff;
+      text-decoration: none;
+      cursor: pointer;
+      width: 80px; }
+
+#groupTeam-container div.group-table-page {
+  width: 100%;
+  font-size: 12px; }
+  #groupTeam-container div.group-table-page ul {
+    float: right;
+    display: inline-block;
+    border-radius: 4px;
+    margin: 20px 0;
+    padding-left: 0; }
+    #groupTeam-container div.group-table-page ul li {
+      display: inline; }
+    #groupTeam-container div.group-table-page ul li {
+      list-style: none; }
+  #groupTeam-container div.group-table-page li:first-child > span {
+    margin-left: 0; }
+  #groupTeam-container div.group-table-page span {
+    border: 1px solid #ddd;
+    text-decoration: none;
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: 1px;
+    line-height: 1.42857143;
+    color: #000000;
+    cursor: pointer;
+    width: 15px;
+    text-align: center; }
+  #groupTeam-container div.group-table-page span:hover {
+    background-color: #eee; }
+  #groupTeam-container div.group-table-page span.banClick {
+    cursor: not-allowed; }
+  #groupTeam-container div.group-table-page .active span {
+    color: #fff;
+    cursor: default;
+    background-color: #c30d0f;
+    border-color: #c30d0f;
+    width: 15px;
+    text-align: center; }
+  #groupTeam-container div.group-table-page .spanWidth {
+    width: 40px; }
+  #groupTeam-container div.group-table-page i {
+    font-style: normal;
+    color: #d44950;
+    margin: 0 4px;
+    font-size: 12px; }

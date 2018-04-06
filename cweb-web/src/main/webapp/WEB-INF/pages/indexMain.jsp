@@ -15,6 +15,7 @@
     <!-- 引入element组件样式 -->
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <!-- 此处样式为vue.js 缓冲数据渲染-->
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/groupTable.css">
     <style>
         [v-cloak] {
             display: none;
@@ -22,14 +23,14 @@
     </style>
 </head>
 <body>
-    <div id="vueController">
+    <div>
         <container class='el-container is-vertical'>
             <%@ include file="header.jsp"%>
             <bodyContainer class="el-container">
                 <%@ include file="aside.jsp"%>
-                <main class="el-main">
-                    hello,world
-                </main>
+                <mian class="el-main">
+                    <%@ include file="groupTable.jsp"%>
+                </mian>
             </bodyContainer>
         </container>
     </div>
@@ -47,23 +48,63 @@
 <!-- 引入element组件库 -->
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 
+<!-- 引入header,aside栏的js部分 -->
+<%@ include file="headerAndAside.jsp"%>
+
 <script>
-    var vueAppUserCenter = new Vue({
-        el:"#vueController",
+    var vueApp = new Vue({
+        el:"#groupTeam-container",
         data:{
-            activeIndex: '1'
-            // activeIndex2: '1'
+            allPage : 20,
+            currentPage :1,     //当前页数
+            recordsPerPage : 10,     //一页显示几条
+        },
+        watch: {
+            currentPage: function(oldValue , newValue) {
+                console.log(arguments);
+                console.log('当前页'+this.currentPage);
+            }
         },
         methods: {
-            handleSelect(value, keyPath) {
-                console.log(value, 'hhh'+keyPath);
+            btnClick: function(data) {//页码点击事件
+                if(data !== this.currentPage){
+                    this.currentPage = data;
+                    // getWines(this.currentPage,vueApp.$data.wineType);
+                }
             },
-            handleOpen(key, keyPath) {
-                console.log(key, 'qqq'+keyPath);
-            },
-            handleClose(key, keyPath) {
-                console.log(key, 'qqq'+keyPath);
+            pageClick: function() {
+                console.log('当前页'+this.currentPage);
+                // getWines(this.currentPage,vueApp.$data.wineType);
             }
+        },
+        mounted: function() {
+
+        },
+        computed: {
+            allPageComputed: function(){
+                let left = 1;
+                let right = this.allPage;
+                let pageArr = [];    //次处变量pageArr返回一个当前应该显示的页数数组,如[4,5,6,7,8],即页面上显示的页数
+                if(this.allPage>= 5){
+                    if(this.currentPage > 3 && this.currentPage < this.allPage-2){
+                        left = this.currentPage - 2;
+                        right = this.currentPage + 2;
+                    }else{
+                        if(this.currentPage<=3){
+                            left = 1;
+                            right = 5;
+                        }else{
+                            right = this.allPage;
+                            left = this.allPage -4;
+                        }
+                    }
+                }
+                while (left <= right){
+                    pageArr.push(left);
+                    left ++;
+                }
+                return pageArr;
+            },
         }
     });
 </script>
