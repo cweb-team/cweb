@@ -30,15 +30,21 @@
                         注册账号
                     </h4>
                     <div id="register-inputUserName">
-                        <input placeholder="用户名" v-model="inputUserName">
+                        <input type="text" placeholder="用户名" v-model="inputUserName" id="userName"
+                               @blur="blurInput" @focus="focusInput"
+                               data-vali="userName" data-isvali="1"
+                               class="input-need-vali">
                         <el-alert   class="inputAlert hide"
                                     id="for-userName"
-                                    title="这个昵称已经被占用"
+                                    title=" "
                                     type="error">
                         </el-alert>
                     </div>
                     <div id="register-inputPhone">
-                        <input placeholder="手机号" v-model="inputPhoneNumber">
+                        <input type="text" placeholder="手机号" v-model="inputPhoneNumber" id="phoneNum"
+                               @blur="blurInput" @focus="focusInput"
+                               data-vali="phoneNum" data-isvali="1"
+                               class="input-need-vali">
                         <el-alert   class="inputAlert hide"
                                     id="for-phoneNum"
                                     title="请输入正确的手机号(11位)"
@@ -46,23 +52,29 @@
                         </el-alert>
                     </div>
                     <div id="register-inputEmail">
-                        <input placeholder="邮箱" v-model="inputEmail">
+                        <input type="text" placeholder="邮箱" v-model="inputEmail" id="email"
+                               @blur="blurInput" @focus="focusInput"
+                               data-vali="email" data-isvali="1"
+                               class="input-need-vali">
                         <el-alert   class="inputAlert hide"
                                     id="for-email"
                                     title="请输入正确的邮箱"
                                     type="error">
                         </el-alert>
                     </div>
-                    <div id="register-inputPassword" v-model="inputPassWord">
-                        <input placeholder="输入密码">
+                    <div id="register-inputPassword">
+                        <input type='text' placeholder="输入密码" v-model="inputPassWord" id="password"
+                               @blur="blurInput" @focus="focusInput"
+                               data-vali="password" data-isvali="1"
+                               class="input-need-vali">
                         <el-alert   class="inputAlert hide"
                                     id="for-password"
-                                    title="这个昵称已经被占用"
+                                    title="密码格式有误或为空(长度为8~20)"
                                     type="error">
                         </el-alert>
                     </div>
                     <div id="register-submitData">
-                        <button class="pure-button" @click="test">
+                        <button type='button' class="pure-button" @click="registerSubmit">
                             注册
                         </button>
                     </div>
@@ -95,8 +107,76 @@
             inputPassWord:'',
         },
         methods:{
-            test :function () {
-                alert(123);
+            registerSubmit :function () {
+                var valInputs = document.querySelectorAll(".input-need-vali"),
+                    isPassed = 0;
+                _.forEach(valInputs, function(itm){
+                    itm.focus();
+                    itm.blur();
+                    isPassed += parseInt(itm.dataset.isvali);
+                    console.log(isPassed)
+                });
+                if (isPassed === 0) {
+                    var registerUserName = this.$data.inputUserName, //获取input框的用户名
+                        registerPhoneNum = this.$data.inputMobile, //获取input框的手机号
+                        registerEmail = this.$data.inputEmil,       //获取input框的邮箱地址
+                        registerPassword = this.$data.inputPassWord;           //获取input框的密码
+                        console.log(registerUserName + registerPhoneNum +registerEmail +registerPassword)
+                    // axios.get('tryLogin.do',{
+                    //     params:{
+                    //         account:loginPhoneNum,
+                    //         password:loginPw,
+                    //     }
+                    // }).then(function (response) {
+                    //     let data = response.data;
+                    //     let code = data.status;
+                    //     if (code == 20000) {
+                    //         swal({
+                    //             text:"提交成功!",
+                    //             button: true,
+                    //             icon: "success",
+                    //             timer: 2000
+                    //         }).then(function () {
+                    //             location.href = "../../register/";
+                    //         });
+                    //     }
+                    //     else {
+                    //         swal({
+                    //             text:data.msg,
+                    //             button: false,
+                    //             icon: "error",
+                    //             timer: 2000
+                    //         }).then(function () {
+                    //             document.querySelector('#login-input').reset();
+                    //         });
+                    //     }
+                    // }).catch(function (err) {
+                    //     console.log(err);
+                    // });
+                }
+            },
+            blurInput:function(e) {
+                let reg = regRegister[e.target.dataset.vali];  //验证正则表达式
+                console.log(e.target.dataset.vali); //要验证的类型,此处只有输入密码较为特殊.
+                var v = e.target.value;  //获取输入值
+                console.log(v)
+                console.log(e.target.id)
+                var eleWarning = document.getElementById("for-" + e.target.id);  //获取警告dom元素
+                console.log(eleWarning)
+                if (reg.test(v)) {
+                    eleWarning.classList.add("hide");
+                    e.target.dataset.isvali = 0;
+                }
+                else {
+                    eleWarning.classList.remove("hide");
+                    e.target.dataset.isvali = 1;
+                }
+
+            },
+            focusInput:function(e){
+                var eleWarning = document.getElementById("for-" + e.target.id);  //input重新获得焦点后,alert警告框消失.
+                eleWarning.classList.add("hide");
+                e.target.dataset.isvali = 0;
             }
         }
     });
