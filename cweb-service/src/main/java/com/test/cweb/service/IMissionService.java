@@ -68,4 +68,13 @@ public interface IMissionService {
      */
     public Integer deleteMission(Integer missionId) throws Exception;
 
+    /**
+     * 分配任务给分队
+     *
+     * @param missionId
+     * @param groupId
+     * @param allocation
+     * @throws Exception
+     */
+    public void allocateMission(Integer missionId, Integer groupId, String allocation) throws Exception;
 }

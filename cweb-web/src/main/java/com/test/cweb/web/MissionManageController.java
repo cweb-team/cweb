@@ -1,11 +1,12 @@
 package com.test.cweb.web;
 
-import com.test.cweb.model.Mission;
-import com.test.cweb.model.MissionLicenseInfo;
+import com.test.cweb.model.*;
+import com.test.cweb.model.constants.MessageContants;
 import com.test.cweb.model.constants.MissionContants;
 import com.test.cweb.model.result.ApiResult;
-import com.test.cweb.service.IMissionLicenseInfoService;
-import com.test.cweb.service.IMissionService;
+import com.test.cweb.service.*;
+import com.test.cweb.utils.JsonObjectMapper;
+import net.sf.json.JSONArray;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
@@ -32,7 +33,14 @@ public class MissionManageController {
     @Resource
     IMissionLicenseInfoService missionLicenseInfoServer;
 
+    @Resource
+    IMessageService messageService;
 
+    @Resource
+    IUserGroupTeamService userGroupTeamService;
+
+    @Resource
+    IMissionLicenseAllocationService missionLicenseAllocationService;
     /**
      * 测试用接口
      *
@@ -128,6 +136,7 @@ public class MissionManageController {
 
     /**
      * 保存mission，根据operate参数决定新建还是修改，最终保存的mission状态为草稿状态
+     *
      * @param missionId   任务ID（修改任务时传入）
      * @param groupId     任务所属团队
      * @param type        任务类型    1——拍牌任务
@@ -141,7 +150,7 @@ public class MissionManageController {
      */
     @RequestMapping("/save")
     @ResponseBody
-    public ApiResult saveMission(@RequestParam(value = "missionId", required = false)Integer missionId,
+    public ApiResult saveMission(@RequestParam(value = "missionId", required = false) Integer missionId,
                                  @RequestParam(value = "groupId", required = true) Integer groupId,
                                  @RequestParam(value = "type", required = true, defaultValue = "1") Integer type,
                                  @RequestParam(value = "beginTime", required = true) Integer beginTime,
@@ -204,13 +213,13 @@ public class MissionManageController {
     /**
      * 删除Mission
      *
-     * @param missionId     任务ID
+     * @param missionId 任务ID
      * @return
      * @author zgh
      */
     @RequestMapping("/delete")
     @ResponseBody
-    public ApiResult deleteMission(@RequestParam(value = "missionId", required = true)Integer missionId) {
+    public ApiResult deleteMission(@RequestParam(value = "missionId", required = true) Integer missionId) {
         ApiResult result = new ApiResult();
         try {
 
@@ -235,26 +244,48 @@ public class MissionManageController {
      * 将任务名额分配给分队
      * 传入参数中应有MissionId, GroupID, TeamId, TeamLicenseCount
      *
-     * @param request
+     * @param missionId  任务ID
+     * @param groupId    团队ID
+     * @param allocation 任务分配
      * @return
      */
     @RequestMapping("/allocateLicense")
     @ResponseBody
-    public ApiResult allocateLicense(HttpServletRequest request) {
+    public ApiResult allocateLicense(@RequestParam(value = "missionId", required = true) Integer missionId,
+                                     @RequestParam(value = "groupId", required = true) Integer groupId,
+                                     @RequestParam(value = "allocation", required = true) String allocation) {
+        ApiResult result = new ApiResult();
+        try {
+            if (null == missionId || null == groupId || null == allocation) {
+                logger.info("参数不能为空");
+                result.fail();
+                return result;
+            }
 
-        return null;
+            //TODO:调用分配任务服务
+        } catch (Exception e) {
+            logger.error("任务分配出错" + e.getMessage());
+            e.printStackTrace();
+            result.fail();
+        } finally {
+            return result;
+        }
     }
 
     /**
      * 发布Mission
      *
      * @param missionID 任务ID
+     * @param userId    发布者ID
+     * @param groupId   团队ID
      * @return
      * @author zgh
      */
     @RequestMapping("/publish")
     @ResponseBody
-    public ApiResult publishMission(@RequestParam(value = "missionId", required = true) Integer missionID) {
+    public ApiResult publishMission(@RequestParam(value = "missionId", required = true) Integer missionID,
+                                    @RequestParam(value = "userId", required = true) Integer userId,
+                                    @RequestParam(value = "groupId", required = true) Integer groupId) {
         ApiResult result = new ApiResult();
         //任务状态修改为已发布
         try {
@@ -272,18 +303,74 @@ public class MissionManageController {
             result.fail("发布失败");
             return result;
         }
-        //TODO:任务推送到消息表
+        //任务推送到消息表
+        try {
+            //查询任务详情信息
+            Mission mission = missionService.queryMissionInfo(missionID);
+            //生成message实体
+            Message message = new Message();
+            message.setAuthor(userId);
+            message.setMessageInfoId(missionID);
+            message.setCreateTime(new Date());
+            message.setUpdateTime(new Date());
+            message.setTitle("拍牌任务发布");
+            message.setType(MessageContants.MessageType.MESSAGE_MISSION_ID);
 
+            //查询要推送的人群
+            List<UserGroupTeam> userList = userGroupTeamService.findAllMebmerByGroupId(groupId);
+            List<Integer> userIdList = new ArrayList<>();
+            for (UserGroupTeam userGroupTeam : userList) {
+                if (null != userGroupTeam.getUserId()) {
+                    userIdList.add(userGroupTeam.getUserId());
+                }
+            }
+            //消息推送
+            result = messageService.pushMessage(message, userIdList);
+        } catch (Exception e) {
+            logger.error("推送到消息表出错 missionId = " + missionID);
+            e.printStackTrace();
+            result.fail();
+        }
         return result;
     }
 
     /**
      * 查看报名情况
-     * @param request
-     * @return
+     * 返回数据包括任务名额综述，已报名数，分队——报名人数
+     *
+     * @param groupId   团队ID
+     * @return ApiResult
+     * @author zgh
      */
-    public ApiResult checkApplyCondition(HttpServletRequest request) {
-        return null;
+    @RequestMapping("/checkApply")
+    @ResponseBody
+    public ApiResult checkApplyCondition(@RequestParam(value = "groupId", required = true) Integer groupId,
+                                         @RequestParam(value = "missionId", required = true) Integer missionId) {
+        ApiResult result = new ApiResult();
+        Map<String, Object> data = new HashMap<>();
+        try {
+            //查询任务情况，获取名额总数和已报名数
+            Mission mission = new Mission();
+            mission = missionService.queryMissionInfo(missionId);
+            if (null != mission) {
+                data.put("mission", mission);
+            } else {
+                logger.info("查无此任务 missionId = " + missionId);
+                result.fail("没有这个任务");
+                return result;
+            }
+            //查看分队报名情况
+            List<MissionLicenseAllocation> teamSignUp = new ArrayList<>();
+            teamSignUp = missionLicenseAllocationService.queryAllocationByMissionId(missionId);
+            data.put("teamSignUp", teamSignUp);
+            result.success(data);
+        } catch (Exception e) {
+            logger.error("查看报名情况发生错误");
+            e.printStackTrace();
+            result.fail();
+        } finally {
+            return result;
+        }
     }
 
     /**
@@ -297,13 +384,32 @@ public class MissionManageController {
     }
 
     /**
-     * 查看成员进度
+     * 查看成员完成某个任务的进度
      *
-     * @param request
-     * @return
+     * @param userId    用户ID
+     * @param missionId 任务ID
+     * @return ApiResult
+     * @author zgh
      */
-    public ApiResult checkMemberProgress(HttpServletRequest request) {
-        return null;
+    @RequestMapping("/checkMemberProgress")
+    @ResponseBody
+    public ApiResult checkMemberProgress(@RequestParam(value = "userId", required = true) Integer userId,
+                                         @RequestParam(value = "missionId", required = true) Integer missionId) {
+        ApiResult result = new ApiResult();
+        try {
+            MissionLicenseInfo missionLicenseInfo = missionLicenseInfoServer.queryLicenseByMissionIdUserId(missionId, userId);
+            if (null != missionLicenseInfo) {
+                result.success(missionLicenseInfo);
+            } else {
+                result.fail("未查询到任务信息");
+            }
+        } catch (Exception e) {
+            logger.error("查询成员进度出错");
+            e.printStackTrace();
+            result.fail("查询出错");
+        } finally {
+            return result;
+        }
     }
 
     /**

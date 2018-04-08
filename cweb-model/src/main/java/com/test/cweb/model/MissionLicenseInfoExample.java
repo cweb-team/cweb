@@ -226,62 +226,62 @@ public class MissionLicenseInfoExample {
         }
 
         public Criteria andMissionIdIsNull() {
-            addCriterion("MISSION__ID is null");
+            addCriterion("MISSION_ID is null");
             return (Criteria) this;
         }
 
         public Criteria andMissionIdIsNotNull() {
-            addCriterion("MISSION__ID is not null");
+            addCriterion("MISSION_ID is not null");
             return (Criteria) this;
         }
 
         public Criteria andMissionIdEqualTo(Integer value) {
-            addCriterion("MISSION__ID =", value, "missionId");
+            addCriterion("MISSION_ID =", value, "missionId");
             return (Criteria) this;
         }
 
         public Criteria andMissionIdNotEqualTo(Integer value) {
-            addCriterion("MISSION__ID <>", value, "missionId");
+            addCriterion("MISSION_ID <>", value, "missionId");
             return (Criteria) this;
         }
 
         public Criteria andMissionIdGreaterThan(Integer value) {
-            addCriterion("MISSION__ID >", value, "missionId");
+            addCriterion("MISSION_ID >", value, "missionId");
             return (Criteria) this;
         }
 
         public Criteria andMissionIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("MISSION__ID >=", value, "missionId");
+            addCriterion("MISSION_ID >=", value, "missionId");
             return (Criteria) this;
         }
 
         public Criteria andMissionIdLessThan(Integer value) {
-            addCriterion("MISSION__ID <", value, "missionId");
+            addCriterion("MISSION_ID <", value, "missionId");
             return (Criteria) this;
         }
 
         public Criteria andMissionIdLessThanOrEqualTo(Integer value) {
-            addCriterion("MISSION__ID <=", value, "missionId");
+            addCriterion("MISSION_ID <=", value, "missionId");
             return (Criteria) this;
         }
 
         public Criteria andMissionIdIn(List<Integer> values) {
-            addCriterion("MISSION__ID in", values, "missionId");
+            addCriterion("MISSION_ID in", values, "missionId");
             return (Criteria) this;
         }
 
         public Criteria andMissionIdNotIn(List<Integer> values) {
-            addCriterion("MISSION__ID not in", values, "missionId");
+            addCriterion("MISSION_ID not in", values, "missionId");
             return (Criteria) this;
         }
 
         public Criteria andMissionIdBetween(Integer value1, Integer value2) {
-            addCriterion("MISSION__ID between", value1, value2, "missionId");
+            addCriterion("MISSION_ID between", value1, value2, "missionId");
             return (Criteria) this;
         }
 
         public Criteria andMissionIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("MISSION__ID not between", value1, value2, "missionId");
+            addCriterion("MISSION_ID not between", value1, value2, "missionId");
             return (Criteria) this;
         }
 

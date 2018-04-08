@@ -2,6 +2,7 @@ package com.test.cweb;
 
 import com.test.cweb.dao.MissionDao;
 import com.test.cweb.model.Mission;
+import com.test.cweb.service.IMissionService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -19,6 +20,9 @@ public class MissionTest {
     @Resource
     MissionDao missionDao;
 
+    @Resource
+    IMissionService missionService;
+
     @Test
     public void testInsertMission(){
         Mission mission = new Mission();
@@ -34,5 +38,16 @@ public class MissionTest {
         int resultLine = missionDao.insert(mission);
         System.out.println("插入条数:" + resultLine);
         System.out.println(mission.toString());
+    }
+
+    @Test
+    public void testJSON() {
+        String json = "[{\"teamId\":\"1\",\"count\":\"10\"},{\"teamId\":\"2\",\"count\":\"2\"}]";
+        try {
+            missionService.allocateMission(null, null, json);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }

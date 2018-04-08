@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.test.cweb.model.MissionLicenseInfo">
     <id column="PK_ID" jdbcType="INTEGER" property="pkId" />
     <result column="USER_ID" jdbcType="INTEGER" property="userId" />
-    <result column="MISSION__ID" jdbcType="INTEGER" property="missionId" />
+    <result column="MISSION_ID" jdbcType="INTEGER" property="missionId" />
     <result column="SIGN_IN_STATUS" jdbcType="INTEGER" property="signInStatus" />
     <result column="SIGN_IN_TIME" jdbcType="TIMESTAMP" property="signInTime" />
     <result column="FIRST_SCREEN_UPLOAD_STATUS" jdbcType="INTEGER" property="firstScreenUploadStatus" />
@@ -74,7 +74,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    PK_ID, USER_ID, MISSION__ID, SIGN_IN_STATUS, SIGN_IN_TIME, FIRST_SCREEN_UPLOAD_STATUS, 
+    PK_ID, USER_ID, MISSION_ID, SIGN_IN_STATUS, SIGN_IN_TIME, FIRST_SCREEN_UPLOAD_STATUS, 
     FINAL_SCREEN_UPLOAD_STATUS, VIDEO_UPLOAD_STATUS, RESULT, BID, CREATE_TIME, UPDATE_TIME
   </sql>
   <select id="selectByExample" parameterType="com.test.cweb.model.MissionLicenseInfoExample" resultMap="BaseResultMap">
@@ -108,8 +108,8 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.test.cweb.model.MissionLicenseInfo">
-    insert into T_MISSION_LICENSE_INFO (PK_ID, USER_ID, MISSION__ID, 
+  <insert id="insert" useGeneratedKeys="true" keyProperty="pkId" parameterType="com.test.cweb.model.MissionLicenseInfo">
+    insert into T_MISSION_LICENSE_INFO (PK_ID, USER_ID, MISSION_ID, 
       SIGN_IN_STATUS, SIGN_IN_TIME, FIRST_SCREEN_UPLOAD_STATUS, 
       FINAL_SCREEN_UPLOAD_STATUS, VIDEO_UPLOAD_STATUS, 
       RESULT, BID, CREATE_TIME, 
@@ -120,7 +120,7 @@
       #{result,jdbcType=INTEGER}, #{bid,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.test.cweb.model.MissionLicenseInfo">
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="pkId" parameterType="com.test.cweb.model.MissionLicenseInfo">
     insert into T_MISSION_LICENSE_INFO
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="pkId != null">
@@ -130,7 +130,7 @@
         USER_ID,
       </if>
       <if test="missionId != null">
-        MISSION__ID,
+        MISSION_ID,
       </if>
       <if test="signInStatus != null">
         SIGN_IN_STATUS,
@@ -215,7 +215,7 @@
         USER_ID = #{record.userId,jdbcType=INTEGER},
       </if>
       <if test="record.missionId != null">
-        MISSION__ID = #{record.missionId,jdbcType=INTEGER},
+        MISSION_ID = #{record.missionId,jdbcType=INTEGER},
       </if>
       <if test="record.signInStatus != null">
         SIGN_IN_STATUS = #{record.signInStatus,jdbcType=INTEGER},
@@ -253,7 +253,7 @@
     update T_MISSION_LICENSE_INFO
     set PK_ID = #{record.pkId,jdbcType=INTEGER},
       USER_ID = #{record.userId,jdbcType=INTEGER},
-      MISSION__ID = #{record.missionId,jdbcType=INTEGER},
+      MISSION_ID = #{record.missionId,jdbcType=INTEGER},
       SIGN_IN_STATUS = #{record.signInStatus,jdbcType=INTEGER},
       SIGN_IN_TIME = #{record.signInTime,jdbcType=TIMESTAMP},
       FIRST_SCREEN_UPLOAD_STATUS = #{record.firstScreenUploadStatus,jdbcType=INTEGER},
@@ -274,7 +274,7 @@
         USER_ID = #{userId,jdbcType=INTEGER},
       </if>
       <if test="missionId != null">
-        MISSION__ID = #{missionId,jdbcType=INTEGER},
+        MISSION_ID = #{missionId,jdbcType=INTEGER},
       </if>
       <if test="signInStatus != null">
         SIGN_IN_STATUS = #{signInStatus,jdbcType=INTEGER},
@@ -309,7 +309,7 @@
   <update id="updateByPrimaryKey" parameterType="com.test.cweb.model.MissionLicenseInfo">
     update T_MISSION_LICENSE_INFO
     set USER_ID = #{userId,jdbcType=INTEGER},
-      MISSION__ID = #{missionId,jdbcType=INTEGER},
+      MISSION_ID = #{missionId,jdbcType=INTEGER},
       SIGN_IN_STATUS = #{signInStatus,jdbcType=INTEGER},
       SIGN_IN_TIME = #{signInTime,jdbcType=TIMESTAMP},
       FIRST_SCREEN_UPLOAD_STATUS = #{firstScreenUploadStatus,jdbcType=INTEGER},
