@@ -1,15 +1,19 @@
 package com.test.cweb.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.test.cweb.dao.MissionDao;
 import com.test.cweb.model.Mission;
 import com.test.cweb.model.MissionExample;
 import com.test.cweb.service.IMissionService;
+import net.sf.json.JSONObject;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by feir4 on 2018/3/20.
@@ -94,11 +98,48 @@ public class MissionServiceImpl implements IMissionService {
 
     @Override
     public Integer deleteMission(Integer missionId) throws Exception {
-        if (null == missionId) {
-            logger.info("参数不能为空");
-            return null;
-        }
         Integer result = missionDao.deleteByPrimaryKey(missionId);
         return result;
     }
+
+
+    private class Allocate{
+        public String teamId;
+        public String count;
+
+        public String getTeamId() {
+            return teamId;
+        }
+
+        public void setTeamId(String name) {
+            this.teamId = name;
+        }
+
+        public String getCount() {
+            return count;
+        }
+
+        public void setCount(String value) {
+            this.count = value;
+        }
+    }
+    private class AllocList{
+        public List<Allocate> allocates;
+
+        public List<Allocate> getAllocates() {
+            return allocates;
+        }
+
+        public void setAllocates(List<Allocate> allocates) {
+            this.allocates = allocates;
+        }
+    }
+
+    @Override
+    public void allocateMission(Integer missionId, Integer groupId, String allocation) throws Exception {
+        JSONArray alloc = JSON.parseArray(allocation);
+        List<Map> allocList = alloc.toJavaList(Map.class);
+        System.out.println(allocList.toString());
+    }
+
 }

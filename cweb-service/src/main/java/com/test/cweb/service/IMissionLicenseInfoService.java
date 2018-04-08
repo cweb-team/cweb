@@ -15,6 +15,17 @@ public interface IMissionLicenseInfoService {
      * @param missionId
      * @return
      */
-    public List<MissionLicenseInfo> queryLicenseListByMissionId(Integer missionId);
+    public List<MissionLicenseInfo> queryLicenseListByMissionId(Integer missionId) throws Exception;
+
+    /**
+     * 根据missionID和userID查询具体的任务情况
+     *
+     * @author zgh
+     * @param missionId 任务ID
+     * @param userId    用户ID
+     * @return
+     * @throws Exception
+     */
+    public MissionLicenseInfo queryLicenseByMissionIdUserId(Integer missionId, Integer userId) throws Exception;
 
 }

@@ -10,8 +10,10 @@
 	<plugins>
 	<!-- com.github.pagehelper为PageHelper类所在包名 -->
 	<plugin interceptor="com.github.pagehelper.PageInterceptor">
-		<!-- 使用下面的方式配置参数，后面会有所有的参数介绍 -->
-		<property name="param1" value="value1"/>
+		<!--为true时pageNum<=0 时会查第一页-->
+		<property name="reasonable" value="true"/>
+		<!--当该参数设置为 true 时，如果 pageSize=0 或者 RowBounds.limit = 0 就会查询出全部的结果（相当于没有执行分页查询，但是返回结果仍然是 Page 类型）-->
+		<property name="pageSizeZero" value="true" />
 	</plugin>
 	</plugins>
 

@@ -6,8 +6,10 @@ import com.test.cweb.model.MissionLicenseInfoExample;
 import com.test.cweb.service.IMissionLicenseInfoService;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,7 +24,7 @@ public class MissionLicenseInfoServiceImpl implements IMissionLicenseInfoService
     MissionLicenseInfoDao missionLicenseInfoDao;
 
     @Override
-    public List<MissionLicenseInfo> queryLicenseListByMissionId(Integer missionId) {
+    public List<MissionLicenseInfo> queryLicenseListByMissionId(Integer missionId) throws Exception{
         if (null == missionId) {
             logger.info("参数不能为空!");
             return null;
@@ -31,5 +33,17 @@ public class MissionLicenseInfoServiceImpl implements IMissionLicenseInfoService
         example.createCriteria().andMissionIdEqualTo(missionId);
         List<MissionLicenseInfo> infoList = missionLicenseInfoDao.selectByExample(example);
         return infoList;
+    }
+
+    @Override
+    public MissionLicenseInfo queryLicenseByMissionIdUserId(Integer missionId, Integer userId) throws Exception {
+        MissionLicenseInfoExample example = new MissionLicenseInfoExample();
+        example.createCriteria().andMissionIdEqualTo(missionId).andUserIdEqualTo(userId);
+        List<MissionLicenseInfo> licenseInfo = new ArrayList<>();
+        licenseInfo = missionLicenseInfoDao.selectByExample(example);
+        if (CollectionUtils.isEmpty(licenseInfo)) {
+            return null;
+        }
+        return licenseInfo.get(1);
     }
 }

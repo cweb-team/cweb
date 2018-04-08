@@ -4,7 +4,9 @@ import com.test.cweb.model.MissionLicenseAllocation;
 import com.test.cweb.model.MissionLicenseAllocationExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface MissionLicenseAlloctionDao {
     long countByExample(MissionLicenseAllocationExample example);
 

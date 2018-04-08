@@ -99,13 +99,13 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.test.cweb.model.MissionLicenseAllocation">
+  <insert id="insert" useGeneratedKeys="true" keyProperty="pkId" parameterType="com.test.cweb.model.MissionLicenseAllocation">
     insert into T_MISSION_LICENSE_ALLOCATION (PK_ID, MISSION_ID, TEAM_ID, 
       COUNT)
     values (#{pkId,jdbcType=INTEGER}, #{missionId,jdbcType=INTEGER}, #{teamId,jdbcType=INTEGER}, 
       #{count,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.test.cweb.model.MissionLicenseAllocation">
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="pkId" parameterType="com.test.cweb.model.MissionLicenseAllocation">
     insert into T_MISSION_LICENSE_ALLOCATION
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="pkId != null">
