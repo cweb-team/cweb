@@ -92,6 +92,7 @@
       order by ${orderByClause}
     </if>
   </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -108,6 +109,8 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
+
+
   <insert id="insert" useGeneratedKeys="true" keyProperty="pkId" parameterType="com.test.cweb.model.MissionLicenseInfo">
     insert into T_MISSION_LICENSE_INFO (PK_ID, USER_ID, MISSION_ID, 
       SIGN_IN_STATUS, SIGN_IN_TIME, FIRST_SCREEN_UPLOAD_STATUS, 

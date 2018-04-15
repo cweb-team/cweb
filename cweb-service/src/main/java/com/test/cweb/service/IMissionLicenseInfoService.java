@@ -28,4 +28,14 @@ public interface IMissionLicenseInfoService {
      */
     public MissionLicenseInfo queryLicenseByMissionIdUserId(Integer missionId, Integer userId) throws Exception;
 
+    /**
+     * 根据userID查询具体的任务情况
+     *
+     * @author myz
+     * @param userId    用户ID
+     * @return
+     * @throws Exception
+     */
+    public List<MissionLicenseInfo> queryLicenseByUserId(Integer userId) throws Exception;
+
 }

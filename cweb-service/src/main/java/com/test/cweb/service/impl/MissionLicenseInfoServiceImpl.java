@@ -46,4 +46,16 @@ public class MissionLicenseInfoServiceImpl implements IMissionLicenseInfoService
         }
         return licenseInfo.get(1);
     }
+
+    @Override
+    public List <MissionLicenseInfo> queryLicenseByUserId(Integer userId) throws Exception {
+        MissionLicenseInfoExample example = new MissionLicenseInfoExample();
+        example.createCriteria().andUserIdEqualTo(userId);
+        List<MissionLicenseInfo> licenseInfo = new ArrayList<>();
+        licenseInfo = missionLicenseInfoDao.selectByExample(example);
+        if (CollectionUtils.isEmpty(licenseInfo)) {
+            return null;
+        }
+        return licenseInfo;
+    }
 }
